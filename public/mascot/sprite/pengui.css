@@ -1,0 +1,23 @@
+/* Pengui pixel mascot */
+.pengui {
+  width: var(--pengui-w);
+  height: var(--pengui-h);
+  background-image: var(--pengui-sheet);
+  background-repeat: no-repeat;
+  background-size: calc(var(--frames) * 100%) 100%;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+.pengui--idle { --frames: 4; --pengui-sheet: url('./idle_spritesheet.png'); }
+.pengui--blink { --frames: 3; --pengui-sheet: url('./blink_spritesheet.png'); }
+.pengui--wave { --frames: 4; --pengui-sheet: url('./wave_spritesheet.png'); }
+.pengui--walk { --frames: 8; --pengui-sheet: url('./walk_spritesheet.png'); }
+.pengui--thinking { --frames: 4; --pengui-sheet: url('./thinking_spritesheet.png'); }
+.pengui--sleep { --frames: 4; --pengui-sheet: url('./sleep_spritesheet.png'); }
+
+@keyframes pengui-frames {
+  to { background-position: 100% 0; }
+}
+.pengui.is-playing {
+  animation: pengui-frames var(--duration, .8s) steps(var(--steps, 7)) infinite;
+}

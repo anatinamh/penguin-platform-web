@@ -1,0 +1,387 @@
+PENGUI — ACCIONES Y ESTADOS DEL NUEVO PACK
+===============================================
+
+OBJETIVO
+--------
+Este nuevo pack de Pengui está pensado para funcionar como una mascota interactiva dentro de una web. Cada grupo de sprites representa una acción concreta y debe activarse según lo que esté ocurriendo en la interfaz.
+
+ANIMACIONES PRINCIPALES
+-----------------------
+
+01 — IDLE
+Estado por defecto.
+
+Cuándo usar:
+- Cuando no está ocurriendo ninguna acción especial.
+- Cuando el usuario está navegando normalmente.
+- Después de terminar cualquier animación temporal.
+
+Comportamiento:
+- Loop continuo.
+- Movimiento muy sutil.
+- Puede combinarse con blink ocasional.
+- No debe reiniciarse constantemente.
+
+Transición:
+Cualquier estado temporal → IDLE.
+
+
+02 — BLINK
+Parpadeo.
+
+Cuándo usar:
+- De forma ocasional mientras Pengui está en IDLE.
+- De manera aleatoria, no predecible.
+
+Comportamiento:
+- Reproducir una vez.
+- Volver inmediatamente a IDLE.
+- No ejecutar continuamente.
+
+Recomendación:
+Randomizar el intervalo entre parpadeos para que se sienta orgánico.
+
+
+03 — WAVE
+Saludo.
+
+Cuándo usar:
+- Hover sobre Pengui por primera vez.
+- Click sobre Pengui.
+- Cuando el usuario vuelve a entrar a una sección importante.
+- Opcionalmente cuando se inicia una sesión.
+
+Comportamiento:
+- Reproducir una vez.
+- Después volver a IDLE.
+- No repetir mientras el cursor permanezca sobre Pengui.
+
+Ejemplo:
+hover → WAVE → IDLE.
+
+
+04 — WALK
+Caminar.
+
+Cuándo usar:
+- Cuando Pengui necesita desplazarse físicamente dentro de la interfaz.
+- Para cambiar de posición.
+- Para aparecer desde un lado y caminar hasta su lugar.
+
+Comportamiento:
+- Reproducir en loop mientras se desplaza.
+- Sincronizar los frames con el movimiento horizontal.
+- Detener cuando llega al destino.
+
+Ejemplo:
+WALK → posición nueva → IDLE.
+
+
+05 — THINKING
+Pensando / procesando.
+
+Cuándo usar:
+- Durante cargas importantes.
+- Esperando una respuesta de API.
+- Generando contenido.
+- Procesando una búsqueda.
+- Analizando una acción del usuario.
+
+Comportamiento:
+- Loop mientras dure el proceso.
+- Mostrar a Pengui concentrado/pensativo.
+- Al terminar la operación, abandonar THINKING.
+
+Transiciones:
+THINKING → HAPPY si termina correctamente.
+THINKING → IDLE si termina normalmente.
+THINKING → ERROR si se implementa una animación de error posteriormente.
+
+
+06 — WORK
+Trabajando.
+
+Cuándo usar:
+- Cuando la web está realizando una tarea activa.
+- Durante procesos largos.
+- Como estado contextual en páginas de proyectos, trabajo, generación o procesamiento.
+
+Ejemplos:
+- Generación de contenido.
+- Exportación.
+- Procesamiento de datos.
+- Construcción de una respuesta.
+
+Comportamiento:
+- Loop mientras la tarea esté activa.
+- Puede alternarse con THINKING.
+- Al finalizar → HAPPY o IDLE.
+
+
+07 — SLEEP
+Durmiendo.
+
+Cuándo usar:
+- Después de un período prolongado sin interacción.
+- En una pantalla o sección que permanece inactiva.
+- Nunca inmediatamente después de cargar la web.
+
+Comportamiento:
+- Loop suave.
+- Puede mantenerse durante largos períodos.
+- Al detectar interacción → despertar y volver a IDLE.
+
+Ejemplo:
+inactividad prolongada → SLEEP
+usuario interactúa → IDLE
+
+
+08 — HAPPY
+Éxito / celebración.
+
+Cuándo usar:
+- Cuando el usuario completa correctamente una acción.
+- Cuando una operación termina con éxito.
+- Cuando ocurre algo positivo dentro de la experiencia.
+
+Ejemplos:
+- Formulario enviado correctamente.
+- Proyecto guardado.
+- Acción completada.
+- Onboarding terminado.
+- Mensaje enviado.
+
+Comportamiento:
+- Reproducir una vez.
+- No hacer loop.
+- Después volver a IDLE.
+
+Ejemplo:
+SUCCESS → HAPPY → IDLE.
+
+
+09 — EXPRESSIONS
+Expresiones faciales.
+
+Este grupo no debería funcionar como una animación automática permanente. Son estados visuales que pueden utilizarse según el contexto.
+
+Ejemplos:
+- Neutral → estado normal.
+- Blink → parpadeo.
+- Happy → resultado positivo.
+- Sleepy → cansancio/inactividad.
+- Curious → explorar algo.
+- Surprised → evento inesperado.
+- Love → interacción especial.
+- Confused → resultado ambiguo.
+- Wink → interacción juguetona.
+
+Implementación recomendada:
+<Pengui expression="curious" />
+
+Las expresiones pueden combinarse con el estado principal cuando sea técnicamente conveniente.
+
+
+10 — EXTRAS / PROPS
+Elementos complementarios.
+
+Incluyen:
+- Laptop.
+- Book.
+- Coffee cup.
+- Magnifying glass.
+- Light bulb.
+- Chat bubble.
+- Heart.
+- Star.
+- Footprints.
+
+No son necesariamente animaciones independientes del personaje. Deben aparecer únicamente cuando tengan sentido dentro de la acción.
+
+Ejemplos:
+
+WORK
+→ laptop
+
+THINKING
+→ light bulb / chat bubble
+
+SEARCH
+→ magnifying glass
+
+LEARNING
+→ book
+
+BREAK
+→ coffee cup
+
+SUCCESS
+→ star / heart
+
+WALK
+→ footprints
+
+
+MAPA DE EVENTOS DE LA WEB
+-------------------------
+
+Evento                       Acción Pengui
+
+Carga inicial                IDLE
+Hover Pengui                WAVE
+Click Pengui                WAVE
+API loading                 THINKING
+Proceso largo               WORK
+Búsqueda                    THINKING + magnifying glass
+Generación                  THINKING / WORK
+Éxito                       HAPPY
+Error                       IDLE o futura ERROR
+Inactividad prolongada      SLEEP
+Interacción después de sleep IDLE
+Desplazamiento físico       WALK
+Navegación normal           IDLE
+Formulario enviado          HAPPY
+
+
+PRIORIDAD DE ESTADOS
+--------------------
+
+Si varios eventos ocurren simultáneamente:
+
+1. HAPPY
+2. WORK / THINKING
+3. WAVE
+4. WALK
+5. SLEEP
+6. BLINK
+7. IDLE
+
+Los estados temporales tienen prioridad sobre IDLE.
+
+
+REGLAS DE TRANSICIÓN
+--------------------
+
+Los estados de una sola ejecución deben volver automáticamente a IDLE:
+
+WAVE → IDLE
+HAPPY → IDLE
+BLINK → IDLE
+
+Los estados persistentes permanecen activos hasta que cambia la condición:
+
+THINKING → mientras loading === true
+WORK → mientras taskRunning === true
+SLEEP → mientras inactive === true
+WALK → mientras moving === true
+
+
+PERSONALIDAD
+------------
+
+Pengui debería transmitir:
+
+- Curiosidad.
+- Amabilidad.
+- Inteligencia.
+- Energía moderada.
+- Humor sutil.
+- Compañerismo.
+
+Evitar:
+- Reacciones exageradas.
+- Animaciones constantes.
+- Interrumpir al usuario.
+- Hacer que Pengui parezca un chatbot invasivo.
+
+
+REDUCED MOTION
+--------------
+
+Respetar:
+
+@media (prefers-reduced-motion: reduce)
+
+En ese caso:
+- Reducir loops.
+- Evitar WALK automático.
+- Evitar movimientos decorativos.
+- Mantener solamente cambios esenciales de estado.
+
+
+ESTRUCTURA RECOMENDADA
+----------------------
+
+Crear un componente reutilizable:
+
+<Pengui />
+
+Estados:
+
+<Pengui state="idle" />
+<Pengui state="blink" />
+<Pengui state="wave" />
+<Pengui state="walk" />
+<Pengui state="thinking" />
+<Pengui state="work" />
+<Pengui state="sleep" />
+<Pengui state="happy" />
+
+Y expresiones:
+
+<Pengui expression="neutral" />
+<Pengui expression="curious" />
+<Pengui expression="happy" />
+<Pengui expression="sleepy" />
+<Pengui expression="surprised" />
+
+
+ARQUITECTURA DE ESTADO
+----------------------
+
+Idealmente Pengui debe tener una pequeña máquina de estados:
+
+WEB EVENT
+   ↓
+Pengui Controller
+   ↓
+Current State
+   ↓
+Sprite Animation
+   ↓
+Transition
+   ↓
+IDLE
+
+
+IMPORTANTE PARA LA IMPLEMENTACIÓN
+----------------------------------
+
+No convertir todos los eventos de la web en una animación.
+
+Pengui debe reaccionar solamente a eventos significativos.
+
+La sensación final debe ser:
+
+"Pengui está vivo y acompaña la experiencia."
+
+No:
+
+"Pengui está constantemente haciendo cosas."
+
+
+OBJETIVO FINAL
+--------------
+
+Pengui debe convertirse en un elemento reconocible de la identidad de la web, capaz de reaccionar contextualmente a:
+
+- navegación
+- interacción
+- carga
+- búsqueda
+- trabajo
+- éxito
+- inactividad
+- descubrimiento
+
+El sistema debe permitir agregar nuevas animaciones en el futuro sin tener que modificar toda la arquitectura.
