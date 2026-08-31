@@ -23,13 +23,12 @@ export const mainNav = [
 export const footerNav = {
   platform: [
     { label: "Capabilities", href: "/platform#capabilities" },
-    { label: "How it works", href: "/platform#how-it-works" },
+    { label: "How it works", href: "/#how-it-works" },
     { label: "Agent services", href: "/platform#services" },
     { label: "White label", href: "/white-label" },
   ],
   solutions: [
     { label: "Trust & control", href: "/trust" },
-    { label: "Industries we serve", href: "/#industries" },
     { label: "FAQ", href: "/faq#faq" },
     { label: "Pricing", href: "/pricing" },
   ],

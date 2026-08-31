@@ -49,23 +49,24 @@
 }
 
 :root {
-  --background: oklch(0.975 0.004 240);
+  /* Pengui cream — exact tokens from the app's own design system (public/pengui_design_system_v3_17julio 1.html) */
+  --background: #faf7f2; /* --bg-canvas */
   --foreground: oklch(0.22 0.015 55);
-  --card: oklch(1 0 0);
+  --card: oklch(0.995 0.006 85);
   --card-foreground: oklch(0.22 0.015 55);
-  --popover: oklch(1 0 0);
+  --popover: oklch(0.995 0.006 85);
   --popover-foreground: oklch(0.22 0.015 55);
   --primary: oklch(0.5 0.06 185);
   --primary-foreground: oklch(0.99 0.005 85);
-  --secondary: oklch(0.945 0.009 235);
+  --secondary: #f4efe6; /* --bg-surface */
   --secondary-foreground: oklch(0.22 0.015 55);
-  --muted: oklch(0.945 0.009 235);
+  --muted: #f4efe6; /* --bg-surface */
   --muted-foreground: oklch(0.47 0.015 60);
   --accent: oklch(0.91 0.035 175);
   --accent-foreground: oklch(0.32 0.05 180);
   --destructive: oklch(0.55 0.16 25);
-  --border: oklch(0.89 0.012 235);
-  --input: oklch(0.89 0.012 235);
+  --border: oklch(0.87 0.02 75);
+  --input: oklch(0.87 0.02 75);
   --ring: oklch(0.6 0.06 185);
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
@@ -86,6 +87,9 @@
   --mascot-blue: oklch(0.4 0.16 264);
   --mascot-lime: oklch(0.78 0.19 128);
   --mascot-orange: oklch(0.75 0.15 55);
+
+  /* soft muted teal-grey for diagram connector lines — softer than --primary */
+  --flow-line: color-mix(in oklch, var(--primary) 50%, var(--muted-foreground) 40%);
 }
 
 .dark {
@@ -205,38 +209,503 @@
   border: 1px solid color-mix(in oklch, var(--foreground) 12%, transparent);
 }
 
-/* Color block: a softened, translucent tint of the ice-glass palette for
-   surfaces that want more life than the airy default without going back to
-   a flat dark card — Glacier Blue fading into Lime Spark, never orange. */
+/* Color block: a flat, light tint of the ice-glass palette for surfaces
+   that want a touch more life than the airy default without going back to
+   a flat dark card. */
 .color-block {
   position: relative;
   isolation: isolate;
   overflow: hidden;
-  background: linear-gradient(
-    125deg,
-    color-mix(in oklch, var(--mascot-blue) 40%, white 60%) 0%,
-    color-mix(
-        in oklch,
-        color-mix(in oklch, var(--mascot-blue) 50%, var(--mascot-lime) 50%) 40%,
-        white 60%
-      )
-      65%,
-    color-mix(in oklch, var(--mascot-lime) 35%, white 65%) 100%
+  background: color-mix(
+    in oklch,
+    color-mix(in oklch, var(--mascot-blue) 50%, var(--mascot-lime) 50%) 6%,
+    var(--background) 94%
   );
 }
 
-.color-block::before {
-  content: "";
+/* Pengui pixel mascot sprite — see public/mascot/sprite/README.md */
+.pengui {
+  display: inline-block;
+  width: var(--pengui-w);
+  height: var(--pengui-h);
+  background-image: var(--pengui-sheet);
+  background-repeat: no-repeat;
+  background-size: calc(var(--frames) * 100%) 100%;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+.pengui--idle {
+  --frames: 4;
+  --steps: 3;
+  --pengui-sheet: url("/mascot/sprite/idle_spritesheet.png");
+}
+.pengui--blink {
+  --frames: 3;
+  --steps: 2;
+  --pengui-sheet: url("/mascot/sprite/blink_spritesheet.png");
+}
+.pengui--wave {
+  --frames: 4;
+  --steps: 3;
+  --pengui-sheet: url("/mascot/sprite/wave_spritesheet.png");
+}
+.pengui--walk {
+  --frames: 8;
+  --steps: 7;
+  --pengui-sheet: url("/mascot/sprite/walk_spritesheet.png");
+}
+.pengui--thinking {
+  --frames: 4;
+  --steps: 3;
+  --pengui-sheet: url("/mascot/sprite/thinking_spritesheet.png");
+}
+.pengui--sleep {
+  --frames: 4;
+  --steps: 3;
+  --pengui-sheet: url("/mascot/sprite/sleep_spritesheet.png");
+}
+
+@keyframes pengui-frames {
+  to {
+    background-position: 100% 0;
+  }
+}
+.pengui.is-playing {
+  animation: pengui-frames var(--duration, 0.8s) steps(var(--steps)) infinite;
+}
+
+/* The Shift — a chat log stuck thinking vs. a hub with agents orbiting it.
+   The thinking dots and sonar rings are driven by Framer Motion in shift.tsx;
+   this class only holds the sonar ring's static box (position/size/border). */
+.shift-sonar {
   position: absolute;
-  inset: 0;
-  z-index: 0;
-  background: repeating-linear-gradient(
-    115deg,
-    color-mix(in oklch, white 14%, transparent) 0px,
-    color-mix(in oklch, white 14%, transparent) 1.5px,
-    transparent 1.5px,
-    transparent 22px
-  );
-  mix-blend-mode: overlay;
-  opacity: 0.35;
+  top: 50%;
+  left: 50%;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 9999px;
+  border: 2px solid color-mix(in oklch, var(--primary) 90%, transparent);
+  pointer-events: none;
+}
+
+/* the agentic hub: a slow glow at the center */
+@keyframes shift-hub-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 color-mix(in oklch, var(--primary) 38%, transparent);
+  }
+  50% {
+    box-shadow: 0 0 0 12px color-mix(in oklch, var(--primary) 0%, transparent);
+  }
+}
+.shift-hub {
+  animation: shift-hub-glow 3.2s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shift-hub {
+    animation: none !important;
+  }
+}
+
+/* diagram connector lines: dashed, flow offset driven by Framer Motion
+   (useAnimationFrame updates --flow-offset on the wrapping <svg> each tick) */
+.flow-path {
+  fill: none;
+  stroke: var(--flow-line);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-dasharray: 5 7;
+  stroke-dashoffset: var(--flow-offset, 0);
+  vector-effect: non-scaling-stroke;
+}
+
+/* How it works — a rail of four steps that lights up in sequence. */
+.hiw-scene {
+  --ink: #181c22;
+  --ink-soft: #57616b;
+  --text-tertiary: #6c7580;
+  --card-bg: var(--card);
+  --teal: #278a78;
+  --teal-soft: rgba(39, 138, 120, 0.12);
+  --teal-line: rgba(39, 138, 120, 0.3);
+  font-family: var(--font-dm-sans), -apple-system, BlinkMacSystemFont, sans-serif;
+  color: var(--ink);
+}
+
+.hiw-scene .rail-row {
+  display: flex;
+  margin-bottom: 18px;
+}
+.hiw-scene .rail-col {
+  flex: 1;
+  position: relative;
+  height: 38px;
+  margin-right: 28px;
+}
+.hiw-scene .rail-col:last-child {
+  margin-right: 0;
+}
+.hiw-scene .rail-seg {
+  position: absolute;
+  left: 38px;
+  top: 50%;
+  height: 2px;
+  width: calc(100% - 38px + 28px);
+  background: var(--border);
+  transform: translateY(-50%);
+  overflow: hidden;
+  border-radius: 2px;
+}
+.hiw-scene .rail-col:last-child .rail-seg {
+  display: none;
+}
+.hiw-scene .rail-fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  background: var(--teal);
+  width: 0%;
+}
+.hiw-scene .rail-seg.seg1 .rail-fill {
+  animation: hiw-fill-seg-1 20s linear infinite;
+}
+.hiw-scene .rail-seg.seg2 .rail-fill {
+  animation: hiw-fill-seg-2 20s linear infinite;
+}
+.hiw-scene .rail-seg.seg3 .rail-fill {
+  animation: hiw-fill-seg-3 20s linear infinite;
+}
+@keyframes hiw-fill-seg-1 {
+  0%,
+  6% {
+    width: 0%;
+  }
+  25% {
+    width: 100%;
+  }
+  97% {
+    width: 100%;
+  }
+  100% {
+    width: 0%;
+  }
+}
+@keyframes hiw-fill-seg-2 {
+  0%,
+  31% {
+    width: 0%;
+  }
+  50% {
+    width: 100%;
+  }
+  97% {
+    width: 100%;
+  }
+  100% {
+    width: 0%;
+  }
+}
+@keyframes hiw-fill-seg-3 {
+  0%,
+  56% {
+    width: 0%;
+  }
+  75% {
+    width: 100%;
+  }
+  97% {
+    width: 100%;
+  }
+  100% {
+    width: 0%;
+  }
+}
+
+.hiw-scene .step-icon {
+  position: relative;
+  z-index: 1;
+  width: 38px;
+  height: 38px;
+  border-radius: 11px;
+  background: var(--teal-soft);
+  color: var(--teal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hiw-scene .step-icon svg {
+  width: 16px;
+  height: 16px;
+}
+.hiw-scene .step-icon.n1 {
+  animation: hiw-node-1 20s linear infinite;
+}
+.hiw-scene .step-icon.n2 {
+  animation: hiw-node-2 20s linear infinite;
+}
+.hiw-scene .step-icon.n3 {
+  animation: hiw-node-3 20s linear infinite;
+}
+.hiw-scene .step-icon.n4 {
+  animation: hiw-node-4 20s linear infinite;
+}
+@keyframes hiw-node-1 {
+  0% {
+    background: var(--teal);
+    color: #fff;
+    transform: scale(1.12);
+    box-shadow: 0 0 0 6px rgba(39, 138, 120, 0.16);
+  }
+  6% {
+    background: var(--teal);
+    color: #fff;
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(39, 138, 120, 0);
+  }
+  97% {
+    background: var(--teal);
+    color: #fff;
+  }
+  100% {
+    background: var(--teal-soft);
+    color: var(--teal);
+  }
+}
+@keyframes hiw-node-2 {
+  0%,
+  24% {
+    background: var(--teal-soft);
+    color: var(--teal);
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(39, 138, 120, 0);
+  }
+  25% {
+    background: var(--teal);
+    color: #fff;
+    transform: scale(1.12);
+    box-shadow: 0 0 0 6px rgba(39, 138, 120, 0.16);
+  }
+  31% {
+    background: var(--teal);
+    color: #fff;
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(39, 138, 120, 0);
+  }
+  97% {
+    background: var(--teal);
+    color: #fff;
+  }
+  100% {
+    background: var(--teal-soft);
+    color: var(--teal);
+  }
+}
+@keyframes hiw-node-3 {
+  0%,
+  49% {
+    background: var(--teal-soft);
+    color: var(--teal);
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(39, 138, 120, 0);
+  }
+  50% {
+    background: var(--teal);
+    color: #fff;
+    transform: scale(1.12);
+    box-shadow: 0 0 0 6px rgba(39, 138, 120, 0.16);
+  }
+  56% {
+    background: var(--teal);
+    color: #fff;
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(39, 138, 120, 0);
+  }
+  97% {
+    background: var(--teal);
+    color: #fff;
+  }
+  100% {
+    background: var(--teal-soft);
+    color: var(--teal);
+  }
+}
+@keyframes hiw-node-4 {
+  0%,
+  74% {
+    background: var(--teal-soft);
+    color: var(--teal);
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(39, 138, 120, 0);
+  }
+  75% {
+    background: var(--teal);
+    color: #fff;
+    transform: scale(1.12);
+    box-shadow: 0 0 0 6px rgba(39, 138, 120, 0.16);
+  }
+  81% {
+    background: var(--teal);
+    color: #fff;
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(39, 138, 120, 0);
+  }
+  97% {
+    background: var(--teal);
+    color: #fff;
+  }
+  100% {
+    background: var(--teal-soft);
+    color: var(--teal);
+  }
+}
+
+.hiw-scene .steps {
+  display: flex;
+  margin-bottom: 40px;
+}
+.hiw-scene .step {
+  flex: 1;
+  margin-right: 28px;
+}
+.hiw-scene .step:last-child {
+  margin-right: 0;
+}
+@media (max-width: 900px) {
+  .hiw-scene .steps {
+    flex-wrap: wrap;
+  }
+  .hiw-scene .step {
+    flex: 1 1 calc(50% - 14px);
+    margin-right: 0;
+    margin-bottom: 24px;
+  }
+  .hiw-scene .step:nth-child(odd) {
+    margin-right: 28px;
+  }
+  .hiw-scene .rail-row {
+    display: none;
+  }
+}
+@media (max-width: 560px) {
+  .hiw-scene .step {
+    flex: 1 1 100%;
+    margin-right: 0 !important;
+  }
+}
+.hiw-scene .step-num {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-tertiary);
+  margin-bottom: 8px;
+}
+.hiw-scene .step-title {
+  font-size: 16.5px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+.hiw-scene .step-desc {
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  max-width: 270px;
+}
+
+.hiw-scene .step.s1 {
+  animation: hiw-reveal-1 20s linear infinite;
+}
+.hiw-scene .step.s2 {
+  animation: hiw-reveal-2 20s linear infinite;
+}
+.hiw-scene .step.s3 {
+  animation: hiw-reveal-3 20s linear infinite;
+}
+.hiw-scene .step.s4 {
+  animation: hiw-reveal-4 20s linear infinite;
+}
+@keyframes hiw-reveal-1 {
+  0% {
+    opacity: 1;
+  }
+  97% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.5;
+  }
+}
+@keyframes hiw-reveal-2 {
+  0%,
+  24% {
+    opacity: 0.5;
+  }
+  25% {
+    opacity: 1;
+  }
+  97% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.5;
+  }
+}
+@keyframes hiw-reveal-3 {
+  0%,
+  49% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+  97% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.5;
+  }
+}
+@keyframes hiw-reveal-4 {
+  0%,
+  74% {
+    opacity: 0.5;
+  }
+  75% {
+    opacity: 1;
+  }
+  97% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.5;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hiw-scene * {
+    animation: none !important;
+  }
+}
+
+/* Hero's hidden words — a slow, gentle drift in place. Amplitude stays small
+   on purpose so they never wander into the centered headline/CTA column. */
+@keyframes hero-word-float {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(var(--float-x, 6px), var(--float-y, -10px));
+  }
+}
+.hero-word {
+  animation: hero-word-float var(--float-duration, 10s) ease-in-out infinite;
+  animation-delay: var(--float-delay, 0s);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-word {
+    animation: none !important;
+  }
 }

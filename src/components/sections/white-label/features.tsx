@@ -25,7 +25,7 @@ function Description({ text, strong }: { text: string; strong?: string }) {
 
 export function WhiteLabelFeatures() {
   return (
-    <section className="py-24 sm:py-32">
+    <section className="bg-secondary py-24 sm:py-32">
       <Container>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {whiteLabelFeatures.map((feature) => {

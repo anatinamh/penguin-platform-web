@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -17,6 +17,24 @@ import { mainNav, siteConfig } from "@/content/site";
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
+  // On the home page, the hero has its own "Request a demo" CTA — showing
+  // the header's copy of it at the same time reads as a duplicate. Hide it
+  // until the hero's own CTA has scrolled out of view.
+  const [showCta, setShowCta] = useState(true);
+
+  useEffect(() => {
+    const heroCta = document.getElementById("hero-primary-cta");
+    if (!heroCta) {
+      setShowCta(true);
+      return;
+    }
+    setShowCta(false);
+    const observer = new IntersectionObserver(([entry]) => setShowCta(!entry.isIntersecting), {
+      rootMargin: "-64px 0px 0px 0px",
+    });
+    observer.observe(heroCta);
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/60 bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -49,7 +67,12 @@ export function SiteHeader() {
         </nav>
 
         <div className="hidden items-center gap-2 md:flex">
-          <Button asChild>
+          <Button
+            asChild
+            className={`transition-all duration-200 ${
+              showCta ? "opacity-100" : "pointer-events-none -translate-y-1 opacity-0"
+            }`}
+          >
             <Link href="/request-demo">Request a demo</Link>
           </Button>
         </div>

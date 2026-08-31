@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
-import { Fragment } from "react";
-import { PageHeader } from "@/components/layout/page-header";
 import { Container } from "@/components/layout/container";
 import { ProductScreenshot } from "@/components/shared/product-screenshot";
+import { WhiteLabelHero } from "@/components/sections/white-label/hero";
 import { WhiteLabelFeatures } from "@/components/sections/white-label/features";
 import { PresetDemo } from "@/components/sections/white-label/preset-demo";
 import { FinalCta } from "@/components/sections/shared/final-cta";
@@ -14,44 +13,10 @@ export const metadata: Metadata = {
   description: whiteLabelHeader.subtitle,
 };
 
-function HighlightedTitle() {
-  const { title, titleHighlights } = whiteLabelHeader;
-  const pattern = new RegExp(`(${titleHighlights.map((h) => h.word).join("|")})`, "g");
-  const parts = title.split(pattern);
-
-  return (
-    <>
-      {parts.map((part, i) => {
-        const highlight = titleHighlights.find((h) => h.word === part);
-        if (!highlight) return <Fragment key={i}>{part}</Fragment>;
-        return (
-          <span
-            key={i}
-            className={highlight.color === "indigo" ? "text-indigo-500" : undefined}
-            style={
-              highlight.color === "primary"
-                ? { color: "var(--primary)" }
-                : highlight.color === "lime"
-                  ? { color: "var(--mascot-lime)" }
-                  : undefined
-            }
-          >
-            {part}
-          </span>
-        );
-      })}
-    </>
-  );
-}
-
 export default function WhiteLabelPage() {
   return (
     <>
-      <PageHeader
-        eyebrow={whiteLabelHeader.eyebrow}
-        title={<HighlightedTitle />}
-        subtitle={whiteLabelHeader.subtitle}
-      />
+      <WhiteLabelHero />
       <WhiteLabelFeatures />
       <Container className="pb-16">
         <ProductScreenshot

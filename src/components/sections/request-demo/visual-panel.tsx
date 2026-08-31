@@ -1,6 +1,8 @@
 "use client";
 
+import type { CSSProperties } from "react";
 import Image from "next/image";
+import { Cloud } from "lucide-react";
 import { handleGlowMove } from "@/lib/glow";
 
 export function RequestDemoVisualPanel() {
@@ -8,21 +10,23 @@ export function RequestDemoVisualPanel() {
     <div
       onMouseMove={handleGlowMove}
       aria-hidden
+      style={{ "--ice-glow-opacity": 0.85 } as CSSProperties}
       className="ice-field relative hidden min-h-[520px] overflow-hidden rounded-2xl border border-border/60 lg:block"
     >
       <div className="ice-glow" />
 
-      <div className="glass-panel absolute top-[14%] left-[10%] h-[62%] w-[30%] rounded-2xl" />
-      <div className="glass-panel absolute top-[10%] right-[12%] h-[38%] w-[24%] rounded-2xl" />
-      <div className="glass-panel absolute right-[14%] bottom-[16%] h-[22%] w-[20%] rounded-2xl" />
-
-      <Image
-        src="/mascot/pengui-mascot.png"
-        alt=""
-        width={480}
-        height={540}
-        className="absolute bottom-0 left-[8%] w-32 drop-shadow-xl"
-      />
+      <div className="absolute inset-0 flex items-center justify-center">
+        <div className="relative flex flex-col items-center">
+          <Image
+            src="/mascot/pengui-mascot.png"
+            alt=""
+            width={480}
+            height={540}
+            className="relative z-10 w-32 drop-shadow-xl"
+          />
+          <Cloud className="-mt-9 size-48 fill-white text-white drop-shadow-lg" strokeWidth={1} />
+        </div>
+      </div>
     </div>
   );
 }

@@ -4,11 +4,11 @@ import { control } from "@/content/pages/trust";
 
 export function Control() {
   return (
-    <section className="py-24 sm:py-32">
+    <section className="bg-secondary py-24 sm:py-32">
       <Container>
         <div className="mx-auto max-w-2xl text-center">
           <span className="text-sm font-medium text-primary">{control.eyebrow}</span>
-          <p className="mt-3 text-pretty text-muted-foreground">{control.subtitle}</p>
+          <p className="mt-4 text-pretty text-muted-foreground">{control.subtitle}</p>
         </div>
 
         <div className="mt-14 grid gap-6 sm:grid-cols-3">

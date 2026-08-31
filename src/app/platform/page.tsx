@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import { PageHeader } from "@/components/layout/page-header";
 import { Container } from "@/components/layout/container";
 import { ProductScreenshot } from "@/components/shared/product-screenshot";
+import { PlatformHero } from "@/components/sections/platform/hero";
 import { Capabilities } from "@/components/sections/platform/capabilities";
-import { Flex } from "@/components/sections/platform/flex";
+import { Interconnections } from "@/components/sections/platform/interconnections";
 import { ServicePaths } from "@/components/sections/platform/service-paths";
-import { HowItWorks } from "@/components/sections/platform/how-it-works";
+import { ProductOffering } from "@/components/sections/home/product-offering";
 import { Difference } from "@/components/sections/platform/difference";
 import { FinalCta } from "@/components/sections/shared/final-cta";
 import { platformHeader } from "@/content/pages/platform";
@@ -19,15 +19,11 @@ export const metadata: Metadata = {
 export default function PlatformPage() {
   return (
     <>
-      <PageHeader
-        eyebrow={platformHeader.eyebrow}
-        title={platformHeader.title}
-        subtitle={platformHeader.subtitle}
-      />
+      <PlatformHero />
       <Capabilities />
-      <Flex />
+      <Interconnections />
       <ServicePaths />
-      <HowItWorks />
+      <ProductOffering />
       <section className="py-16">
         <Container>
           <ProductScreenshot

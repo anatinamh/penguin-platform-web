@@ -12,7 +12,7 @@ import { difference } from "@/content/pages/platform";
 
 export function Difference() {
   return (
-    <section className="py-24 sm:py-32">
+    <section className="bg-secondary py-24 sm:py-32">
       <Container>
         <div className="mx-auto max-w-2xl text-center">
           <span className="text-sm font-medium text-primary">{difference.eyebrow}</span>

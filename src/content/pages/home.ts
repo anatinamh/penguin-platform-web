@@ -8,42 +8,6 @@ export const hero = {
     "An AI platform for building stable, trusted agents that understand your data, operate your tools and execute real work — under your brand, rules and context. Installed in your own cloud or your own data center, running on the models you already trust.",
   pills: ["Your agents", "Your cloud", "Your models", "Your brand"],
   primaryCta: { label: "Request a demo", href: "/request-demo" },
-  secondaryCta: { label: "Explore Pengui AI", href: "/platform" },
-  microcopy: "Start free for 30 days · no credit card · you pay only your own model tokens",
-};
-
-export const industries = {
-  eyebrow: "Where Pengui runs",
-  title: "Built for companies that keep their data close.",
-  subtitle:
-    "Pengui runs inside the environments of companies in energy, retail, financial services, HR and architecture. Different sectors, one shared requirement: agents working on their own data, inside their own infrastructure, under their own brand.",
-  items: [
-    {
-      name: "Energy",
-      icon: "zap",
-      blurb: "Agents across grid, trading and field-ops data — without it leaving your infrastructure.",
-    },
-    {
-      name: "Retail",
-      icon: "shopping-bag",
-      blurb: "Inventory, demand and customer data, turned into agents your team already trusts.",
-    },
-    {
-      name: "Financial services",
-      icon: "landmark",
-      blurb: "Governed agents over regulated data — auditable, isolated, yours.",
-    },
-    {
-      name: "HR",
-      icon: "users",
-      blurb: "Employee data stays internal while agents handle policy, onboarding and support.",
-    },
-    {
-      name: "Architecture",
-      icon: "building",
-      blurb: "Agents that reason over drawings, specs and project data, under your own roof.",
-    },
-  ],
 };
 
 export const shift = {
@@ -70,7 +34,13 @@ export const shift = {
 export const origin = {
   eyebrow: "Why Pengui exists",
   title: "The requirement was always the same. The product didn't exist.",
-  body: "Companies came to us with data they couldn't move, customers they weren't willing to hand over, and a mandate to do something with AI anyway. Every platform on the market asked them to give up at least one of the three. So we built the one that doesn't: agents running on their own infrastructure, under their own brand, serving their own clients.",
+  statement: "Every platform on the market asked them to give up at least one of the three.",
+  lede: "So we built the one that doesn't:",
+  swaps: [
+    { from: "Data they couldn't move", to: "Agents on their own infrastructure" },
+    { from: "Customers they wouldn't hand over", to: "Delivered under their own brand" },
+    { from: "A mandate to “do something” with AI", to: "Serving their own clients, for real" },
+  ],
 };
 
 export const solution = {
@@ -78,12 +48,12 @@ export const solution = {
   title: "Pengui is the agentic operating layer for companies.",
   titleHighlight: "agentic operating layer",
   subtitle:
-    "It sits between the people asking and the systems holding the answers — so your agents don't just reply, they act. Adopt one piece, or all.",
+    "It sits between the people asking and the systems holding the answers, so your agents don't just reply, they act. Adopt one piece, or all.",
   layer: {
     eyebrow: "The operating layer",
     title: "Pengui sits in the middle.",
     description:
-      "Agents answer, retrieve, remember and act — orchestrated over your knowledge, governed by your rules.",
+      "Agents answer, retrieve, remember and act, orchestrated over your knowledge, governed by your rules.",
   },
   columns: [
     {
@@ -115,14 +85,14 @@ export const solution = {
       label: "Your enterprise",
       sub: "Apps, knowledge & data",
       logos: [
-        { label: "Salesforce", icon: "cloud" },
-        { label: "Slack", icon: "hash" },
-        { label: "Microsoft 365", icon: "app-window" },
-        { label: "Google Workspace", icon: "mail" },
+        { label: "Salesforce", logoSrc: "/logos/salesforce.svg" },
+        { label: "Slack", logoSrc: "/logos/slack.svg" },
+        { label: "Microsoft 365", logoSrc: "/logos/microsoft-365.png" },
+        { label: "Google Workspace", logoSrc: "/logos/google-workspace.svg" },
+        { label: "BambooHR", logoSrc: "/logos/bamboohr.svg" },
+        { label: "Jira", logoSrc: "/logos/jira.png" },
         { label: "Your databases", icon: "database" },
         { label: "Data warehouse", icon: "warehouse" },
-        { label: "Google Drive", icon: "hard-drive" },
-        { label: "Teams & directory", icon: "users" },
       ],
     },
   ],
@@ -184,21 +154,10 @@ export const productOffering = {
   },
 };
 
-export const whiteLabelTeaser = {
-  title: "Your customers never need to know our name.",
-  body: "Your logo, your colors, your domain and your name apply from one set of settings.",
-  cta: { label: "Explore white-label", href: "/white-label" },
-};
-
-export const pricingTeaser = {
-  title: "Start free in your cloud. Scale by tier.",
-  body: "$0 for 30 days · BYO tokens · no credit card · unlimited users on every plan",
-  cta: { label: "See pricing", href: "/pricing" },
-};
-
 export const finalCta = {
   eyebrow: "Start free · 30 days",
   title: "Start free. Pay for tokens. Scale when you're ready.",
-  body: "Pengui gives your company the agentic operating layer to turn data, tools and workflows into real, executed work. Stand up Pengui in your own cloud and build your first agent free for 30 days. No credit card, and nothing leaves your environment by default.",
+  body: "Pengui gives your company the agentic operating layer to turn data, tools and workflows into real, executed work.",
   primaryCta: { label: "Request a demo", href: "/request-demo" },
+  microcopy: "No credit card, and nothing leaves your environment by default.",
 };

@@ -17,7 +17,7 @@ export function PricingHeader() {
         <div className="mt-3 flex flex-wrap items-center justify-between gap-4">
           <h1 className="text-balance font-heading text-4xl font-medium tracking-tight sm:text-5xl">
             {pricingHeader.titleLead}{" "}
-            <em className="text-primary italic">{pricingHeader.titleEmphasis}</em>
+            <em className="italic">{pricingHeader.titleEmphasis}</em>
           </h1>
           <span className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-card px-4 py-2 text-sm font-medium shadow-sm">
             <Users className="size-4 text-muted-foreground" />

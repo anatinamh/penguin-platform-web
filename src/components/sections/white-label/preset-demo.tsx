@@ -10,7 +10,7 @@ export function PresetDemo() {
   const [active, setActive] = useState(presetDemo.presets[0]);
 
   return (
-    <section className="bg-secondary/30 py-24 sm:py-32">
+    <section className="bg-secondary py-24 sm:py-32">
       <Container className="flex flex-col items-center text-center">
         <span className="text-sm font-medium text-primary">{presetDemo.eyebrow}</span>
         <h2 className="mt-3 max-w-xl text-balance font-heading text-3xl font-medium tracking-tight sm:text-4xl">

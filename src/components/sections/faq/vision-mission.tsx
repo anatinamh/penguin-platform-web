@@ -87,7 +87,7 @@ export function VisionMission() {
   return (
     <section className="py-16 sm:py-20">
       <Container className="max-w-3xl">
-        <span className="text-sm font-medium tracking-wide text-primary uppercase">
+        <span className="text-sm font-medium text-primary">
           {visionMission.eyebrow}
         </span>
         <h2 className="mt-3 text-balance font-heading text-3xl font-medium tracking-tight sm:text-4xl">

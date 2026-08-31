@@ -1,32 +1,69 @@
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import { Container } from "@/components/layout/container";
+import { Button } from "@/components/ui/button";
 import { howItWorks } from "@/content/pages/platform";
+
+const stepIcons = [
+  <svg key="deploy" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
+    <rect x={3} y={4} width={18} height={6} rx={1.5} />
+    <rect x={3} y={14} width={18} height={6} rx={1.5} />
+    <path d="M7 7h.01M7 17h.01" />
+  </svg>,
+  <svg key="connect" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
+    <path d="M9 3v4a2 2 0 0 1-2 2H3M15 3v4a2 2 0 0 0 2 2h4M9 21v-4a2 2 0 0 0-2-2H3M15 21v-4a2 2 0 0 1 2-2h4" />
+  </svg>,
+  <svg key="build" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
+    <path d="M12 2 3 6v6c0 5 4 8 9 10 5-2 9-5 9-10V6z" />
+  </svg>,
+  <svg key="brand" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
+    <path d="M13 2 3 14h7l-1 8 10-12h-7z" />
+  </svg>,
+];
 
 export function HowItWorks() {
   return (
-    <section id="how-it-works" className="bg-secondary/30 py-24 sm:py-32">
-      <Container>
-        <div className="mx-auto max-w-2xl text-center">
-          <span className="text-sm font-medium text-primary">{howItWorks.eyebrow}</span>
-          <h2 className="mt-3 text-balance font-heading text-3xl font-medium tracking-tight sm:text-4xl">
+    <section id="how-it-works" className="hiw-scene bg-secondary px-8 py-16 sm:py-20">
+      <Container className="max-w-[1120px]">
+        <div className="head mb-14 text-center">
+          <div className="text-sm font-medium text-primary">
+            {howItWorks.eyebrow}
+          </div>
+          <h2 className="mx-auto mt-3 max-w-2xl text-balance font-heading text-3xl font-medium tracking-tight sm:text-4xl">
             {howItWorks.title}
           </h2>
         </div>
 
-        <div className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-          {howItWorks.steps.map((step) => (
-            <div key={step.number}>
-              <span className="text-sm font-semibold text-muted-foreground">{step.number}</span>
-              <h3 className="mt-3 text-lg font-semibold">{step.title}</h3>
-              <p className="mt-2 text-sm text-muted-foreground">{step.description}</p>
+        <div className="rail-row" aria-hidden>
+          {howItWorks.steps.map((step, i) => (
+            <div className="rail-col" key={step.number}>
+              <div className={`step-icon n${i + 1}`}>{stepIcons[i]}</div>
+              {i < howItWorks.steps.length - 1 ? (
+                <div className={`rail-seg seg${i + 1}`}>
+                  <div className="rail-fill" />
+                </div>
+              ) : null}
             </div>
           ))}
         </div>
 
-        <div className="mt-14 rounded-2xl border border-border/60 bg-background p-8 text-center">
-          <p className="font-heading text-xl font-medium">{howItWorks.note.title}</p>
-          <p className="mx-auto mt-3 max-w-2xl text-sm text-muted-foreground">
-            {howItWorks.note.body}
-          </p>
+        <div className="steps">
+          {howItWorks.steps.map((step, i) => (
+            <div className={`step s${i + 1}`} key={step.number}>
+              <div className="step-num">{step.number}</div>
+              <div className="step-title">{step.title}</div>
+              <p className="step-desc">{step.description}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="text-center">
+          <Button asChild>
+            <Link href="/platform">
+              Explore platform
+              <ArrowRight className="size-4" />
+            </Link>
+          </Button>
         </div>
       </Container>
     </section>

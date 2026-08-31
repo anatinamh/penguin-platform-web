@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import {
   AppWindow,
@@ -5,22 +7,18 @@ import {
   BrainCircuit,
   Briefcase,
   Cable,
-  Cloud,
   Coins,
   Cpu,
   Database,
-  Hash,
-  HardDrive,
-  Mail,
   MessageCircle,
   MessageSquareText,
   Puzzle,
   Search,
-  Users,
   Warehouse,
   Workflow,
   type LucideIcon,
 } from "lucide-react";
+import { motion, type Variants } from "framer-motion";
 import { Container } from "@/components/layout/container";
 import { solution } from "@/content/pages/home";
 import { cn } from "@/lib/utils";
@@ -39,11 +37,6 @@ const icons: Record<string, LucideIcon> = {
   cable: Cable,
   database: Database,
   warehouse: Warehouse,
-  "hard-drive": HardDrive,
-  users: Users,
-  cloud: Cloud,
-  hash: Hash,
-  mail: Mail,
 };
 
 function TitleWithHighlight({ title, highlight }: { title: string; highlight?: string }) {
@@ -52,7 +45,8 @@ function TitleWithHighlight({ title, highlight }: { title: string; highlight?: s
   return (
     <>
       {before}
-      <span className="text-primary">{highlight}</span>
+      {/* color highlight paused for now — plain text until the palette direction is finalized */}
+      <span>{highlight}</span>
       {after}
     </>
   );
@@ -94,12 +88,38 @@ function Row({
   );
 }
 
+function LogoPill({ label, logoSrc }: { label: string; logoSrc: string }) {
+  return (
+    <div
+      title={label}
+      className="flex h-11 items-center justify-center rounded-xl border border-border/60 bg-card px-3"
+    >
+      <Image src={logoSrc} alt={label} width={120} height={28} className="h-5 w-auto object-contain" />
+    </div>
+  );
+}
+
+const cardVariants: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  show: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { delay: i * 0.12, duration: 0.55, ease: "easeOut" },
+  }),
+};
+
 function Connector() {
   return (
-    <div className="hidden items-center justify-center lg:flex">
-      <span className="flex size-9 items-center justify-center rounded-full border border-border/60 bg-background text-muted-foreground shadow-sm">
+    <div className="z-20 hidden shrink-0 items-center justify-center lg:-mx-2 lg:flex">
+      <motion.span
+        initial={{ opacity: 0, scale: 0.6 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true, amount: 0.6 }}
+        transition={{ duration: 0.4 }}
+        className="flex size-9 items-center justify-center rounded-full border border-border/60 bg-card text-muted-foreground shadow-sm"
+      >
         <ArrowLeftRight className="size-4" />
-      </span>
+      </motion.span>
     </div>
   );
 }
@@ -118,8 +138,15 @@ export function Solution() {
           <p className="mt-4 text-pretty text-muted-foreground">{solution.subtitle}</p>
         </div>
 
-        <div className="mt-16 grid items-stretch gap-4 lg:grid-cols-[1fr_auto_1.35fr_auto_1fr]">
-          <div className="rounded-2xl border border-border/60 bg-secondary/30 p-6">
+        <div className="mt-16 flex flex-col items-stretch gap-6 lg:flex-row lg:items-center lg:justify-center lg:gap-0">
+          <motion.div
+            custom={0}
+            variants={cardVariants}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.3 }}
+            className="rounded-3xl border border-border/60 bg-card/80 p-6 shadow-sm backdrop-blur-sm transition-shadow hover:shadow-md lg:w-[280px]"
+          >
             <p className="text-xs font-medium tracking-wide text-muted-foreground uppercase">
               {surfaces.sub}
             </p>
@@ -129,11 +156,18 @@ export function Solution() {
                 <Row key={item.label} label={item.label} icon={item.icon} />
               ))}
             </ul>
-          </div>
+          </motion.div>
 
           <Connector />
 
-          <div className="color-block relative rounded-2xl border border-transparent p-6 text-foreground [&>*]:relative [&>*]:z-10">
+          <motion.div
+            custom={1}
+            variants={cardVariants}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.3 }}
+            className="color-block relative z-10 rounded-3xl border border-primary/25 p-6 text-foreground shadow-2xl ring-4 ring-primary/10 [&>*]:relative [&>*]:z-10 lg:w-[380px] lg:scale-[1.03]"
+          >
             <span className="absolute top-6 right-6 z-10 size-2.5 rounded-full bg-primary shadow-[0_0_0_4px] shadow-primary/20" />
             <div className="flex items-center gap-2.5">
               <Image
@@ -156,21 +190,32 @@ export function Solution() {
                 <Row key={item.label} label={item.label} icon={item.icon} dark compact />
               ))}
             </div>
-          </div>
+          </motion.div>
 
           <Connector />
 
-          <div className="rounded-2xl border border-border/60 bg-secondary/30 p-6">
+          <motion.div
+            custom={2}
+            variants={cardVariants}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.3 }}
+            className="rounded-3xl border border-border/60 bg-card/80 p-6 shadow-sm backdrop-blur-sm transition-shadow hover:shadow-md lg:w-[280px]"
+          >
             <p className="text-xs font-medium tracking-wide text-muted-foreground uppercase">
               {enterprise.sub}
             </p>
             <p className="mt-1 text-base font-semibold">{enterprise.label}</p>
             <div className="mt-5 grid grid-cols-2 gap-2">
-              {enterprise.logos?.map((logo) => (
-                <Row key={logo.label} label={logo.label} icon={logo.icon} compact />
-              ))}
+              {enterprise.logos?.map((logo) =>
+                "logoSrc" in logo && logo.logoSrc ? (
+                  <LogoPill key={logo.label} label={logo.label} logoSrc={logo.logoSrc} />
+                ) : (
+                  <Row key={logo.label} label={logo.label} icon={(logo as { icon: string }).icon} compact />
+                ),
+              )}
             </div>
-          </div>
+          </motion.div>
         </div>
       </Container>
     </section>

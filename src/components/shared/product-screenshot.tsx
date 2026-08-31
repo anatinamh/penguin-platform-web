@@ -1,22 +1,25 @@
+import Image from "next/image";
 import { LayoutDashboard } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 /**
- * Placeholder for a real product screenshot. Framed like a browser window
- * (chrome bar + content well) so it reads as "a picture of the app" rather
- * than blending into the marketing page around it — swap the content well
- * for an actual screenshot/video when one is ready.
+ * A real (or, until one's ready, placeholder) product screenshot. Framed
+ * like a browser window (chrome bar + content well) so it reads as "a
+ * picture of the app" rather than blending into the marketing page — pass
+ * `src` once a real screenshot exists; omit it to keep the placeholder.
  */
 export function ProductScreenshot({
   label,
   caption,
   className,
   aspect = "16/10",
+  src,
 }: {
   label: string;
   caption?: string;
   className?: string;
   aspect?: string;
+  src?: string;
 }) {
   return (
     <div className={cn("mx-auto w-full max-w-3xl", className)}>
@@ -26,18 +29,30 @@ export function ProductScreenshot({
           <span className="size-2.5 rounded-full bg-border" />
           <span className="size-2.5 rounded-full bg-border" />
         </div>
-        <div
-          className="flex flex-col items-center justify-center gap-3 bg-secondary/25 p-8 text-center"
-          style={{ aspectRatio: aspect }}
-        >
-          <div className="flex size-12 items-center justify-center rounded-xl bg-accent text-accent-foreground">
-            <LayoutDashboard className="size-6" />
+        {src ? (
+          <div className="relative w-full" style={{ aspectRatio: aspect }}>
+            <Image
+              src={src}
+              alt={label}
+              fill
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              className="object-cover object-top"
+            />
           </div>
-          <p className="text-sm font-medium text-muted-foreground">{label}</p>
-          {caption ? (
-            <p className="max-w-xs text-xs text-muted-foreground/70">{caption}</p>
-          ) : null}
-        </div>
+        ) : (
+          <div
+            className="flex flex-col items-center justify-center gap-3 bg-secondary/25 p-8 text-center"
+            style={{ aspectRatio: aspect }}
+          >
+            <div className="flex size-12 items-center justify-center rounded-xl bg-accent text-accent-foreground">
+              <LayoutDashboard className="size-6" />
+            </div>
+            <p className="text-sm font-medium text-muted-foreground">{label}</p>
+            {caption ? (
+              <p className="max-w-xs text-xs text-muted-foreground/70">{caption}</p>
+            ) : null}
+          </div>
+        )}
       </div>
     </div>
   );

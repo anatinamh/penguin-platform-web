@@ -3,7 +3,7 @@ import { priceLevers } from "@/content/pages/pricing";
 
 export function PriceLevers() {
   return (
-    <section className="bg-secondary/30 py-24 sm:py-32">
+    <section className="py-24 sm:py-32">
       <Container>
         <div className="mx-auto max-w-2xl text-center">
           <p className="text-balance font-heading text-2xl font-medium tracking-tight sm:text-3xl">
@@ -16,7 +16,7 @@ export function PriceLevers() {
           {priceLevers.items.map((item) => (
             <div
               key={item.title}
-              className="rounded-2xl border border-border/60 bg-background p-6 transition-colors hover:border-primary/50"
+              className="rounded-2xl border border-border/60 bg-card p-6 transition-colors hover:border-primary/50"
             >
               <p className="font-medium">{item.title}</p>
               <p className="mt-2 text-sm text-muted-foreground">{item.description}</p>

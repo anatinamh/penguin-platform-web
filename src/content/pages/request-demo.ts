@@ -32,6 +32,6 @@ export const requestDemoForm = {
   consent:
     "By submitting this form, you agree to our Privacy Policy and consent to the collection, storage, processing and transfer of your information in accordance with that policy.",
   submitLabel: "Submit",
-  successTitle: "Thanks — we've got it.",
-  successBody: "Someone from our team will reach out within one business day to set up your demo.",
+  successTitle: "Thanks, we've got it.",
+  successBody: "Someone from our team will reach out soon to understand your requirements and set up your demo.",
 };

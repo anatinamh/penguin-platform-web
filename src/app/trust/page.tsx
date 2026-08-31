@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import { PageHeader } from "@/components/layout/page-header";
 import { Container } from "@/components/layout/container";
 import { ProductScreenshot } from "@/components/shared/product-screenshot";
+import { TrustHero } from "@/components/sections/trust/hero";
 import { Control } from "@/components/sections/trust/control";
 import { Keep } from "@/components/sections/trust/keep";
 import { FinalCta } from "@/components/sections/shared/final-cta";
@@ -16,11 +16,7 @@ export const metadata: Metadata = {
 export default function TrustPage() {
   return (
     <>
-      <PageHeader
-        eyebrow="Trust & control"
-        title="Enterprise-grade, running inside your own network."
-        subtitle="Answers for your security team and your CFO: the perimeter, the access model, and who owns what."
-      />
+      <TrustHero />
       <Control />
       <section className="py-16">
         <Container>

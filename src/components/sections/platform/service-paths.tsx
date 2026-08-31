@@ -50,12 +50,10 @@ function EmphasizedTitle() {
 
   return (
     <>
+      {/* color highlight paused for now — plain text until the palette direction is finalized */}
       {parts.map((part, i) =>
         part.color ? (
-          <em
-            key={i}
-            className={cn("italic", part.color === "indigo" ? "text-indigo-500" : "text-primary")}
-          >
+          <em key={i} className="italic">
             {part.text}
           </em>
         ) : (
@@ -83,7 +81,7 @@ export function ServicePaths() {
     <section id="services" className="py-24 sm:py-32">
       <Container>
         <div className="mx-auto max-w-2xl text-center">
-          <span className="text-sm font-medium tracking-wide text-primary uppercase">
+          <span className="text-sm font-medium text-primary">
             {servicePaths.eyebrow}
           </span>
           <h2 className="mt-3 text-balance font-heading text-3xl font-medium tracking-tight sm:text-4xl">
