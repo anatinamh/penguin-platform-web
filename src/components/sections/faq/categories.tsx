@@ -9,7 +9,7 @@ import { faqCategories } from "@/content/pages/faq";
 
 export function FaqCategories() {
   return (
-    <section className="bg-secondary py-16 sm:py-20">
+    <section className="bg-secondary py-24 sm:py-32">
       <Container className="max-w-3xl">
         <div className="flex flex-col gap-14">
           {faqCategories.map((category) => (

@@ -10,7 +10,7 @@ export function Tiers() {
   const custom = tiers.find((tier) => tier.dashed);
 
   return (
-    <section className="bg-secondary py-16">
+    <section className="bg-secondary py-20 sm:py-28">
       <Container>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {plans.map((tier) => (

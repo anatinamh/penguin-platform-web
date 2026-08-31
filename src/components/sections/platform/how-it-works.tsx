@@ -23,7 +23,7 @@ const stepIcons = [
 
 export function HowItWorks() {
   return (
-    <section id="how-it-works" className="hiw-scene bg-secondary px-8 py-16 sm:py-20">
+    <section id="how-it-works" className="hiw-scene bg-secondary px-8 py-24 sm:py-32">
       <Container className="max-w-[1120px]">
         <div className="head mb-14 text-center">
           <div className="text-sm font-medium text-primary">

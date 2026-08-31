@@ -18,7 +18,7 @@ export default function TrustPage() {
     <>
       <TrustHero />
       <Control />
-      <section className="py-16">
+      <section className="py-24 sm:py-32">
         <Container>
           <ProductScreenshot
             label="Permissions & audit log"

@@ -18,12 +18,14 @@ export default function WhiteLabelPage() {
     <>
       <WhiteLabelHero />
       <WhiteLabelFeatures />
-      <Container className="pb-16">
-        <ProductScreenshot
-          label="Your branded workspace"
-          caption="Screenshot placeholder: the same console, dressed in a client's logo, colors and domain."
-        />
-      </Container>
+      <section className="py-24 sm:py-32">
+        <Container>
+          <ProductScreenshot
+            label="Your branded workspace"
+            caption="Screenshot placeholder: the same console, dressed in a client's logo, colors and domain."
+          />
+        </Container>
+      </section>
       <PresetDemo />
       <Container className="py-16 text-center">
         <p className="mx-auto max-w-2xl text-pretty text-muted-foreground">

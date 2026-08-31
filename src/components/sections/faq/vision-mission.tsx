@@ -85,7 +85,7 @@ function Card({
 
 export function VisionMission() {
   return (
-    <section className="py-16 sm:py-20">
+    <section className="py-24 sm:py-32">
       <Container className="max-w-3xl">
         <span className="text-sm font-medium text-primary">
           {visionMission.eyebrow}

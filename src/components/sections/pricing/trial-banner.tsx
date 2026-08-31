@@ -7,7 +7,7 @@ import { trial } from "@/content/pages/pricing";
 
 export function TrialBanner() {
   return (
-    <section className="pt-16">
+    <section className="py-16 sm:py-20">
       <Container>
         <div className="flex flex-col items-start justify-between gap-6 rounded-2xl border border-border/60 bg-secondary/30 p-8 sm:flex-row sm:items-center">
           <div className="max-w-xl">

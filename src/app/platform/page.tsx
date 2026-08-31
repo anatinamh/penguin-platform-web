@@ -24,7 +24,7 @@ export default function PlatformPage() {
       <Interconnections />
       <ServicePaths />
       <ProductOffering />
-      <section className="py-16">
+      <section className="py-24 sm:py-32">
         <Container>
           <ProductScreenshot
             label="The console, step by step"
