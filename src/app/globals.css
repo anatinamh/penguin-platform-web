@@ -303,7 +303,8 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .shift-hub {
+  .shift-hub,
+  .pengui.is-playing {
     animation: none !important;
   }
 }
@@ -707,5 +708,24 @@
 @media (prefers-reduced-motion: reduce) {
   .hero-word {
     animation: none !important;
+  }
+}
+
+/* Shared shadcn/ui open-close transitions (Tooltip, Sheet, Accordion) and
+   any plain hover/focus CSS transition — collapse instead of removing, so
+   the before/after states still apply, just without the animated step. */
+@media (prefers-reduced-motion: reduce) {
+  .animate-in,
+  .animate-out,
+  [class*="slide-in-from"],
+  [class*="zoom-in"],
+  [class*="fade-in"],
+  [class*="fade-out"],
+  [class*="accordion-down"],
+  [class*="accordion-up"] {
+    animation-duration: 0.01ms !important;
+  }
+  * {
+    transition-duration: 0.01ms !important;
   }
 }

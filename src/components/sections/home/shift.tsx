@@ -1,8 +1,9 @@
 "use client";
 
+import { useRef } from "react";
 import Image from "next/image";
 import { BrainCircuit, Palette, ShieldCheck, Zap, type LucideIcon } from "lucide-react";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion, useAnimationFrame, useReducedMotion } from "framer-motion";
 import { Container } from "@/components/layout/container";
 import { shift } from "@/content/pages/home";
 
@@ -18,9 +19,21 @@ const nodePositions = [
 // the hub) — two semicircle arcs, both swept clockwise so a dot animated
 // along this path travels top → right → bottom → left.
 const orbitPath = "M50 10 A40 40 0 1 1 50 90 A40 40 0 1 1 50 10";
+const ORBIT_DURATION_MS = 7000;
 
 export function Shift() {
   const reduceMotion = useReducedMotion();
+  const orbitDotRef = useRef<SVGCircleElement>(null);
+
+  // Drives the orbiting dot via rAF instead of a native SMIL <animateMotion>,
+  // since prefers-reduced-motion can't reach SMIL — same technique already
+  // used for Interconnections' flow lines.
+  useAnimationFrame((t) => {
+    if (reduceMotion || !orbitDotRef.current) return;
+    const angle = ((t % ORBIT_DURATION_MS) / ORBIT_DURATION_MS) * Math.PI * 2;
+    orbitDotRef.current.setAttribute("cx", `${50 + 40 * Math.sin(angle)}`);
+    orbitDotRef.current.setAttribute("cy", `${50 - 40 * Math.cos(angle)}`);
+  });
 
   return (
     <section className="relative overflow-hidden py-24 sm:py-32">
@@ -98,9 +111,7 @@ export function Shift() {
               <div className="relative mt-8 aspect-square w-full max-w-[280px]">
                 <svg viewBox="0 0 100 100" className="absolute inset-0 text-primary/50" aria-hidden>
                   <path d={orbitPath} stroke="currentColor" strokeWidth={0.6} fill="none" />
-                  <circle r={1.6} fill="var(--primary)">
-                    <animateMotion dur="7s" repeatCount="indefinite" path={orbitPath} />
-                  </circle>
+                  <circle ref={orbitDotRef} cx={50} cy={10} r={1.6} fill="var(--primary)" />
                 </svg>
 
                 {/* sonar pulses, expanding outward from the hub */}

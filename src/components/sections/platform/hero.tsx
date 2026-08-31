@@ -3,7 +3,7 @@
 import type { ReactNode } from "react";
 import Image from "next/image";
 import { Check } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { Container } from "@/components/layout/container";
 import { cn } from "@/lib/utils";
 import { platformHeader } from "@/content/pages/platform";
@@ -17,13 +17,14 @@ function FloatingBadge({
   className: string;
   delay?: number;
 }) {
+  const reduceMotion = useReducedMotion();
   return (
     <motion.div
       className={cn(
         "absolute z-10 hidden items-center gap-2 rounded-xl border border-border/60 bg-card px-3.5 py-2.5 text-sm font-semibold text-foreground shadow-lg sm:flex",
         className,
       )}
-      animate={{ y: [0, -6, 0] }}
+      animate={reduceMotion ? undefined : { y: [0, -6, 0] }}
       transition={{ duration: 4.2, repeat: Infinity, ease: "easeInOut", delay }}
     >
       {children}

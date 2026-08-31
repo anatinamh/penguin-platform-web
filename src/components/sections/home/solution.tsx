@@ -18,7 +18,7 @@ import {
   Workflow,
   type LucideIcon,
 } from "lucide-react";
-import { motion, type Variants } from "framer-motion";
+import { motion, useReducedMotion, type Variants } from "framer-motion";
 import { Container } from "@/components/layout/container";
 import { solution } from "@/content/pages/home";
 import { cn } from "@/lib/utils";
@@ -109,10 +109,11 @@ const cardVariants: Variants = {
 };
 
 function Connector() {
+  const reduceMotion = useReducedMotion();
   return (
     <div className="z-20 hidden shrink-0 items-center justify-center lg:-mx-2 lg:flex">
       <motion.span
-        initial={{ opacity: 0, scale: 0.6 }}
+        initial={reduceMotion ? false : { opacity: 0, scale: 0.6 }}
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true, amount: 0.6 }}
         transition={{ duration: 0.4 }}
@@ -126,6 +127,7 @@ function Connector() {
 
 export function Solution() {
   const [surfaces, layer, enterprise] = solution.columns;
+  const reduceMotion = useReducedMotion();
 
   return (
     <section id="solution" className="py-24 sm:py-32">
@@ -142,7 +144,7 @@ export function Solution() {
           <motion.div
             custom={0}
             variants={cardVariants}
-            initial="hidden"
+            initial={reduceMotion ? false : "hidden"}
             whileInView="show"
             viewport={{ once: true, amount: 0.3 }}
             className="rounded-2xl border border-border/60 bg-card/80 p-6 shadow-sm backdrop-blur-sm transition-shadow hover:shadow-md lg:w-[280px]"
@@ -163,7 +165,7 @@ export function Solution() {
           <motion.div
             custom={1}
             variants={cardVariants}
-            initial="hidden"
+            initial={reduceMotion ? false : "hidden"}
             whileInView="show"
             viewport={{ once: true, amount: 0.3 }}
             className="color-block relative z-10 rounded-2xl border border-primary/25 p-6 text-foreground shadow-2xl ring-4 ring-primary/10 [&>*]:relative [&>*]:z-10 lg:w-[380px] lg:scale-[1.03]"
@@ -197,7 +199,7 @@ export function Solution() {
           <motion.div
             custom={2}
             variants={cardVariants}
-            initial="hidden"
+            initial={reduceMotion ? false : "hidden"}
             whileInView="show"
             viewport={{ once: true, amount: 0.3 }}
             className="rounded-2xl border border-border/60 bg-card/80 p-6 shadow-sm backdrop-blur-sm transition-shadow hover:shadow-md lg:w-[280px]"

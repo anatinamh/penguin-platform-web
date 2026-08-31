@@ -2,7 +2,7 @@
 
 import type { ReactNode } from "react";
 import { Check, ClipboardCheck, Lock, User } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { Container } from "@/components/layout/container";
 import { cn } from "@/lib/utils";
 
@@ -17,13 +17,14 @@ function FloatingBadge({
   className: string;
   delay?: number;
 }) {
+  const reduceMotion = useReducedMotion();
   return (
     <motion.div
       className={cn(
         "absolute z-10 hidden items-center gap-2 rounded-xl border border-border/60 bg-card px-3.5 py-2.5 text-sm font-semibold text-foreground shadow-lg sm:flex",
         className,
       )}
-      animate={{ y: [0, -6, 0] }}
+      animate={reduceMotion ? undefined : { y: [0, -6, 0] }}
       transition={{ duration: 4.2, repeat: Infinity, ease: "easeInOut", delay }}
     >
       <span className="flex size-5 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
@@ -35,6 +36,7 @@ function FloatingBadge({
 }
 
 export function TrustHero() {
+  const reduceMotion = useReducedMotion();
   return (
     <section
       className="relative overflow-hidden border-b border-border/60 py-16 sm:py-20"
@@ -61,7 +63,7 @@ export function TrustHero() {
             <motion.div
               aria-hidden
               className="absolute -inset-[6%] rounded-full border border-dashed border-primary/25"
-              animate={{ rotate: 360 }}
+              animate={reduceMotion ? undefined : { rotate: 360 }}
               transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
             />
             <motion.div
@@ -71,7 +73,9 @@ export function TrustHero() {
                 background:
                   "radial-gradient(closest-side, color-mix(in oklch, var(--primary) 12%, transparent), transparent 72%)",
               }}
-              animate={{ opacity: [0.4, 0.8, 0.4], scale: [0.94, 1.04, 0.94] }}
+              animate={
+                reduceMotion ? undefined : { opacity: [0.4, 0.8, 0.4], scale: [0.94, 1.04, 0.94] }
+              }
               transition={{ duration: 3.4, repeat: Infinity, ease: "easeInOut" }}
             />
 
