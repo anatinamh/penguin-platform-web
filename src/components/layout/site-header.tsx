@@ -17,22 +17,32 @@ import { mainNav, siteConfig } from "@/content/site";
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
-  // On the home page, the hero has its own "Request a demo" CTA — showing
-  // the header's copy of it at the same time reads as a duplicate. Hide it
-  // until the hero's own CTA has scrolled out of view.
+  // The home hero and every page's closing FinalCta each have their own
+  // "Request a demo" button — showing the header's copy of it at the same
+  // time reads as a duplicate. Hide it while either is in view.
   const [showCta, setShowCta] = useState(true);
 
   useEffect(() => {
     const heroCta = document.getElementById("hero-primary-cta");
-    if (!heroCta) {
+    const finalCta = document.getElementById("contact");
+    const watched = [heroCta, finalCta].filter((el): el is HTMLElement => el !== null);
+    if (watched.length === 0) {
       setShowCta(true);
       return;
     }
-    setShowCta(false);
-    const observer = new IntersectionObserver(([entry]) => setShowCta(!entry.isIntersecting), {
-      rootMargin: "-64px 0px 0px 0px",
-    });
-    observer.observe(heroCta);
+    const intersecting = new Set<Element>();
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) intersecting.add(entry.target);
+          else intersecting.delete(entry.target);
+        }
+        setShowCta(intersecting.size === 0);
+      },
+      { rootMargin: "-64px 0px 0px 0px" },
+    );
+    watched.forEach((el) => observer.observe(el));
+    if (heroCta) setShowCta(false);
     return () => observer.disconnect();
   }, []);
 

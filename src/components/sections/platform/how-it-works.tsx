@@ -58,7 +58,7 @@ export function HowItWorks() {
         </div>
 
         <div className="text-center">
-          <Button asChild>
+          <Button variant="outline" asChild>
             <Link href="/platform">
               Explore platform
               <ArrowRight className="size-4" />

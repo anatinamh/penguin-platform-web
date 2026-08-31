@@ -37,12 +37,7 @@ export function Tiers() {
               </div>
               <p className="mt-1 text-[11px] text-muted-foreground">{tier.seatsLabel}</p>
 
-              <Button
-                size="sm"
-                className="mt-4"
-                variant={tier.featured ? "default" : "outline"}
-                asChild
-              >
+              <Button size="sm" className="mt-4" variant="outline" asChild>
                 <a href="#contact">Talk to sales</a>
               </Button>
 
