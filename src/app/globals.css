@@ -171,7 +171,7 @@
     ),
     radial-gradient(
       36% 36% at calc(var(--glow-x, 72%) - 36%) calc(var(--glow-y, 26%) + 24%),
-      color-mix(in oklch, var(--mascot-blue) 32%, transparent),
+      color-mix(in oklch, var(--mascot-blue) 20%, transparent),
       transparent 75%
     );
   transition: background 0.15s ease-out;
@@ -325,7 +325,7 @@
 .hiw-scene {
   --ink: #181c22;
   --ink-soft: #57616b;
-  --text-tertiary: #6c7580;
+  --text-tertiary: var(--muted-foreground);
   --card-bg: var(--card);
   --teal: #278a78;
   --teal-soft: rgba(39, 138, 120, 0.12);
