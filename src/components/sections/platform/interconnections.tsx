@@ -49,7 +49,7 @@ function curve(x1: number, y1: number, x2: number, y2: number) {
 const TOP_X = [16, 50, 84];
 const BOTTOM_X = [16, 50, 84];
 const HUB = { x: 50, y: 50 };
-const TOP_Y = 30;
+const TOP_Y = 33;
 const BOTTOM_Y = 70;
 
 function Pill({
@@ -110,7 +110,7 @@ export function Interconnections() {
         </div>
 
         {/* Desktop: the actual connected diagram */}
-        <div className="relative mx-auto mt-16 hidden min-h-[440px] max-w-5xl lg:block">
+        <div className="relative mx-auto mt-16 hidden min-h-[520px] max-w-5xl lg:block">
           <svg
             ref={svgRef}
             viewBox="0 0 100 100"
@@ -138,7 +138,7 @@ export function Interconnections() {
             <div
               key={group.layer}
               style={{ left: `${TOP_X[i]}%`, top: 0 }}
-              className="absolute w-52 -translate-x-1/2 rounded-2xl border border-border/60 bg-card p-4 shadow-sm"
+              className="absolute w-56 -translate-x-1/2 rounded-2xl border border-border/60 bg-card p-4 shadow-sm"
             >
               <p className="text-xs font-semibold tracking-wide text-primary uppercase">
                 {group.layer}

@@ -27,7 +27,7 @@ export function Shift() {
       <Container>
         <div className="mx-auto max-w-3xl text-center">
           <span className="text-sm font-medium text-primary">{shift.eyebrow}</span>
-          <h2 className="mt-3 text-balance font-heading text-3xl font-medium tracking-tight whitespace-nowrap sm:text-4xl">
+          <h2 className="mt-3 text-balance font-heading text-3xl font-medium tracking-tight lg:whitespace-nowrap sm:text-4xl">
             {shift.title}
           </h2>
           <p className="mt-4 text-pretty text-muted-foreground">{shift.note}</p>
