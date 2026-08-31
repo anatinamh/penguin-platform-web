@@ -164,6 +164,7 @@ export function Interconnections() {
               <TooltipTrigger asChild>
                 <span
                   tabIndex={0}
+                  aria-label="Pengui Platform"
                   className="flex size-20 cursor-help items-center justify-center rounded-full border border-primary/30 bg-card p-2 shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 >
                   <Image

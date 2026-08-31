@@ -17,7 +17,7 @@ export function Control() {
               key={item.question}
               className="rounded-2xl border border-border/60 p-6 transition-colors hover:border-primary/50"
             >
-              <p className="font-medium italic">{item.question}</p>
+              <h2 className="font-medium italic">{item.question}</h2>
               <p className="mt-2 text-sm text-muted-foreground">{item.answer}</p>
             </div>
           ))}

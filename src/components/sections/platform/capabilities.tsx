@@ -66,14 +66,14 @@ function CapabilityCard({
       </div>
 
       <div>
-        <p className="flex flex-wrap items-baseline gap-x-2 font-heading text-lg font-medium">
+        <h4 className="flex flex-wrap items-baseline gap-x-2 font-heading text-lg font-medium">
           {item.piece}
           {"tag" in item && item.tag ? (
             <span className="font-sans text-xs font-medium tracking-wide text-primary uppercase">
               {item.tag}
             </span>
           ) : null}
-        </p>
+        </h4>
         <p className="mt-1.5 text-sm text-muted-foreground">{item.description}</p>
       </div>
     </div>
@@ -102,9 +102,9 @@ export function Capabilities() {
             {capabilities.groups.map((group) => (
               <div key={group.layer} className="grid gap-4 md:grid-cols-[9rem_1fr] md:gap-8">
                 <div>
-                  <p className="text-xs font-semibold tracking-wide text-primary uppercase">
+                  <h3 className="text-xs font-semibold tracking-wide text-primary uppercase">
                     {group.layer}
-                  </p>
+                  </h3>
                   <p className="mt-0.5 text-sm text-muted-foreground">{group.caption}</p>
                 </div>
 

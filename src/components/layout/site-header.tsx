@@ -52,7 +52,8 @@ export function SiteHeader() {
         <Link href="/" className="flex items-center gap-2 font-heading text-xl font-semibold tracking-tight">
           <Image
             src="/mascot/pengui-avatar.png"
-            alt="Pengui AI"
+            alt=""
+            aria-hidden
             width={32}
             height={32}
             className="size-8 rounded-full"

@@ -38,7 +38,7 @@ export function WhiteLabelFeatures() {
                 <div className="flex size-9 items-center justify-center rounded-lg bg-accent text-accent-foreground">
                   {Icon ? <Icon className="size-4" /> : null}
                 </div>
-                <p className="mt-4 font-heading text-lg font-medium">{feature.title}</p>
+                <h2 className="mt-4 font-heading text-lg font-medium">{feature.title}</h2>
                 <p className="mt-2 text-sm text-muted-foreground">
                   <Description text={feature.description} strong={feature.strong} />
                 </p>

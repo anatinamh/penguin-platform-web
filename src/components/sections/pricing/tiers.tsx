@@ -28,7 +28,7 @@ export function Tiers() {
               ) : (
                 <div className="mb-2 h-5" />
               )}
-              <p className="text-sm font-medium">{tier.name}</p>
+              <h2 className="text-sm font-medium">{tier.name}</h2>
               <p className="text-xs text-muted-foreground">{tier.tagline}</p>
 
               <div className="mt-3 flex items-baseline gap-1">
@@ -64,7 +64,7 @@ export function Tiers() {
         {custom ? (
           <div className="mt-4 flex flex-col gap-6 rounded-2xl border border-dashed border-border/80 bg-card/40 p-6 sm:p-8 lg:flex-row lg:items-center lg:justify-between">
             <div className="max-w-2xl">
-              <p className="text-sm font-medium">{custom.name}</p>
+              <h2 className="text-sm font-medium">{custom.name}</h2>
               <p className="text-xs text-muted-foreground">{custom.tagline}</p>
 
               <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2">
