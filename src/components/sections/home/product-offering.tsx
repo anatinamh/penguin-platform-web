@@ -216,7 +216,7 @@ export function ProductOffering() {
               {marketplace.agents.map((agent) => (
                 <div
                   key={agent}
-                  className="flex items-center gap-3 rounded-xl border border-border/60 bg-card p-3"
+                  className="flex items-center gap-3 rounded-lg border border-border/60 bg-card p-3"
                 >
                   <Image
                     src="/mascot/pengui-avatar.png"
@@ -231,7 +231,7 @@ export function ProductOffering() {
               ))}
               <div
                 className={cn(
-                  "flex items-center gap-3 rounded-xl border border-dashed border-border p-3 text-sm text-muted-foreground",
+                  "flex items-center gap-3 rounded-lg border border-dashed border-border p-3 text-sm text-muted-foreground",
                 )}
               >
                 <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-secondary">

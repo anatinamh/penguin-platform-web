@@ -145,7 +145,7 @@ export function Solution() {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, amount: 0.3 }}
-            className="rounded-3xl border border-border/60 bg-card/80 p-6 shadow-sm backdrop-blur-sm transition-shadow hover:shadow-md lg:w-[280px]"
+            className="rounded-2xl border border-border/60 bg-card/80 p-6 shadow-sm backdrop-blur-sm transition-shadow hover:shadow-md lg:w-[280px]"
           >
             <p className="text-xs font-medium tracking-wide text-muted-foreground uppercase">
               {surfaces.sub}
@@ -166,7 +166,7 @@ export function Solution() {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, amount: 0.3 }}
-            className="color-block relative z-10 rounded-3xl border border-primary/25 p-6 text-foreground shadow-2xl ring-4 ring-primary/10 [&>*]:relative [&>*]:z-10 lg:w-[380px] lg:scale-[1.03]"
+            className="color-block relative z-10 rounded-2xl border border-primary/25 p-6 text-foreground shadow-2xl ring-4 ring-primary/10 [&>*]:relative [&>*]:z-10 lg:w-[380px] lg:scale-[1.03]"
           >
             <span className="absolute top-6 right-6 z-10 size-2.5 rounded-full bg-primary shadow-[0_0_0_4px] shadow-primary/20" />
             <div className="flex items-center gap-2.5">
@@ -200,7 +200,7 @@ export function Solution() {
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, amount: 0.3 }}
-            className="rounded-3xl border border-border/60 bg-card/80 p-6 shadow-sm backdrop-blur-sm transition-shadow hover:shadow-md lg:w-[280px]"
+            className="rounded-2xl border border-border/60 bg-card/80 p-6 shadow-sm backdrop-blur-sm transition-shadow hover:shadow-md lg:w-[280px]"
           >
             <p className="text-xs font-medium tracking-wide text-muted-foreground uppercase">
               {enterprise.sub}
