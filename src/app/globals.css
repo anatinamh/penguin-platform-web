@@ -88,8 +88,11 @@
   --mascot-lime: oklch(0.78 0.19 128);
   --mascot-orange: oklch(0.75 0.15 55);
 
-  /* soft muted teal-grey for diagram connector lines — softer than --primary */
-  --flow-line: color-mix(in oklch, var(--primary) 50%, var(--muted-foreground) 40%);
+  /* shared connector-line color for every diagram/schema drawing site-wide —
+     soft muted teal-grey, softer than --primary. Single-percentage form so
+     the mix always sums to 100% (a two-percentage mix that doesn't add up
+     to 100% silently scales the result's alpha down too). */
+  --line-connector: color-mix(in oklch, var(--primary) 65%, var(--muted-foreground));
 }
 
 .dark {
@@ -299,7 +302,9 @@
   }
 }
 .shift-hub {
-  animation: shift-hub-glow 3.2s ease-in-out infinite;
+  /* same easing as the sonar rings right next to it, so the two effects
+     stay in visual sync every pulse instead of drifting apart */
+  animation: shift-hub-glow 3.2s cubic-bezier(0.2, 0.6, 0.4, 1) infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -313,8 +318,8 @@
    (useAnimationFrame updates --flow-offset on the wrapping <svg> each tick) */
 .flow-path {
   fill: none;
-  stroke: var(--flow-line);
-  stroke-width: 1.6;
+  stroke: var(--line-connector);
+  stroke-width: 1.5;
   stroke-linecap: round;
   stroke-dasharray: 5 7;
   stroke-dashoffset: var(--flow-offset, 0);
@@ -326,10 +331,8 @@
   --ink: #181c22;
   --ink-soft: #57616b;
   --text-tertiary: var(--muted-foreground);
-  --card-bg: var(--card);
   --teal: #278a78;
   --teal-soft: rgba(39, 138, 120, 0.12);
-  --teal-line: rgba(39, 138, 120, 0.3);
   font-family: var(--font-dm-sans), -apple-system, BlinkMacSystemFont, sans-serif;
   color: var(--ink);
 }
@@ -366,7 +369,7 @@
   left: 0;
   top: 0;
   height: 100%;
-  background: var(--teal);
+  background: var(--line-connector);
   width: 0%;
 }
 .hiw-scene .rail-seg.seg1 .rail-fill {

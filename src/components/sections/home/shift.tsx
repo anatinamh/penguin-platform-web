@@ -109,8 +109,14 @@ export function Shift() {
               <p className="mt-1 font-heading text-xl font-medium">{shift.agentic.heading}</p>
 
               <div className="relative mt-8 aspect-square w-full max-w-[280px]">
-                <svg viewBox="0 0 100 100" className="absolute inset-0 text-primary/50" aria-hidden>
-                  <path d={orbitPath} stroke="currentColor" strokeWidth={0.6} fill="none" />
+                <svg viewBox="0 0 100 100" className="absolute inset-0" aria-hidden>
+                  <path
+                    d={orbitPath}
+                    stroke="var(--line-connector)"
+                    strokeWidth={1.5}
+                    vectorEffect="non-scaling-stroke"
+                    fill="none"
+                  />
                   <circle ref={orbitDotRef} cx={50} cy={10} r={1.6} fill="var(--primary)" />
                 </svg>
 
