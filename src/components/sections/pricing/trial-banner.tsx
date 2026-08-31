@@ -18,7 +18,7 @@ export function TrialBanner() {
               {trial.title}
             </p>
             <p className="mt-2 text-sm text-muted-foreground">{trial.description}</p>
-            <p className="mt-4 text-sm text-primary">{trial.altNote}</p>
+            <p className="mt-4 text-sm text-muted-foreground">{trial.altNote}</p>
           </div>
           <div className="flex flex-col items-start gap-3 sm:items-end">
             <div className="text-right">

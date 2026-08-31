@@ -137,7 +137,7 @@ export function WhiteLabelHero() {
                   </div>
                 </div>
 
-                <div className="w-full rounded-lg bg-primary py-2.5 text-center text-xs font-semibold text-primary-foreground">
+                <div className="pointer-events-none w-full rounded-lg bg-primary py-2.5 text-center text-xs font-semibold text-primary-foreground">
                   Save changes
                 </div>
               </div>
