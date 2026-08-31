@@ -11,9 +11,9 @@ import { shift } from "@/content/pages/home";
 const nodeIcons: LucideIcon[] = [BrainCircuit, ShieldCheck, Palette, Zap];
 const nodePositions = [
   "top-[10%] left-1/2 -translate-x-1/2 -translate-y-1/2", // 12 o'clock
-  "top-1/2 left-[90%] -translate-x-1/2 -translate-y-1/2", // 3 o'clock
+  "top-1/2 left-[82%] -translate-x-1/2 -translate-y-1/2", // 3 o'clock
   "top-[90%] left-1/2 -translate-x-1/2 -translate-y-1/2", // 6 o'clock
-  "top-1/2 left-[10%] -translate-x-1/2 -translate-y-1/2", // 9 o'clock
+  "top-1/2 left-[18%] -translate-x-1/2 -translate-y-1/2", // 9 o'clock
 ];
 // A circular orbit through all four node positions (radius 40, centered on
 // the hub) — two semicircle arcs, both swept clockwise so a dot animated
@@ -161,7 +161,7 @@ export function Shift() {
                       <span className="flex size-9 items-center justify-center rounded-full border border-border/60 bg-card text-primary shadow-sm">
                         <Icon className="size-4" />
                       </span>
-                      <span className="w-24 rounded-md border border-border/60 bg-card/85 px-1.5 py-0.5 text-xs font-medium">
+                      <span className="w-20 rounded-md border border-border/60 bg-card/85 px-1.5 py-0.5 text-center text-xs font-medium">
                         {item}
                       </span>
                     </div>

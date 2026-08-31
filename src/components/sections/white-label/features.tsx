@@ -33,7 +33,7 @@ export function WhiteLabelFeatures() {
             return (
               <div
                 key={feature.title}
-                className="rounded-2xl border border-border/60 bg-card p-6 transition-colors hover:border-primary/50"
+                className="rounded-2xl border border-border/60 bg-card p-6"
               >
                 <div className="flex size-9 items-center justify-center rounded-lg bg-accent text-accent-foreground">
                   {Icon ? <Icon className="size-4" /> : null}

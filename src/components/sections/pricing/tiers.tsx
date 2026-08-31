@@ -17,10 +17,8 @@ export function Tiers() {
             <div
               key={tier.name}
               className={cn(
-                "flex flex-col rounded-2xl border p-5 transition-colors",
-                tier.featured
-                  ? "border-primary shadow-sm"
-                  : "border-border/60 hover:border-primary/50",
+                "flex flex-col rounded-2xl border p-5",
+                tier.featured ? "border-primary shadow-sm" : "border-border/60",
               )}
             >
               {tier.badge ? (

@@ -147,7 +147,7 @@ export function Solution() {
             initial={reduceMotion ? false : "hidden"}
             whileInView="show"
             viewport={{ once: true, amount: 0.3 }}
-            className="rounded-2xl border border-border/60 bg-card/80 p-6 shadow-sm backdrop-blur-sm transition-shadow hover:shadow-md lg:w-[280px]"
+            className="rounded-2xl border border-border/60 bg-card/80 p-6 shadow-sm backdrop-blur-sm lg:w-[280px]"
           >
             <p className="text-xs font-medium tracking-wide text-muted-foreground uppercase">
               {surfaces.sub}
@@ -202,7 +202,7 @@ export function Solution() {
             initial={reduceMotion ? false : "hidden"}
             whileInView="show"
             viewport={{ once: true, amount: 0.3 }}
-            className="rounded-2xl border border-border/60 bg-card/80 p-6 shadow-sm backdrop-blur-sm transition-shadow hover:shadow-md lg:w-[280px]"
+            className="rounded-2xl border border-border/60 bg-card/80 p-6 shadow-sm backdrop-blur-sm lg:w-[280px]"
           >
             <p className="text-xs font-medium tracking-wide text-muted-foreground uppercase">
               {enterprise.sub}

@@ -17,7 +17,7 @@ export function Keep() {
           {keep.items.map((item) => (
             <div
               key={item.question}
-              className="rounded-2xl border border-border/60 bg-background p-6 transition-colors hover:border-primary/50"
+              className="rounded-2xl border border-border/60 bg-background p-6"
             >
               <p className="font-medium italic">{item.question}</p>
               <p className="mt-2 text-sm text-muted-foreground">{item.answer}</p>
