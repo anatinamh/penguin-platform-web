@@ -1,19 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import { Check, Database, MessageSquare, Palette, Send, Server } from "lucide-react";
+import { Check, Palette, Server } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
 import { Container } from "@/components/layout/container";
 import { origin } from "@/content/pages/home";
 import { cn } from "@/lib/utils";
-
-// A concrete "what an agent actually does" walkthrough, layered over the
-// console screenshot: the question, then the two things the agent did about it.
-const storySteps = [
-  { icon: MessageSquare, text: "“How is the month tracking against budget?”", muted: true },
-  { icon: Database, text: "Pulled the numbers from the warehouse" },
-  { icon: Send, text: "Posted the summary to her team's channel" },
-];
 
 function FloatingBadge({
   icon: Icon,
@@ -41,37 +33,6 @@ function FloatingBadge({
       </span>
       {label}
     </motion.div>
-  );
-}
-
-function StoryOverlay() {
-  const reduceMotion = useReducedMotion();
-  return (
-    <div className="mt-5 flex flex-col gap-2">
-      {storySteps.map((step, i) => (
-        <motion.div
-          key={step.text}
-          className={cn(
-            "flex items-start gap-2.5 rounded-xl border border-border/60 bg-card px-3.5 py-2.5 text-sm shadow-sm",
-            step.muted ? "text-muted-foreground italic" : "font-medium",
-          )}
-          initial={reduceMotion ? false : { opacity: 0, y: 8 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.6 }}
-          transition={{ duration: 0.45, delay: i * 0.12, ease: "easeOut" }}
-        >
-          <span
-            className={cn(
-              "mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full",
-              step.muted ? "bg-muted text-muted-foreground" : "bg-primary/10 text-primary",
-            )}
-          >
-            <step.icon className="size-3" />
-          </span>
-          {step.text}
-        </motion.div>
-      ))}
-    </div>
   );
 }
 
@@ -148,8 +109,6 @@ export function Origin() {
                 className="-right-5 -bottom-4"
                 delay={0.6}
               />
-
-              <StoryOverlay />
             </div>
           </div>
         </div>

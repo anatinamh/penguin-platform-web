@@ -220,7 +220,7 @@ export const howItWorks = {
       number: "04",
       title: "Brand & roll out",
       description:
-        "Put your name on it and roll it out to your teams, every question answered, every action logged. Reselling to your own clients? That's our White label offer.",
+        "Put your name on it and roll it out to your teams, every question answered, every action logged. That's our White label offer.",
       strong: "White label",
     },
   ],
