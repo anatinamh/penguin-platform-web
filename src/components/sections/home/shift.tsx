@@ -63,16 +63,19 @@ export function Shift() {
           <p className="mt-4 text-pretty text-muted-foreground">{shift.note}</p>
         </div>
 
-        <div className="relative mt-16 flex flex-col items-start justify-center gap-16 lg:flex-row">
+        {/* Stretch, not start-align: the chat column is shorter than the orbit,
+            so left-aligned tops pooled all the difference as dead space under
+            the bubbles. Headings still line up; the bodies center in between. */}
+        <div className="relative mt-16 flex flex-col justify-center gap-16 lg:flex-row lg:items-stretch">
           {/* A chatbot */}
           <div className="w-full lg:w-1/2">
-            <div className="flex flex-col items-center text-center">
+            <div className="flex h-full flex-col items-center text-center">
               <p className="text-sm font-medium text-muted-foreground uppercase">
                 {shift.chatbot.label}
               </p>
               <p className="mt-1 font-heading text-xl font-medium">{shift.chatbot.heading}</p>
 
-              <div className="mt-8 flex w-full max-w-xs flex-col gap-3">
+              <div className="mt-8 flex w-full max-w-xs flex-1 flex-col justify-center gap-3">
                 <div className="self-end rounded-2xl rounded-br-sm border border-border/60 bg-card px-4 py-2.5 text-sm shadow-sm">
                   Can you take care of this?
                 </div>

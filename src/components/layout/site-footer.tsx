@@ -37,7 +37,7 @@ export function SiteFooter() {
 
         <div className="mt-10 border-t border-border/60 pt-6">
           <p className="text-xs text-muted-foreground">
-            © {year} {siteConfig.name} · Privacy · Terms
+            © {year} {siteConfig.name}
           </p>
         </div>
       </Container>
