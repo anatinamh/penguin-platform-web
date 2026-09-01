@@ -48,10 +48,7 @@ export function Origin() {
             <h2 className="mt-3 text-balance font-heading text-3xl font-medium tracking-tight sm:text-4xl">
               {origin.title}
             </h2>
-            <p className="mt-5 font-heading text-base text-pretty text-muted-foreground italic">
-              {origin.statement}
-            </p>
-            <p className="mt-2 font-heading text-lg font-medium">{origin.lede}</p>
+            <p className="mt-5 font-heading text-lg font-medium">{origin.lede}</p>
 
             <div className="mt-6 flex flex-col text-left">
               {origin.swaps.map((swap, i) => {

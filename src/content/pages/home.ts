@@ -34,12 +34,11 @@ export const shift = {
 export const origin = {
   eyebrow: "Why Pengui exists",
   title: "The requirement was always the same. The product didn't exist.",
-  statement: "Every platform on the market asked them to give up at least one of the three.",
-  lede: "So we built the one that doesn't:",
+  lede: "We built a product that has the 3 things companies are asking for:",
   swaps: [
-    { from: "Data they couldn't move", to: "Agents on their own infrastructure" },
-    { from: "Customers they wouldn't hand over", to: "Delivered under their own brand" },
-    { from: "A mandate to “do something” with AI", to: "Serving their own clients, for real" },
+    { from: "Data stuck in a vendor's cloud", to: "Agents on your own infrastructure" },
+    { from: "A vendor's brand on your product", to: "Delivered under your own brand" },
+    { from: "A vendor between you and your clients", to: "You serve your own clients, directly" },
   ],
 };
 
