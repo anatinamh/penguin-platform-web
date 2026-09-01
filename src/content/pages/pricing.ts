@@ -3,17 +3,23 @@
 // the Custom tier, and the trial banner copy all come from the deck.
 
 export const pricingHeader = {
-  eyebrow: "Pricing models",
+  eyebrow: "Pricing",
   titleLead: "Start free in your cloud.",
-  titleEmphasis: "Scale by tier.",
+  titleEmphasis: "Pay for what you switch on.",
   badge: "Unlimited users on every plan",
   subtitle: "Unlimited users on every plan.",
 };
 
 export const trial = {
-  title: "Free 30-day trial · full platform, in your cloud",
-  description:
-    "Deploy the full platform in your own cloud and evaluate it free — Console (full observability & control), Front End interface, and RAG System. Build and run agents, unlimited users; you pay only your own model tokens. Converts to a paid plan after 30 days.",
+  startHere: "Start here",
+  title: "Free 30-day trial · in your cloud",
+  description: "Deploy the full agent stack in your own cloud and evaluate it free",
+  includes: [
+    "Console (observability & control)",
+    "Canvas (the interface)",
+    "RAG Server (answers from your documents).",
+  ],
+  closing: "Build and run agents with unlimited users; you pay only your own model tokens.",
   altNote: "Don't want to deploy in your own cloud yet? Use hosted Pengui to start now.",
   price: "$0",
   priceNote: "for 30 days · BYO tokens",
