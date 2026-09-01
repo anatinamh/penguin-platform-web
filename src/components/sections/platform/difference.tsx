@@ -1,56 +1,67 @@
 import { Check, X } from "lucide-react";
 import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 import { Container } from "@/components/layout/container";
 import { difference } from "@/content/pages/platform";
+
+function ComparisonLine({
+  positive,
+  children,
+}: {
+  positive?: boolean;
+  children: React.ReactNode;
+}) {
+  return (
+    <span className={positive ? "flex items-start gap-2.5 text-sm font-semibold" : "flex items-start gap-2.5 text-sm text-muted-foreground"}>
+      <span
+        className={
+          positive
+            ? "mt-0.5 flex size-[18px] shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary"
+            : "mt-0.5 flex size-[18px] shrink-0 items-center justify-center rounded-full bg-destructive/10 text-destructive"
+        }
+      >
+        {positive ? <Check className="size-2.5" /> : <X className="size-2.5" />}
+      </span>
+      {children}
+    </span>
+  );
+}
 
 export function Difference() {
   return (
     <section className="bg-secondary py-24 sm:py-32">
-      <Container>
-        <div className="mx-auto max-w-2xl text-center">
+      <Container className="max-w-2xl">
+        <div className="text-center">
           <span className="text-sm font-medium text-primary">{difference.eyebrow}</span>
           <h2 className="mt-3 text-balance font-heading text-3xl font-medium tracking-tight sm:text-4xl">
             {difference.title}
           </h2>
         </div>
 
-        <div className="mt-12 overflow-x-auto rounded-2xl border border-border/60">
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>{difference.columns[0]}</TableHead>
-                <TableHead>{difference.columns[1]}</TableHead>
-                <TableHead>{difference.columns[2]}</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {difference.rows.map((row) => (
-                <TableRow key={row.dimension}>
-                  <TableCell className="font-medium whitespace-nowrap">{row.dimension}</TableCell>
-                  <TableCell className="text-muted-foreground">
-                    <span className="flex items-start gap-2">
-                      <X className="mt-0.5 size-4 shrink-0 text-destructive" />
-                      {row.boltOn}
-                    </span>
-                  </TableCell>
-                  <TableCell>
-                    <span className="flex items-start gap-2">
-                      <Check className="mt-0.5 size-4 shrink-0 text-primary" />
-                      {row.pengui}
-                    </span>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </div>
+        <Accordion
+          type="single"
+          collapsible
+          defaultValue={difference.rows[0]?.dimension}
+          className="mt-12 w-full rounded-2xl border border-border/60 bg-card px-4 shadow-sm sm:px-5"
+        >
+          {difference.rows.map((row) => (
+            <AccordionItem key={row.dimension} value={row.dimension}>
+              <AccordionTrigger className="py-4 text-sm font-semibold">
+                {row.dimension}
+              </AccordionTrigger>
+              <AccordionContent>
+                <div className="flex flex-col gap-2.5">
+                  <ComparisonLine>{row.boltOn}</ComparisonLine>
+                  <ComparisonLine positive>{row.pengui}</ComparisonLine>
+                </div>
+              </AccordionContent>
+            </AccordionItem>
+          ))}
+        </Accordion>
       </Container>
     </section>
   );

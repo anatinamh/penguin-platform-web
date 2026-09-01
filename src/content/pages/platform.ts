@@ -228,7 +228,7 @@ export const difference = {
     },
     {
       dimension: "The intelligence",
-      boltOn: "An extra bolted onto someone else's BI",
+      boltOn: "An extra bolted onto someone else's UI",
       pengui: "Agents, memory & data access are the platform",
     },
     {
