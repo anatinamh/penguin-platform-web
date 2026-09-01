@@ -42,3 +42,10 @@ next-env.d.ts
 
 .vercel
 .env*
+
+# Local copy of the Pengui product prototype, used only as the source for
+# capturing marketing screenshots. Never deployed — keep it out of public/.
+/prototype
+# Raw capture output (frames, unencoded video); only the final encoded
+# assets under public/screenshots are committed.
+/.captures
