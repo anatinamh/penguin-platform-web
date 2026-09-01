@@ -65,14 +65,6 @@ export function PlatformHero() {
             />
 
             <div className="relative rotate-1 overflow-hidden rounded-2xl border border-border/60 bg-card shadow-2xl">
-              <div className="flex items-center gap-2 border-b border-border/60 bg-secondary/40 px-3.5 py-2.5">
-                <span className="size-2.5 rounded-full bg-[#ECAAA0]" />
-                <span className="size-2.5 rounded-full bg-[#EFD08F]" />
-                <span className="size-2.5 rounded-full bg-[#A6D3B4]" />
-                <span className="ml-2 flex-1 rounded-md border border-border/60 bg-card px-2.5 py-1 font-mono text-[10px] text-muted-foreground">
-                  app.pengui.ai/agents
-                </span>
-              </div>
               <Image
                 src="/screenshots/pengui-platform-dark.png"
                 alt="Your Penguis — browse and subscribe to agents"
