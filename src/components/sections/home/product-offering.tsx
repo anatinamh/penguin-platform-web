@@ -59,18 +59,12 @@ export function ProductOffering() {
   return (
     <section id="offering" className="bg-secondary py-24 sm:py-32">
       <Container>
-        <div className="flex items-baseline gap-4 border-b border-border/60 pb-4">
-          <span className="shrink-0 text-sm font-medium text-primary">
-            {productOffering.eyebrow}
-          </span>
-          <span className="h-px w-full bg-border/60" />
-        </div>
-        <h2 className="mt-3 max-w-2xl text-balance font-heading text-3xl font-medium tracking-tight sm:text-4xl">
+        <h2 className="max-w-2xl text-balance font-heading text-3xl font-medium tracking-tight sm:text-4xl">
           {productOffering.titleLead}{" "}
           <em className="italic">{productOffering.titleEmphasis}</em>
         </h2>
 
-        <div className="mt-14 grid gap-6 lg:grid-cols-[1fr_auto_1.3fr_auto_1fr] lg:items-start">
+        <div className="mt-14 grid gap-6 lg:grid-cols-[1fr_auto_1.3fr_auto_1fr] lg:items-center">
           {/* Where it runs */}
           <div>
             <p className="text-xs font-semibold tracking-wide text-muted-foreground uppercase">
