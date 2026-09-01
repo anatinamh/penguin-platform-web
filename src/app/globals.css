@@ -49,7 +49,8 @@
 }
 
 :root {
-  /* Pengui cream — exact tokens from the app's own design system (public/pengui_design_system_v3_17julio 1.html) */
+  /* Pengui cream — exact tokens from the app's own design system
+     (prototype/pengui-design-system.html, kept out of the deploy) */
   --background: #faf7f2; /* --bg-canvas */
   --foreground: oklch(0.22 0.015 55);
   --card: oklch(0.995 0.006 85);
