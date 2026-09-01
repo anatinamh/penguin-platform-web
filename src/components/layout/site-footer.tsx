@@ -1,9 +1,11 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Container } from "@/components/layout/container";
-import { footerNav, siteConfig } from "@/content/site";
+import { getSite } from "@/content";
+import { type Locale, localizeHref } from "@/lib/i18n";
 
-export function SiteFooter() {
+export function SiteFooter({ locale }: { locale: Locale }) {
+  const { config, footerNav } = getSite(locale);
   const year = new Date().getFullYear();
 
   return (
@@ -26,18 +28,18 @@ export function SiteFooter() {
               </span>
             </span>
             <p className="mt-3 max-w-xs text-sm text-muted-foreground">
-              {siteConfig.description}
+              {config.description}
             </p>
           </div>
 
-          <FooterColumn title="Platform" links={footerNav.platform} />
-          <FooterColumn title="About" links={footerNav.solutions} />
-          <FooterColumn title="Get started" links={footerNav.company} />
+          {[footerNav.platform, footerNav.solutions, footerNav.company].map((column) => (
+            <FooterColumn key={column.title} column={column} locale={locale} />
+          ))}
         </div>
 
         <div className="mt-10 border-t border-border/60 pt-6">
           <p className="text-xs text-muted-foreground">
-            © {year} {siteConfig.name}
+            © {year} {config.name}
           </p>
         </div>
       </Container>
@@ -46,20 +48,20 @@ export function SiteFooter() {
 }
 
 function FooterColumn({
-  title,
-  links,
+  column,
+  locale,
 }: {
-  title: string;
-  links: { label: string; href: string }[];
+  column: { title: string; links: { label: string; href: string }[] };
+  locale: Locale;
 }) {
   return (
     <div>
-      <h3 className="text-sm font-medium">{title}</h3>
+      <h3 className="text-sm font-medium">{column.title}</h3>
       <ul className="mt-3 flex flex-col gap-2">
-        {links.map((link) => (
+        {column.links.map((link) => (
           <li key={link.label}>
             <Link
-              href={link.href}
+              href={localizeHref(link.href, locale)}
               className="text-sm text-muted-foreground transition-colors hover:text-foreground"
             >
               {link.label}

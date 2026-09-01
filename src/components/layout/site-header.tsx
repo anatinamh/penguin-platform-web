@@ -16,15 +16,20 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { Container } from "@/components/layout/container";
-import { mainNav, siteConfig } from "@/content/site";
+import { LocaleToggle } from "@/components/layout/locale-toggle";
+import { getSite } from "@/content";
+import { type Locale, localizeHref, stripLocale } from "@/lib/i18n";
 
 // Nav hrefs are all top-level routes, so a prefix match also keeps the parent
-// highlighted on any future nested page under it.
+// highlighted on any future nested page under it. Compared against the
+// locale-stripped path so /es/platform highlights the same item as /platform.
 function isActive(pathname: string, href: string) {
-  return pathname === href || pathname.startsWith(`${href}/`);
+  const path = stripLocale(pathname);
+  return path === href || path.startsWith(`${href}/`);
 }
 
-export function SiteHeader() {
+export function SiteHeader({ locale }: { locale: Locale }) {
+  const site = getSite(locale);
   const pathname = usePathname();
   const reduceMotion = useReducedMotion();
   const [open, setOpen] = useState(false);
@@ -68,7 +73,10 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/60 bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <Container className="flex h-16 items-center justify-between">
-        <Link href="/" className="flex items-center gap-2 font-heading text-xl font-semibold tracking-tight">
+        <Link
+          href={localizeHref("/", locale)}
+          className="flex items-center gap-2 font-heading text-xl font-semibold tracking-tight"
+        >
           <Image
             src="/mascot/pengui-avatar.png"
             alt=""
@@ -85,12 +93,12 @@ export function SiteHeader() {
         </Link>
 
         <nav className="hidden items-center gap-8 md:flex">
-          {mainNav.map((item) => {
+          {site.mainNav.map((item) => {
             const active = isActive(pathname, item.href);
             return (
               <Link
                 key={item.href}
-                href={item.href}
+                href={localizeHref(item.href, locale)}
                 aria-current={active ? "page" : undefined}
                 className={cn(
                   "group relative py-1 text-sm transition-colors",
@@ -122,55 +130,62 @@ export function SiteHeader() {
           })}
         </nav>
 
-        <div className="hidden items-center gap-2 md:flex">
+        <div className="hidden items-center gap-3 md:flex">
+          <LocaleToggle locale={locale} label={site.header.languageLabel} />
           <Button
             asChild
             className={`transition-all duration-200 ${
               showCta ? "opacity-100" : "pointer-events-none -translate-y-1 opacity-0"
             }`}
           >
-            <Link href="/request-demo">Request a demo</Link>
+            <Link href={localizeHref("/request-demo", locale)}>{site.header.requestDemo}</Link>
           </Button>
         </div>
 
-        <Sheet open={open} onOpenChange={setOpen}>
-          <SheetTrigger asChild>
-            <Button variant="ghost" size="icon" className="md:hidden" aria-label="Open menu">
-              <Menu className="size-5" />
-            </Button>
-          </SheetTrigger>
-          <SheetContent side="right" className="w-72">
-            <SheetHeader>
-              <SheetTitle>{siteConfig.name}</SheetTitle>
-            </SheetHeader>
-            <nav className="mt-4 flex flex-col gap-1 px-2">
-              {mainNav.map((item) => {
-                const active = isActive(pathname, item.href);
-                return (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    onClick={() => setOpen(false)}
-                    aria-current={active ? "page" : undefined}
-                    className={cn(
-                      "rounded-lg border-l-2 px-3 py-2 text-sm font-medium transition-colors",
-                      active
-                        ? "border-primary bg-primary/8 text-primary"
-                        : "border-transparent text-muted-foreground hover:bg-primary/5 hover:text-primary",
-                    )}
-                  >
-                    {item.label}
-                  </Link>
-                );
-              })}
-              <Button asChild className="mt-2">
-                <Link href="/request-demo" onClick={() => setOpen(false)}>
-                  Request a demo
-                </Link>
+        <div className="flex items-center gap-2 md:hidden">
+          <LocaleToggle locale={locale} label={site.header.languageLabel} />
+          <Sheet open={open} onOpenChange={setOpen}>
+            <SheetTrigger asChild>
+              <Button variant="ghost" size="icon" aria-label={site.header.openMenu}>
+                <Menu className="size-5" />
               </Button>
-            </nav>
-          </SheetContent>
-        </Sheet>
+            </SheetTrigger>
+            <SheetContent side="right" className="w-72">
+              <SheetHeader>
+                <SheetTitle>{site.config.name}</SheetTitle>
+              </SheetHeader>
+              <nav className="mt-4 flex flex-col gap-1 px-2">
+                {site.mainNav.map((item) => {
+                  const active = isActive(pathname, item.href);
+                  return (
+                    <Link
+                      key={item.href}
+                      href={localizeHref(item.href, locale)}
+                      onClick={() => setOpen(false)}
+                      aria-current={active ? "page" : undefined}
+                      className={cn(
+                        "rounded-lg border-l-2 px-3 py-2 text-sm font-medium transition-colors",
+                        active
+                          ? "border-primary bg-primary/8 text-primary"
+                          : "border-transparent text-muted-foreground hover:bg-primary/5 hover:text-primary",
+                      )}
+                    >
+                      {item.label}
+                    </Link>
+                  );
+                })}
+                <Button asChild className="mt-2">
+                  <Link
+                    href={localizeHref("/request-demo", locale)}
+                    onClick={() => setOpen(false)}
+                  >
+                    {site.header.requestDemo}
+                  </Link>
+                </Button>
+              </nav>
+            </SheetContent>
+          </Sheet>
+        </div>
       </Container>
     </header>
   );
