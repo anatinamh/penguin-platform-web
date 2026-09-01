@@ -33,52 +33,21 @@ export function RequestDemoForm() {
       <p className="font-heading text-xl font-medium">{requestDemoForm.title}</p>
 
       <div className="mt-6 grid gap-4">
-        <div className="grid gap-4 sm:grid-cols-2">
-          <Field label={fields.firstName} htmlFor="firstName">
-            <Input id="firstName" name="firstName" required autoComplete="given-name" />
-          </Field>
-          <Field label={fields.lastName} htmlFor="lastName">
-            <Input id="lastName" name="lastName" required autoComplete="family-name" />
-          </Field>
-        </div>
-
-        <div className="grid gap-4 sm:grid-cols-2">
-          <Field label={fields.company} htmlFor="company">
-            <Input id="company" name="company" required autoComplete="organization" />
-          </Field>
-          <Field label={fields.title} htmlFor="title">
-            <Input id="title" name="title" autoComplete="organization-title" />
-          </Field>
-        </div>
-
-        <Field label={fields.phone} htmlFor="phone">
-          <Input id="phone" name="phone" type="tel" autoComplete="tel" />
+        <Field label={fields.name} htmlFor="name">
+          <Input id="name" name="name" required autoComplete="name" />
         </Field>
 
         <Field label={fields.workEmail} htmlFor="workEmail">
           <Input id="workEmail" name="workEmail" type="email" required autoComplete="email" />
         </Field>
 
-        <Field label={fields.country} htmlFor="country">
-          <select
-            id="country"
-            name="country"
-            required
-            defaultValue=""
-            className="h-8 w-full min-w-0 rounded-lg border border-input bg-transparent px-2.5 py-1 text-base outline-none transition-colors focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 md:text-sm"
-          >
-            <option value="" disabled>
-              Select a country
-            </option>
-            {requestDemoForm.countries.map((country) => (
-              <option key={country} value={country}>
-                {country}
-              </option>
-            ))}
-          </select>
+        {/* Only two of the four are required, so marking what's optional says
+            more than starring what isn't. */}
+        <Field label={fields.phone} htmlFor="phone" hint={requestDemoForm.optionalHint}>
+          <Input id="phone" name="phone" type="tel" autoComplete="tel" />
         </Field>
 
-        <Field label={fields.message} htmlFor="message">
+        <Field label={fields.message} htmlFor="message" hint={requestDemoForm.optionalHint}>
           <Textarea id="message" name="message" rows={4} />
         </Field>
       </div>
@@ -102,15 +71,20 @@ export function RequestDemoForm() {
 function Field({
   label,
   htmlFor,
+  hint,
   children,
 }: {
   label: string;
   htmlFor: string;
+  hint?: string;
   children: React.ReactNode;
 }) {
   return (
     <div className="flex flex-col gap-1.5">
-      <Label htmlFor={htmlFor}>{label}</Label>
+      <Label htmlFor={htmlFor} className="gap-1.5">
+        {label}
+        {hint ? <span className="font-normal text-muted-foreground">· {hint}</span> : null}
+      </Label>
       {children}
     </div>
   );
