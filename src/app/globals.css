@@ -226,6 +226,52 @@
   );
 }
 
+/* A primary CTA that has to pull attention out of a dense section: the same
+   filled button, wrapped in a soft halo of its own color. The first shadow
+   keeps the default variant's inset top highlight, which a plain box-shadow
+   would otherwise replace. */
+.cta-glow {
+  box-shadow:
+    0 1px 0 0 rgb(255 255 255 / 0.15) inset,
+    0 4px 14px -2px color-mix(in oklch, var(--primary) 32%, transparent),
+    0 0 22px -4px color-mix(in oklch, var(--primary) 28%, transparent);
+}
+
+.cta-glow:hover {
+  box-shadow:
+    0 1px 0 0 rgb(255 255 255 / 0.15) inset,
+    0 6px 20px -2px color-mix(in oklch, var(--primary) 46%, transparent),
+    0 0 34px -4px color-mix(in oklch, var(--primary) 42%, transparent);
+}
+
+/* A slow, low-amplitude breath so the halo reads as alive without becoming
+   the blinking banner everyone learned to ignore. */
+@keyframes cta-breathe {
+  0%,
+  100% {
+    box-shadow:
+      0 1px 0 0 rgb(255 255 255 / 0.15) inset,
+      0 4px 14px -2px color-mix(in oklch, var(--primary) 32%, transparent),
+      0 0 22px -4px color-mix(in oklch, var(--primary) 28%, transparent);
+  }
+  50% {
+    box-shadow:
+      0 1px 0 0 rgb(255 255 255 / 0.15) inset,
+      0 5px 18px -2px color-mix(in oklch, var(--primary) 42%, transparent),
+      0 0 30px -4px color-mix(in oklch, var(--primary) 38%, transparent);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .cta-glow {
+    animation: cta-breathe 3.6s ease-in-out infinite;
+  }
+  /* Hand the halo back to :hover while the pointer is on the button. */
+  .cta-glow:hover {
+    animation: none;
+  }
+}
+
 /* Pengui pixel mascot sprite — see public/mascot/sprite/README.md */
 .pengui {
   display: inline-block;

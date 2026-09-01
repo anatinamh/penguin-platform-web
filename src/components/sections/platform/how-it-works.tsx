@@ -75,7 +75,7 @@ export function HowItWorks() {
         </div>
 
         <div className="text-center">
-          <Button variant="outline" asChild>
+          <Button size="lg" className="cta-glow" asChild>
             <Link href="/platform">
               Explore platform
               <ArrowRight className="size-4" />
