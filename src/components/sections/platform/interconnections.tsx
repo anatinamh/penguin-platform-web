@@ -40,12 +40,22 @@ const icons: Record<string, LucideIcon> = {
   palette: Palette,
 };
 
-// An orthogonal "circuit-board" connector: straight down from the start,
-// across on a shared bus row, straight into the end — reads as deliberately
-// routed to a specific point instead of a vague, flat-looking curve.
-function elbow(x1: number, y1: number, busY: number, x2: number, y2: number) {
+// An orthogonal "circuit-board" connector with the corners rounded off:
+// straight down from the start, a smooth curve into a shared bus row,
+// straight across, another smooth curve, straight down into the end. Reads
+// as deliberately routed to a specific point, without the harsh right angles
+// of a plain elbow.
+function roundedElbow(x1: number, y1: number, busY: number, x2: number, y2: number, r = 3) {
   if (x1 === x2) return `M${x1},${y1} L${x2},${y2}`;
-  return `M${x1},${y1} L${x1},${busY} L${x2},${busY} L${x2},${y2}`;
+  const dir = x2 > x1 ? 1 : -1;
+  return [
+    `M${x1},${y1}`,
+    `L${x1},${busY - r}`,
+    `Q${x1},${busY} ${x1 + dir * r},${busY}`,
+    `L${x2 - dir * r},${busY}`,
+    `Q${x2},${busY} ${x2},${busY + r}`,
+    `L${x2},${y2}`,
+  ].join(" ");
 }
 
 const TOP_X = [16, 50, 84];
@@ -113,8 +123,11 @@ export function Interconnections() {
         <div className="mx-auto max-w-2xl text-center">
           <span className="text-sm font-medium text-primary">How the pieces connect</span>
           <h2 className="mt-3 text-balance font-heading text-3xl font-medium tracking-tight sm:text-4xl">
-            One platform. Nothing running in isolation.
+            Capabilities
           </h2>
+          <p className="mt-4 text-pretty text-muted-foreground">
+            One platform. Nothing running in isolation.
+          </p>
         </div>
 
         {/* Desktop: the actual connected diagram */}
@@ -130,14 +143,14 @@ export function Interconnections() {
               <path
                 key={`top-${i}`}
                 className="flow-path"
-                d={elbow(TOP_X[i], TOP_LINE_START_Y, TOP_BUS_Y, HUB.x, HUB_TOP_Y)}
+                d={roundedElbow(TOP_X[i], TOP_LINE_START_Y, TOP_BUS_Y, HUB.x, HUB_TOP_Y)}
               />
             ))}
             {bottomItems.map((_, i) => (
               <path
                 key={`bottom-${i}`}
                 className="flow-path"
-                d={elbow(HUB.x, HUB_BOTTOM_Y, BOTTOM_BUS_Y, BOTTOM_X[i], BOTTOM_LINE_END_Y)}
+                d={roundedElbow(HUB.x, HUB_BOTTOM_Y, BOTTOM_BUS_Y, BOTTOM_X[i], BOTTOM_LINE_END_Y)}
               />
             ))}
           </svg>

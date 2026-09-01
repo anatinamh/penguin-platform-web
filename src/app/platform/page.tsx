@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Container } from "@/components/layout/container";
 import { ProductScreenshot } from "@/components/shared/product-screenshot";
 import { PlatformHero } from "@/components/sections/platform/hero";
-import { Capabilities } from "@/components/sections/platform/capabilities";
 import { Interconnections } from "@/components/sections/platform/interconnections";
 import { ServicePaths } from "@/components/sections/platform/service-paths";
 import { ProductOffering } from "@/components/sections/home/product-offering";
@@ -20,7 +19,6 @@ export default function PlatformPage() {
   return (
     <>
       <PlatformHero />
-      <Capabilities />
       <Interconnections />
       <ServicePaths />
       <ProductOffering />
