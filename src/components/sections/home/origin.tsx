@@ -100,10 +100,10 @@ export function Origin() {
                   </span>
                 </div>
                 <Image
-                  src="/screenshots/pengui-chat-start.png"
-                  alt="Pengui console — Good to see you, Ana"
-                  width={1521}
-                  height={855}
+                  src="/screenshots/pengui-dark.png"
+                  alt="Pengui console — Hello again, Ana"
+                  width={1894}
+                  height={984}
                   className="w-full"
                 />
               </div>

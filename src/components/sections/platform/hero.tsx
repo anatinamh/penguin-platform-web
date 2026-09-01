@@ -74,10 +74,10 @@ export function PlatformHero() {
                 </span>
               </div>
               <Image
-                src="/screenshots/pengui-agents.png"
+                src="/screenshots/pengui-platform-dark.png"
                 alt="Your Penguis — browse and subscribe to agents"
-                width={1876}
-                height={993}
+                width={1879}
+                height={991}
                 className="w-full"
               />
             </div>
