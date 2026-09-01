@@ -76,7 +76,7 @@ export function Shift() {
               <p className="mt-1 font-heading text-xl font-medium">{shift.chatbot.heading}</p>
 
               <div className="mt-8 flex w-full max-w-xs flex-1 flex-col justify-center gap-3">
-                <div className="self-end rounded-2xl rounded-br-sm border border-border/60 bg-card px-4 py-2.5 text-sm shadow-sm">
+                <div className="self-end rounded-2xl rounded-br-sm border border-primary/20 bg-accent px-4 py-2.5 text-sm text-accent-foreground shadow-sm">
                   Can you take care of this?
                 </div>
 
@@ -187,7 +187,7 @@ export function Shift() {
                     >
                       <Icon className="size-4" />
                       <span
-                        className={`absolute w-32 rounded-md border border-border/60 bg-card px-2 py-1 text-center text-xs leading-tight font-medium text-foreground shadow-sm ${labelPositions[i]}`}
+                        className={`absolute w-32 rounded-md border border-primary/20 bg-accent px-2 py-1 text-center text-xs leading-tight font-medium text-accent-foreground shadow-sm ${labelPositions[i]}`}
                       >
                         {item}
                       </span>
