@@ -15,7 +15,7 @@ export function Control() {
           {control.items.map((item) => (
             <div
               key={item.question}
-              className="rounded-2xl border border-border/60 p-6"
+              className="rounded-2xl border border-border/60 bg-card p-6 shadow-sm"
             >
               <h2 className="font-medium italic">{item.question}</h2>
               <p className="mt-2 text-sm text-muted-foreground">{item.answer}</p>
@@ -23,7 +23,7 @@ export function Control() {
           ))}
         </div>
 
-        <div className="mt-10 flex items-start gap-3 rounded-2xl border border-border/60 bg-secondary/30 p-6">
+        <div className="mt-10 flex items-start gap-3 rounded-2xl border border-primary/25 bg-primary/8 p-6">
           <ShieldCheck className="mt-0.5 size-5 shrink-0 text-primary" />
           <p className="text-sm text-muted-foreground">{control.note}</p>
         </div>

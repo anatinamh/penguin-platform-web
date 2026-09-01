@@ -53,8 +53,8 @@ export function TrustHero() {
             Enterprise-grade, running inside your own network.
           </h1>
           <p className="mt-4 max-w-md text-pretty text-lg text-muted-foreground lg:mx-0">
-            Answers for your security team and your CFO: the perimeter, the access model, and who
-            owns what.
+            The questions your security team, your legal team and your CFO will ask, answered
+            plainly: the perimeter, the access model, and who owns what.
           </p>
         </div>
 
@@ -97,8 +97,9 @@ export function TrustHero() {
               <path
                 d="M130 8 L238 46 C238 46 244 168 130 292 C16 168 22 46 22 46 Z"
                 stroke="url(#shieldGrad)"
-                strokeWidth={3.5}
+                strokeWidth={7}
                 strokeLinejoin="round"
+                strokeLinecap="round"
                 fill="none"
               />
               <path

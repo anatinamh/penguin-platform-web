@@ -8,7 +8,7 @@ export const control = {
     {
       question: "“Where does it run?”",
       answer:
-        "In your own cloud or your own data center — air-gapped if you need it. The whole platform sits inside your network.",
+        "In your own cloud or your own data center — air-gapped if you need it. The whole platform sits inside your network, and the storage is yours, so encryption and key rotation follow your own policies.",
     },
     {
       question: "“What leaves our environment?”",
