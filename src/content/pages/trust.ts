@@ -23,21 +23,3 @@ export const control = {
   ],
   note: "About certifications, plainly. The ones that govern your data are the ones you already hold. The platform runs in your environment and your information never reaches us — so the compliance perimeter, and the audit, stay yours.",
 };
-
-export const keep = {
-  eyebrow: "Yours to keep",
-  title: "Your data is yours. The engine is licensed.",
-  subtitle: "The line is drawn on purpose — and it doesn't move if you leave.",
-  items: [
-    {
-      question: "“What's ours, forever?”",
-      answer:
-        "Your data, your agents' configurations and the memory they've built. It lives in your own database, in your own cloud — readable and exportable at any time, subscription or not.",
-    },
-    {
-      question: "“So what are we paying for?”",
-      answer:
-        "The engine: the logic, connectors and standards that turn that data into working agents. It runs while you subscribe — and the core is open source.",
-    },
-  ],
-};

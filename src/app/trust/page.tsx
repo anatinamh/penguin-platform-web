@@ -3,7 +3,6 @@ import { Container } from "@/components/layout/container";
 import { ProductScreenshot } from "@/components/shared/product-screenshot";
 import { TrustHero } from "@/components/sections/trust/hero";
 import { Control } from "@/components/sections/trust/control";
-import { Keep } from "@/components/sections/trust/keep";
 import { FinalCta } from "@/components/sections/shared/final-cta";
 import { control } from "@/content/pages/trust";
 import { finalCta } from "@/content/pages/home";
@@ -26,7 +25,6 @@ export default function TrustPage() {
           />
         </Container>
       </section>
-      <Keep />
       <FinalCta {...finalCta} />
     </>
   );
