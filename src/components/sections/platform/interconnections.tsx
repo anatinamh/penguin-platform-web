@@ -40,17 +40,25 @@ const icons: Record<string, LucideIcon> = {
   palette: Palette,
 };
 
-// A smooth flowchart-style S-curve between two points in a shared 0..100 space.
-function curve(x1: number, y1: number, x2: number, y2: number) {
-  const midY = (y1 + y2) / 2;
-  return `M${x1},${y1} C${x1},${midY} ${x2},${midY} ${x2},${y2}`;
+// An orthogonal "circuit-board" connector: straight down from the start,
+// across on a shared bus row, straight into the end — reads as deliberately
+// routed to a specific point instead of a vague, flat-looking curve.
+function elbow(x1: number, y1: number, busY: number, x2: number, y2: number) {
+  if (x1 === x2) return `M${x1},${y1} L${x2},${y2}`;
+  return `M${x1},${y1} L${x1},${busY} L${x2},${busY} L${x2},${y2}`;
 }
 
 const TOP_X = [16, 50, 84];
 const BOTTOM_X = [16, 50, 84];
 const HUB = { x: 50, y: 50 };
-const TOP_Y = 33;
-const BOTTOM_Y = 70;
+// Line waypoints, tuned against the cluster cards' actual rendered height and
+// the hub circle's size so every bend clears real content with visible room.
+const TOP_LINE_START_Y = 34;
+const TOP_BUS_Y = 40;
+const HUB_TOP_Y = 45;
+const HUB_BOTTOM_Y = 55;
+const BOTTOM_BUS_Y = 75;
+const BOTTOM_LINE_END_Y = 90;
 
 function Pill({
   icon,
@@ -110,7 +118,7 @@ export function Interconnections() {
         </div>
 
         {/* Desktop: the actual connected diagram */}
-        <div className="relative mx-auto mt-16 hidden min-h-[520px] max-w-5xl lg:block">
+        <div className="relative mx-auto mt-16 hidden min-h-[600px] max-w-5xl lg:block">
           <svg
             ref={svgRef}
             viewBox="0 0 100 100"
@@ -122,14 +130,14 @@ export function Interconnections() {
               <path
                 key={`top-${i}`}
                 className="flow-path"
-                d={curve(TOP_X[i], TOP_Y + 5, HUB.x, HUB.y - 10)}
+                d={elbow(TOP_X[i], TOP_LINE_START_Y, TOP_BUS_Y, HUB.x, HUB_TOP_Y)}
               />
             ))}
             {bottomItems.map((_, i) => (
               <path
                 key={`bottom-${i}`}
                 className="flow-path"
-                d={curve(HUB.x, HUB.y + 13, BOTTOM_X[i], BOTTOM_Y - 5)}
+                d={elbow(HUB.x, HUB_BOTTOM_Y, BOTTOM_BUS_Y, BOTTOM_X[i], BOTTOM_LINE_END_Y)}
               />
             ))}
           </svg>

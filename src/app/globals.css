@@ -319,8 +319,9 @@
 .flow-path {
   fill: none;
   stroke: var(--line-connector);
-  stroke-width: 1.5;
+  stroke-width: 2;
   stroke-linecap: round;
+  stroke-linejoin: round;
   stroke-dasharray: 5 7;
   stroke-dashoffset: var(--flow-offset, 0);
   vector-effect: non-scaling-stroke;
