@@ -58,7 +58,7 @@ function HighlightedTitle() {
 export function WhiteLabelHero() {
   return (
     <section
-      className="relative overflow-hidden border-b border-border/60 py-16 sm:py-20"
+      className="relative overflow-hidden border-b border-border/60 py-24 sm:py-32"
       style={{
         backgroundImage:
           "radial-gradient(55% 60% at 10% 10%, color-mix(in oklch, #6C63FF 10%, transparent) 0%, transparent 60%), radial-gradient(50% 55% at 90% 0%, color-mix(in oklch, var(--primary) 10%, transparent) 0%, transparent 60%)",

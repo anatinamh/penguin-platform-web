@@ -9,7 +9,7 @@ export function PricingHeader() {
   return (
     <section
       onMouseMove={handleGlowMove}
-      className="ice-field relative overflow-hidden border-b border-border/60 py-16 sm:py-20"
+      className="ice-field relative overflow-hidden border-b border-border/60 py-24 sm:py-32"
     >
       <div aria-hidden className="ice-glow" />
       <Container className="relative">
