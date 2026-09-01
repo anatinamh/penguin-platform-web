@@ -9,12 +9,29 @@ import { shift } from "@/content/pages/home";
 
 // Clockwise from 12 o'clock — matches the order of shift.agentic.items.
 const nodeIcons: LucideIcon[] = [BrainCircuit, ShieldCheck, Palette, Zap];
+// The ring's SVG is inset within the container (see ORBIT_INSET below), so the
+// ring sits at 29% of the container's half-width rather than the SVG's own 40%.
+// Nodes land on that smaller circle, which leaves the outer band free for the
+// labels instead of printing them over the line.
 const nodePositions = [
-  "top-[10%] left-1/2 -translate-x-1/2 -translate-y-1/2", // 12 o'clock
-  "top-1/2 left-[82%] -translate-x-1/2 -translate-y-1/2", // 3 o'clock
-  "top-[90%] left-1/2 -translate-x-1/2 -translate-y-1/2", // 6 o'clock
-  "top-1/2 left-[18%] -translate-x-1/2 -translate-y-1/2", // 9 o'clock
+  "top-[24%] left-1/2 -translate-x-1/2 -translate-y-1/2", // 12 o'clock
+  "top-1/2 left-[76%] -translate-x-1/2 -translate-y-1/2", // 3 o'clock
+  "top-[76%] left-1/2 -translate-x-1/2 -translate-y-1/2", // 6 o'clock
+  "top-1/2 left-[24%] -translate-x-1/2 -translate-y-1/2", // 9 o'clock
 ];
+// Each label hangs off its icon pointing away from the hub, so it lands in the
+// clear band outside the ring instead of printing across the line. Only the
+// two-column desktop layout has room beside the ring for the side labels;
+// below that they tuck under their icon, which never overflows the column.
+const LABEL_BASE = "top-full mt-2 left-1/2 -translate-x-1/2";
+const labelPositions = [
+  `${LABEL_BASE} lg:top-auto lg:bottom-full lg:mt-0 lg:mb-2`, // above, at 12 o'clock
+  `${LABEL_BASE} lg:top-1/2 lg:left-full lg:mt-0 lg:ml-2 lg:translate-x-0 lg:-translate-y-1/2`, // right, at 3 o'clock
+  LABEL_BASE, // below, at 6 o'clock
+  `${LABEL_BASE} lg:top-1/2 lg:right-full lg:left-auto lg:mt-0 lg:mr-2 lg:translate-x-0 lg:-translate-y-1/2`, // left, at 9 o'clock
+];
+// Keeps the ring clear of the labels that ride just outside it.
+const ORBIT_INSET = "inset-[18%]";
 // A circular orbit through all four node positions (radius 40, centered on
 // the hub) — two semicircle arcs, both swept clockwise so a dot animated
 // along this path travels top → right → bottom → left.
@@ -108,12 +125,13 @@ export function Shift() {
               <p className="text-sm font-medium text-primary uppercase">{shift.agentic.label}</p>
               <p className="mt-1 font-heading text-xl font-medium">{shift.agentic.heading}</p>
 
-              <div className="relative mt-8 aspect-square w-full max-w-[280px]">
-                <svg viewBox="0 0 100 100" className="absolute inset-0" aria-hidden>
+              <div className="relative mt-8 aspect-square w-full max-w-[420px]">
+                <svg viewBox="0 0 100 100" className={`absolute ${ORBIT_INSET}`} aria-hidden>
                   <path
                     d={orbitPath}
                     stroke="var(--line-connector)"
-                    strokeWidth={1.5}
+                    strokeOpacity={0.35}
+                    strokeWidth={1.25}
                     vectorEffect="non-scaling-stroke"
                     fill="none"
                   />
@@ -162,12 +180,12 @@ export function Shift() {
                   return (
                     <div
                       key={item}
-                      className={`absolute flex flex-col items-center gap-1.5 ${nodePositions[i]}`}
+                      className={`absolute flex size-9 items-center justify-center rounded-full border border-border/60 bg-card text-primary shadow-sm ${nodePositions[i]}`}
                     >
-                      <span className="flex size-9 items-center justify-center rounded-full border border-border/60 bg-card text-primary shadow-sm">
-                        <Icon className="size-4" />
-                      </span>
-                      <span className="w-28 rounded-md border border-border/60 bg-card/85 px-1.5 py-0.5 text-center text-[11px] leading-tight font-medium">
+                      <Icon className="size-4" />
+                      <span
+                        className={`absolute w-32 rounded-md border border-border/60 bg-card px-2 py-1 text-center text-xs leading-tight font-medium text-foreground shadow-sm ${labelPositions[i]}`}
+                      >
                         {item}
                       </span>
                     </div>
