@@ -35,7 +35,7 @@ function FloatingBadge({
 export function PlatformHero() {
   return (
     <section
-      className="relative overflow-hidden border-b border-border/60 py-16 sm:py-20"
+      className="relative overflow-hidden border-b border-border/60 py-24 sm:py-32"
       style={{
         backgroundImage:
           "radial-gradient(55% 60% at 90% 10%, color-mix(in oklch, var(--primary) 12%, transparent) 0%, transparent 62%), radial-gradient(45% 50% at 5% 90%, color-mix(in oklch, var(--mascot-blue) 7%, transparent) 0%, transparent 62%)",
