@@ -66,9 +66,15 @@ const HUB = { x: 50, y: 50 };
 const TOP_LINE_START_Y = 34;
 const TOP_BUS_Y = 40;
 const HUB_TOP_Y = 45;
-const HUB_BOTTOM_Y = 55;
+// Clears the hub's "Pengui Platform" caption (avatar + gap + label sit a
+// good deal below the hub's own center point) so the trunk line starts
+// below the text instead of drawing straight through it.
+const HUB_BOTTOM_Y = 63;
 const BOTTOM_BUS_Y = 75;
 const BOTTOM_LINE_END_Y = 90;
+// Where the "Connect & run" group label sits on the trunk line, between
+// the hub and the bus row.
+const CONNECT_LABEL_Y = (HUB_BOTTOM_Y + BOTTOM_BUS_Y) / 2;
 
 function Pill({
   icon,
@@ -158,12 +164,13 @@ export function Interconnections() {
           {topClusters.map((group, i) => (
             <div
               key={group.layer}
-              style={{ left: `${TOP_X[i]}%`, top: 0 }}
+              style={{ left: `${TOP_X[i]}%`, bottom: `${100 - TOP_LINE_START_Y}%` }}
               className="absolute w-56 -translate-x-1/2 rounded-2xl border border-border/60 bg-card p-4 shadow-sm"
             >
               <p className="text-xs font-semibold tracking-wide text-primary uppercase">
                 {group.layer}
               </p>
+              <p className="mt-0.5 text-[11px] text-muted-foreground">{group.caption}</p>
               <div className="mt-3 flex flex-wrap gap-1.5">
                 {group.items.map((item) => (
                   <Pill
@@ -207,6 +214,18 @@ export function Interconnections() {
             </span>
           </div>
 
+          {/* Sits on the trunk line with a matching backdrop so the dashed
+              line reads as passing behind the label, not through it. */}
+          <div
+            style={{ left: `${HUB.x}%`, top: `${CONNECT_LABEL_Y}%` }}
+            className="absolute -translate-x-1/2 -translate-y-1/2 bg-secondary px-2 text-center"
+          >
+            <p className="text-xs font-semibold tracking-wide text-primary uppercase">
+              {connect.layer}
+            </p>
+            <p className="text-[11px] text-muted-foreground">{connect.caption}</p>
+          </div>
+
           {bottomItems.map((item, i) => (
             <div
               key={item.piece}
@@ -234,6 +253,8 @@ export function Interconnections() {
             />
           ))}
         </div>
+
+        <p className="mt-10 text-center text-sm text-muted-foreground">{capabilities.note}</p>
       </Container>
     </section>
   );
