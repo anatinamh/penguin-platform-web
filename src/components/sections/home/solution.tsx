@@ -20,6 +20,11 @@ import {
 } from "lucide-react";
 import { motion, useReducedMotion, type Variants } from "framer-motion";
 import { Container } from "@/components/layout/container";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { solution } from "@/content/pages/home";
 import { cn } from "@/lib/utils";
 
@@ -57,14 +62,18 @@ function Row({
   icon,
   dark,
   compact,
+  description,
+  wide,
 }: {
   label: string;
   icon: string;
   dark?: boolean;
   compact?: boolean;
+  description?: string;
+  wide?: boolean;
 }) {
   const Icon = icons[icon];
-  return (
+  const row = (
     <li
       className={cn(
         "flex items-center rounded-xl border font-medium",
@@ -72,7 +81,11 @@ function Row({
         dark
           ? "border-primary/25 bg-primary/10 text-foreground"
           : "border-border/60 bg-background text-foreground",
+        description &&
+          "cursor-help focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+        wide && "col-span-2",
       )}
+      tabIndex={description ? 0 : undefined}
     >
       <span
         className={cn(
@@ -85,6 +98,17 @@ function Row({
       </span>
       <span className="leading-snug">{label}</span>
     </li>
+  );
+
+  if (!description) return row;
+
+  return (
+    <Tooltip>
+      <TooltipTrigger asChild>{row}</TooltipTrigger>
+      <TooltipContent className="max-w-[210px] text-left whitespace-normal">
+        {description}
+      </TooltipContent>
+    </Tooltip>
   );
 }
 
@@ -170,7 +194,6 @@ export function Solution() {
             viewport={{ once: true, amount: 0.3 }}
             className="color-block relative z-10 rounded-2xl border border-primary/25 p-6 text-foreground shadow-2xl ring-4 ring-primary/10 [&>*]:relative [&>*]:z-10 lg:w-[380px] lg:scale-[1.03]"
           >
-            <span className="absolute top-6 right-6 z-10 size-2.5 rounded-full bg-primary shadow-[0_0_0_4px] shadow-primary/20" />
             <div className="flex items-center gap-2.5">
               <Image
                 src="/mascot/pengui-avatar.png"
@@ -189,7 +212,15 @@ export function Solution() {
 
             <div className="mt-6 grid grid-cols-2 gap-2">
               {layer.items?.map((item) => (
-                <Row key={item.label} label={item.label} icon={item.icon} dark compact />
+                <Row
+                  key={item.label}
+                  label={item.label}
+                  icon={item.icon}
+                  description={"description" in item ? item.description : undefined}
+                  wide={"wide" in item ? item.wide : undefined}
+                  dark
+                  compact
+                />
               ))}
             </div>
           </motion.div>

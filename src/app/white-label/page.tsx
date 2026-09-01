@@ -17,6 +17,7 @@ export default function WhiteLabelPage() {
   return (
     <>
       <WhiteLabelHero />
+      <PresetDemo />
       <WhiteLabelFeatures />
       <section className="py-24 sm:py-32">
         <Container>
@@ -26,7 +27,6 @@ export default function WhiteLabelPage() {
           />
         </Container>
       </section>
-      <PresetDemo />
       <Container className="py-16 text-center">
         <p className="mx-auto max-w-2xl text-pretty text-muted-foreground">
           {whiteLabelClosing}

@@ -21,6 +21,18 @@ const stepIcons = [
   </svg>,
 ];
 
+function StepDescription({ text, strong }: { text: string; strong?: string }) {
+  if (!strong || !text.includes(strong)) return <>{text}</>;
+  const [before, after] = text.split(strong);
+  return (
+    <>
+      {before}
+      <strong className="font-semibold text-foreground">{strong}</strong>
+      {after}
+    </>
+  );
+}
+
 export function HowItWorks() {
   return (
     <section id="how-it-works" className="hiw-scene bg-secondary px-8 py-24 sm:py-32">
@@ -52,7 +64,12 @@ export function HowItWorks() {
             <div className={`step s${i + 1}`} key={step.number}>
               <div className="step-num">{step.number}</div>
               <div className="step-title">{step.title}</div>
-              <p className="step-desc">{step.description}</p>
+              <p className="step-desc">
+                <StepDescription
+                  text={step.description}
+                  strong={"strong" in step ? step.strong : undefined}
+                />
+              </p>
             </div>
           ))}
         </div>

@@ -1,15 +1,31 @@
 "use client";
 
 import Image from "next/image";
-import { ArrowRight, Check, Lock, Sparkles, Users, type LucideIcon } from "lucide-react";
+import { Check, Database, MessageSquare, Palette, Send, Server } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
 import { Container } from "@/components/layout/container";
 import { origin } from "@/content/pages/home";
 import { cn } from "@/lib/utils";
 
-const oldIcons: LucideIcon[] = [Lock, Users, Sparkles];
+// A concrete "what an agent actually does" walkthrough, layered over the
+// console screenshot: the question, then the two things the agent did about it.
+const storySteps = [
+  { icon: MessageSquare, text: "“How is the month tracking against budget?”", muted: true },
+  { icon: Database, text: "Pulled the numbers from the warehouse" },
+  { icon: Send, text: "Posted the summary to her team's channel" },
+];
 
-function FloatingBadge({ label, className, delay = 0 }: { label: string; className: string; delay?: number }) {
+function FloatingBadge({
+  icon: Icon,
+  label,
+  className,
+  delay = 0,
+}: {
+  icon: typeof Check;
+  label: string;
+  className: string;
+  delay?: number;
+}) {
   const reduceMotion = useReducedMotion();
   return (
     <motion.div
@@ -21,10 +37,41 @@ function FloatingBadge({ label, className, delay = 0 }: { label: string; classNa
       transition={{ duration: 4.2, repeat: Infinity, ease: "easeInOut", delay }}
     >
       <span className="flex size-5 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
-        <Check className="size-3" />
+        <Icon className="size-3" />
       </span>
       {label}
     </motion.div>
+  );
+}
+
+function StoryOverlay() {
+  const reduceMotion = useReducedMotion();
+  return (
+    <div className="mt-5 flex flex-col gap-2">
+      {storySteps.map((step, i) => (
+        <motion.div
+          key={step.text}
+          className={cn(
+            "flex items-start gap-2.5 rounded-xl border border-border/60 bg-card px-3.5 py-2.5 text-sm shadow-sm",
+            step.muted ? "text-muted-foreground italic" : "font-medium",
+          )}
+          initial={reduceMotion ? false : { opacity: 0, y: 8 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.6 }}
+          transition={{ duration: 0.45, delay: i * 0.12, ease: "easeOut" }}
+        >
+          <span
+            className={cn(
+              "mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full",
+              step.muted ? "bg-muted text-muted-foreground" : "bg-primary/10 text-primary",
+            )}
+          >
+            <step.icon className="size-3" />
+          </span>
+          {step.text}
+        </motion.div>
+      ))}
+    </div>
   );
 }
 
@@ -42,7 +89,7 @@ export function Origin() {
 
       <Container className="relative">
         <div className="flex flex-col items-center gap-14 lg:flex-row lg:items-center lg:gap-16">
-          {/* Text + the three swaps */}
+          {/* Text + the three points */}
           <div className="w-full text-center lg:flex-1 lg:text-left">
             <span className="text-sm font-medium text-primary">{origin.eyebrow}</span>
             <h2 className="mt-3 text-balance font-heading text-3xl font-medium tracking-tight sm:text-4xl">
@@ -50,32 +97,22 @@ export function Origin() {
             </h2>
             <p className="mt-5 font-heading text-lg font-medium">{origin.lede}</p>
 
-            <div className="mt-6 flex flex-col text-left">
-              {origin.swaps.map((swap, i) => {
-                const OldIcon = oldIcons[i];
-                return (
-                  <div
-                    key={swap.from}
-                    className={cn(
-                      "flex flex-wrap items-center gap-1 border-t border-border/60 py-4 sm:flex-nowrap sm:overflow-x-auto",
-                      i === origin.swaps.length - 1 && "border-b",
-                    )}
-                  >
-                    <span className="flex shrink-0 items-center gap-1 text-[11px] text-muted-foreground line-through decoration-muted-foreground/70 decoration-2">
-                      <OldIcon className="size-2.5 shrink-0 text-muted-foreground/80" />
-                      {swap.from}
-                    </span>
-                    <ArrowRight className="size-2.5 shrink-0 text-muted-foreground/40" />
-                    <span className="flex shrink-0 items-center gap-1 text-[11px] font-semibold">
-                      <span className="flex size-3.5 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
-                        <Check className="size-2" />
-                      </span>
-                      {swap.to}
-                    </span>
-                  </div>
-                );
-              })}
-            </div>
+            <ul className="mt-6 flex flex-col text-left">
+              {origin.points.map((point, i) => (
+                <li
+                  key={point}
+                  className={cn(
+                    "flex items-start gap-2.5 border-t border-border/60 py-4 text-sm",
+                    i === origin.points.length - 1 && "border-b",
+                  )}
+                >
+                  <span className="mt-0.5 flex size-5 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
+                    <Check className="size-3" />
+                  </span>
+                  {point}
+                </li>
+              ))}
+            </ul>
           </div>
 
           {/* The real product screenshot, framed like a browser */}
@@ -100,8 +137,19 @@ export function Origin() {
                 />
               </div>
 
-              <FloatingBadge label="On your infra" className="-bottom-4 -left-6" />
-              <FloatingBadge label="Your brand" className="top-10 -right-5" delay={0.6} />
+              <FloatingBadge
+                icon={Server}
+                label="Runs in your own cloud"
+                className="-top-4 -left-6"
+              />
+              <FloatingBadge
+                icon={Palette}
+                label="Your logo, your colors"
+                className="-right-5 -bottom-4"
+                delay={0.6}
+              />
+
+              <StoryOverlay />
             </div>
           </div>
         </div>

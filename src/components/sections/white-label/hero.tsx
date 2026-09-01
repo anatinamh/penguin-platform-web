@@ -1,6 +1,5 @@
 "use client";
 
-import { Fragment } from "react";
 import { Building2 } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
 import { Container } from "@/components/layout/container";
@@ -34,27 +33,6 @@ function FloatingBadge({
   );
 }
 
-function HighlightedTitle() {
-  const { title, titleHighlights } = whiteLabelHeader;
-  const pattern = new RegExp(`(${titleHighlights.map((h) => h.word).join("|")})`, "g");
-  const parts = title.split(pattern);
-
-  return (
-    <>
-      {parts.map((part, i) => {
-        const highlight = titleHighlights.find((h) => h.word === part);
-        if (!highlight) return <Fragment key={i}>{part}</Fragment>;
-        // color highlight paused for now — plain text until the palette direction is finalized
-        return (
-          <span key={i}>
-            {part}
-          </span>
-        );
-      })}
-    </>
-  );
-}
-
 export function WhiteLabelHero() {
   return (
     <section
@@ -69,10 +47,13 @@ export function WhiteLabelHero() {
         <div className="w-full text-center lg:flex-1 lg:text-left">
           <span className="text-sm font-medium text-primary">{whiteLabelHeader.eyebrow}</span>
           <h1 className="mt-3 max-w-xl text-balance font-heading text-4xl font-medium tracking-tight sm:text-5xl">
-            <HighlightedTitle />
+            {whiteLabelHeader.title}
           </h1>
           <p className="mt-4 max-w-md text-pretty text-lg text-muted-foreground lg:mx-0">
             {whiteLabelHeader.subtitle}
+          </p>
+          <p className="mt-4 max-w-md text-pretty text-muted-foreground lg:mx-0">
+            {whiteLabelHeader.note}
           </p>
         </div>
 
@@ -146,15 +127,19 @@ export function WhiteLabelHero() {
 
             <FloatingBadge
               dotColor="var(--primary)"
-              label="Runs on AWS · GCP · Azure"
+              label="Runs in your own cloud"
               className="-top-4 -left-6"
             />
             <FloatingBadge
               dotColor="#6C63FF"
-              label="Model: GPT-4.1"
-              className="-right-4 -bottom-4"
+              label="Your clients never see us"
+              className="right-4 bottom-24"
               delay={0.6}
             />
+
+            <p className="mt-8 text-pretty text-center text-sm text-muted-foreground">
+              {whiteLabelHeader.screenshotCaption}
+            </p>
           </div>
         </div>
       </Container>

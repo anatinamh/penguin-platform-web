@@ -127,13 +127,11 @@ export function Interconnections() {
     <section className="bg-secondary py-24 sm:py-32">
       <Container>
         <div className="mx-auto max-w-2xl text-center">
-          <span className="text-sm font-medium text-primary">How the pieces connect</span>
+          <span className="text-sm font-medium text-primary">{capabilities.eyebrow}</span>
           <h2 className="mt-3 text-balance font-heading text-3xl font-medium tracking-tight sm:text-4xl">
-            Capabilities
+            {capabilities.title}
           </h2>
-          <p className="mt-4 text-pretty text-muted-foreground">
-            One platform. Nothing running in isolation.
-          </p>
+          <p className="mt-4 text-pretty text-muted-foreground">{capabilities.subtitle}</p>
         </div>
 
         {/* Desktop: the actual connected diagram */}

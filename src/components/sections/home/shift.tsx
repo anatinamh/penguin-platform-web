@@ -167,7 +167,7 @@ export function Shift() {
                       <span className="flex size-9 items-center justify-center rounded-full border border-border/60 bg-card text-primary shadow-sm">
                         <Icon className="size-4" />
                       </span>
-                      <span className="w-20 rounded-md border border-border/60 bg-card/85 px-1.5 py-0.5 text-center text-xs font-medium">
+                      <span className="w-28 rounded-md border border-border/60 bg-card/85 px-1.5 py-0.5 text-center text-[11px] leading-tight font-medium">
                         {item}
                       </span>
                     </div>

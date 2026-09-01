@@ -1,19 +1,20 @@
 "use client";
 
-import type { ReactNode } from "react";
 import Image from "next/image";
-import { Check } from "lucide-react";
+import { Check, Users } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
 import { Container } from "@/components/layout/container";
 import { cn } from "@/lib/utils";
 import { platformHeader } from "@/content/pages/platform";
 
 function FloatingBadge({
-  children,
+  icon: Icon,
+  label,
   className,
   delay = 0,
 }: {
-  children: ReactNode;
+  icon: typeof Check;
+  label: string;
   className: string;
   delay?: number;
 }) {
@@ -27,7 +28,10 @@ function FloatingBadge({
       animate={reduceMotion ? undefined : { y: [0, -6, 0] }}
       transition={{ duration: 4.2, repeat: Infinity, ease: "easeInOut", delay }}
     >
-      {children}
+      <span className="flex size-5 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
+        <Icon className="size-3" />
+      </span>
+      {label}
     </motion.div>
   );
 }
@@ -74,20 +78,21 @@ export function PlatformHero() {
               />
             </div>
 
-            <FloatingBadge className="-top-4 -left-6 flex-col items-start gap-1">
-              <span className="text-[10px] font-semibold tracking-wide text-muted-foreground uppercase">
-                Build
-              </span>
-              <code className="font-mono text-[11px] font-normal text-foreground">
-                agent.tool(&quot;search&quot;)
-              </code>
-            </FloatingBadge>
-            <FloatingBadge className="-right-5 -bottom-4" delay={0.6}>
-              <span className="flex size-5 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
-                <Check className="size-3" />
-              </span>
-              Audit trail on
-            </FloatingBadge>
+            <FloatingBadge
+              icon={Users}
+              label="Pick who can use each agent"
+              className="-top-4 -left-6"
+            />
+            <FloatingBadge
+              icon={Check}
+              label="Every action is logged"
+              className="right-6 bottom-24"
+              delay={0.6}
+            />
+
+            <p className="mt-8 text-pretty text-center text-sm text-muted-foreground">
+              {platformHeader.screenshotCaption}
+            </p>
           </div>
         </div>
       </Container>
