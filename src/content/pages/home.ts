@@ -5,7 +5,7 @@ export const hero = {
   eyebrow: "The agentic operating layer for companies",
   title: "AI agents that do real work. And that you actually own.",
   subtitle:
-    "An AI platform for building stable, trusted agents that understand your data, operate your tools and execute real work — under your brand, rules and context. Installed in your own cloud or your own data center, running on the models you already trust.",
+    "Agents that answer based on your documents and perform tasks in your apps. Installed in your own cloud or your own data center, under your brand, on the models you already trust.",
   pills: ["Your agents", "Your cloud", "Your models", "Your brand"],
   primaryCta: { label: "Request a demo", href: "/request-demo" },
 };
@@ -16,17 +16,17 @@ export const shift = {
   note: "An agentic layer performs real work — at a scalable cost.",
   chatbot: {
     label: "A chatbot",
-    heading: "Replies. Then waits.",
-    items: ["Answers questions", "Suggests next steps", "Forgets the context"],
+    heading: "Tells you how. Then waits.",
+    items: ["Answers the question", "Suggests next steps", "Forgets the context"],
   },
   agentic: {
     label: "An agentic layer",
-    heading: "Understands. Decides. Acts.",
+    heading: "Does it. And shows you what it did.",
     items: [
-      "Understands your data",
-      "Follows your rules",
-      "Adapts to your brand",
-      "Performs real work",
+      "Pulls the answer from your data",
+      "Acts in your tools, within your rules",
+      "Remembers the context",
+      "Carries your brand",
     ],
   },
 };
@@ -35,10 +35,10 @@ export const origin = {
   eyebrow: "Why Pengui exists",
   title: "The requirement was always the same. The product didn't exist.",
   lede: "We built a product that has the 3 things companies are asking for:",
-  swaps: [
-    { from: "Data stuck in a vendor's cloud", to: "Agents on your own infrastructure" },
-    { from: "A vendor's brand on your product", to: "Delivered under your own brand" },
-    { from: "A vendor between you and your clients", to: "You serve your own clients, directly" },
+  points: [
+    "Agents on your own infrastructure, your cloud, your data, your keys.",
+    "Under your own brand, your name, your look, your rules.",
+    "Working for your teams and your clients, in production, not in another AI pilot.",
   ],
 };
 
@@ -51,8 +51,7 @@ export const solution = {
   layer: {
     eyebrow: "The operating layer",
     title: "Pengui sits in the middle.",
-    description:
-      "Agents answer, retrieve, remember and act, orchestrated over your knowledge, governed by your rules.",
+    description: "Agents answer, retrieve, remember and act — over your knowledge, within your rules.",
   },
   columns: [
     {
@@ -70,14 +69,42 @@ export const solution = {
       sub: "Pengui in the middle",
       highlight: true,
       items: [
-        { label: "Orchestration", icon: "workflow" },
-        { label: "Memory", icon: "brain-circuit" },
-        { label: "Retrieval", icon: "search" },
-        { label: "Governed skills", icon: "puzzle" },
-        { label: "Ask your data · NLQ", icon: "message-square-text" },
-        { label: "Bring-your-own-LLM", icon: "cpu" },
-        { label: "Cost effective", icon: "coins" },
-        { label: "MCP apps", icon: "cable" },
+        {
+          label: "Orchestration",
+          icon: "workflow",
+          description: "Runs multi-step tasks end to end.",
+        },
+        {
+          label: "Memory",
+          icon: "brain-circuit",
+          description: "Remembers what your organization means.",
+        },
+        {
+          label: "Retrieval",
+          icon: "search",
+          description: "Finds answers in your documents.",
+        },
+        {
+          label: "Governed skills",
+          icon: "puzzle",
+          description: "Acts only where it's allowed.",
+        },
+        {
+          label: "Ask your data · NLQ",
+          icon: "message-square-text",
+          description: "Plain-language questions over your numbers.",
+        },
+        {
+          label: "MCP apps",
+          icon: "cable",
+          description: "Via the open MCP standard.",
+        },
+        {
+          label: "Bring-your-own-LLM",
+          icon: "cpu",
+          description: "Runs on the models you choose.",
+          wide: true,
+        },
       ],
     },
     {
@@ -155,8 +182,8 @@ export const productOffering = {
 
 export const finalCta = {
   eyebrow: "Start free · 30 days",
-  title: "Start free. Pay for tokens. Scale when you're ready.",
-  body: "Pengui gives your company the agentic operating layer to turn data, tools and workflows into real, executed work.",
+  title: "Start free. Pay only your model's usage. Scale when you're ready.",
+  body: "Install Pengui in your own cloud, connect your documents and data, and build your first agent — free for 30 days.",
   primaryCta: { label: "Request a demo", href: "/request-demo" },
   microcopy: "No credit card, and nothing leaves your environment by default.",
 };

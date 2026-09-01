@@ -4,25 +4,37 @@ export const platformHeader = {
   eyebrow: "Pengui Platform",
   title: "One platform to build, govern and run trusted agents.",
   subtitle:
-    "Convince the people who build: what's inside the engine, and how you work with it.",
+    "For the team that builds: everything an agent needs — interface, retrieval, data access, memory, permissions, observability — already assembled, running on your infrastructure.",
+  screenshotCaption:
+    "Every agent in one place — see what each one does, who uses it, and what it's allowed to touch.",
 };
 
 export const capabilities = {
-  eyebrow: "Capabilities",
+  eyebrow: "How the pieces connect",
+  title: "Capabilities",
+  subtitle: "One platform, nothing runs in isolation. Every piece feeds the others.",
   note: "Your infrastructure — your cloud, your models, your data — always included.",
   groups: [
     {
-      layer: "Control plane",
-      caption: "Govern it all",
+      layer: "Around the engine",
+      caption: "Run & govern it",
       items: [
         {
           piece: "Canvas",
-          tag: "The console",
+          tag: "The interface",
           icon: "layout-grid",
+          description: "The interface your people actually use.",
+          long: "The interface your people actually use — where your team ships agents, sets guardrails, and works with what's running, without touching a terminal.",
+          connects: ["Orchestration", "Memory", "White-label"],
+        },
+        {
+          piece: "Console",
+          tag: "Observability",
+          icon: "gauge",
           description:
-            "Build, configure, observe and control every agent and tenant from one pane — who did what, with which data, at what cost.",
-          long: "Every agent, every tenant, every cost line — in one operator view. Canvas is where your team ships agents, sets guardrails, and watches what's running without touching a terminal.",
-          connects: ["Orchestration", "Memory-as-a-service", "White Label customization"],
+            "Traces, logs, cost, performance, permissions: who did what with which data.",
+          long: "Traces, logs, cost, performance and permissions in one operator view — who did what, with which data, at what cost.",
+          connects: ["Orchestration", "Canvas"],
         },
       ],
     },
@@ -34,18 +46,17 @@ export const capabilities = {
         {
           piece: "Orchestration",
           icon: "workflow",
-          description:
-            "Multi-step agents that reason, call tools in parallel, and act under guardrails.",
-          long: "The reasoning loop underneath every agent: it plans the steps, calls tools and models in parallel, checks results against your guardrails, and retries or escalates when something doesn't fit.",
-          connects: ["Memory-as-a-service", "Governed skills & MCP", "Bring-your-own-LLM"],
+          description: "Runs multi-step tasks end to end.",
+          long: "Runs multi-step tasks end to end: it plans the steps, calls tools and models in parallel, checks results against your guardrails, and retries or escalates when something doesn't fit.",
+          connects: ["Memory", "Skills & MCP", "Bring-your-own-LLM"],
         },
         {
-          piece: "Memory-as-a-service",
+          piece: "Memory",
           icon: "brain-circuit",
           description:
-            "A governed, inspectable memory layer — the trusted context beneath every chat box.",
-          long: "Every agent shares one governed memory instead of starting cold each time — inspectable, exportable, and scoped per tenant so nothing leaks across teams or clients.",
-          connects: ["Orchestration", "Ask your data", "Retrieval"],
+            "Governed, inspectable memory: agents learn what your organization means, and you can see what they remember and why.",
+          long: "Governed, inspectable memory: agents learn what your organization means, and you can see what they remember and why — scoped per tenant so nothing leaks across teams or clients.",
+          connects: ["Orchestration", "Ask your data", "RAG Server"],
         },
       ],
     },
@@ -54,32 +65,35 @@ export const capabilities = {
       caption: "Answer & act",
       items: [
         {
+          piece: "RAG Server",
+          icon: "search",
+          description: "Answers grounded in your documents, policies and knowledge bases.",
+          long: "Answers grounded in your documents, policies and knowledge bases — multi-stage retrieval checks and re-ranks across sources before an agent ever answers.",
+          connects: ["Ask your data", "Memory"],
+        },
+        {
           piece: "Ask your data",
           tag: "NLQ",
           icon: "message-square-text",
-          description: "Plain-language questions — validated, governed answers you can defend.",
-          long: "Your team asks in plain language; Pengui grounds the answer in your governed sources and shows its work, so the response is something you can defend, not just something that sounds right.",
-          connects: ["Retrieval", "Memory-as-a-service"],
+          description:
+            "Plain-language questions over your databases and warehouse, validated before the answer ships.",
+          long: "Plain-language questions over your databases and warehouse, validated before the answer ships — so the response is something you can defend, not just something that sounds right.",
+          connects: ["RAG Server", "Memory"],
         },
         {
-          piece: "Retrieval",
-          icon: "search",
-          description: "Multi-stage retrieval grounds every answer in the right facts.",
-          long: "Multi-stage retrieval — not a single vector search — checks and re-ranks across sources before an agent ever answers, so accuracy doesn't fall off as your knowledge base grows.",
-          connects: ["Ask your data", "Memory-as-a-service"],
-        },
-        {
-          piece: "Governed skills & MCP",
+          piece: "Skills & MCP",
           icon: "puzzle",
-          description: "Permissioned skills and any tool via MCP — new powers, safely.",
-          long: "Every skill and tool an agent can reach is permissioned individually via MCP, the open standard — so adding new powers never means widening what an agent can silently do.",
+          description:
+            "Agents act in your tools; permissions decide what each one may touch.",
+          long: "Agents act in your tools; permissions decide what each one may touch. Every skill is permissioned individually via MCP, the open standard.",
           connects: ["Orchestration", "Custom integrations"],
         },
         {
           piece: "Bring-your-own-LLM",
           icon: "cpu",
-          description: "Point at any model via MCP: commercial, open-weight, or self-hosted.",
-          long: "Point Orchestration at any model — commercial, open-weight or self-hosted — and swap it later without rebuilding your agents, so cost, quality and data residency stay your call.",
+          description:
+            "Commercial, open-weight or self-hosted. Swap models without rebuilding anything.",
+          long: "Commercial, open-weight or self-hosted. Swap models without rebuilding anything, so cost, quality and data residency stay your call.",
           connects: ["Orchestration"],
         },
       ],
@@ -89,25 +103,25 @@ export const capabilities = {
       caption: "Wire it in",
       items: [
         {
-          piece: "Custom integrations",
-          icon: "cable",
-          description: "Wire Pengui to your warehouses, your SaaS, and your internal systems.",
-          long: "Wire Pengui into the warehouses, SaaS tools and internal systems you already run, using the same governed MCP layer that powers every skill — no one-off connectors to maintain.",
-          connects: ["Governed skills & MCP", "Agent Marketplace"],
-        },
-        {
           piece: "Agent Marketplace",
           icon: "store",
-          description: "Discover and deploy prebuilt agents and skills, or publish your own.",
-          long: "Start from a prebuilt agent for a common job — finance, HR, sales — instead of a blank page, or publish the ones your team builds for others in your organization to reuse.",
-          connects: ["Custom integrations", "White Label customization"],
+          description: "Ready-made agents to start from and adapt.",
+          long: "Ready-made agents to start from and adapt — finance, HR, sales — instead of a blank page, or publish the ones your team builds for others to reuse.",
+          connects: ["Custom integrations", "White-label"],
         },
         {
-          piece: "White Label customization",
+          piece: "Custom integrations",
+          icon: "cable",
+          description: "Anything with an API, built by your team or ours.",
+          long: "Anything with an API, built by your team or ours, using the same governed MCP layer that powers every skill — no one-off connectors to maintain.",
+          connects: ["Skills & MCP", "Agent Marketplace"],
+        },
+        {
+          piece: "White-label",
           icon: "palette",
           featured: true,
-          description: "Your brand, domain, and UI on the Pengui engine — ship it as your own product.",
-          long: "Your logo, colors, domain and product name apply from Canvas's own settings — so what you ship to your clients looks like your product, running on the Pengui engine underneath.",
+          description: "Dress all of it in your brand.",
+          long: "Dress all of it in your brand: your logo, colors, domain and product name apply from Canvas's own settings, so what you ship looks like your product.",
           connects: ["Canvas", "Agent Marketplace"],
         },
       ],
@@ -123,42 +137,42 @@ export const servicePaths = {
     { text: "by", color: "indigo" },
   ],
   subtitle:
-    "Every Pengui agent is purpose-built for your data, brand and workflows — never generic. You choose who builds it.",
+    "Every Pengui agent is purpose-built for your data, your brand and your workflows — never generic. What changes is who builds it.",
   strong: "never generic",
   badge: "One agent, purpose-built — two ways to get it",
   paths: [
     {
       key: "a",
-      label: "Path A · Professional Services",
-      sub: "Done for you",
+      label: "Path A · Done for you",
+      sub: "Professional Services",
       icon: "handshake",
       accent: "primary",
       title: "We build it for you",
       body: [
         {
-          text: "We build, configure and deploy bespoke AI agents for customers with specific workflows, data and business requirements.",
-          strong: "bespoke AI agents",
+          text: "We handle discovery, design, integration, testing and deployment — you launch a working agent without hiring AI specialists.",
+          strong: "without hiring AI specialists",
         },
         {
-          text: "This path gives customers a fully managed implementation experience: we handle discovery, design, integration, testing and deployment so they can launch a trusted agent without needing internal AI expertise.",
+          text: "We build, deploy and maintain it inside your environment.",
         },
       ],
       footnote: "Pengui & partners design, build, host & maintain it",
     },
     {
       key: "b",
-      label: "Path B · Pengui Platform",
-      sub: "Built by you",
+      label: "Path B · Built by you",
+      sub: "Pengui Platform",
       icon: "code",
       accent: "indigo",
       title: "Build it yourself",
       body: [
         {
-          text: "Your IT team builds, ships and owns AI agents on the Pengui Platform — with full control over deployment, governance and roadmap.",
-          strong: "owns AI agents on the Pengui Platform",
+          text: "Your team builds, ships and owns the agents, with full control over deployment, governance and roadmap.",
+          strong: "owns the agents",
         },
         {
-          text: "This path turns Pengui into the customer's internal AI agent infrastructure, allowing technical teams to create and manage trusted agents across departments without relying on custom services for every use case.",
+          text: "Pengui becomes your internal agent infrastructure — every new use case is a build, not another procurement.",
         },
       ],
       footnote: "Powered by Pengui Platform",
@@ -200,13 +214,14 @@ export const howItWorks = {
       number: "03",
       title: "Build & govern",
       description:
-        "Build your agents, or start from one of our marketplace templates, give them memory and tools, and watch everything they do from the console.",
+        "Build your agents, or start from a marketplace template. Give them memory and tools, and watch everything they do from the console.",
     },
     {
       number: "04",
-      title: "Brand & deliver",
+      title: "Brand & roll out",
       description:
-        "Put your name on it and deliver to your own clients as branded, multi-tenant experiences.",
+        "Put your name on it and roll it out to your teams, every question answered, every action logged. Reselling to your own clients? That's our White label offer.",
+      strong: "White label",
     },
   ],
 };

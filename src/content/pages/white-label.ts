@@ -4,14 +4,12 @@
 
 export const whiteLabelHeader = {
   eyebrow: "White-label from day one",
-  title: "Your agents. Your cloud. Your models. Your brand.",
-  titleHighlights: [
-    { word: "cloud", color: "primary" },
-    { word: "models", color: "indigo" },
-    { word: "brand", color: "lime" },
-  ],
+  title: "Ship agents as your own product.",
   subtitle:
-    "Pengui adapts to you — in identity and in everything you connect to it. Your logo, your colors, your domain and your name apply from one set of settings, on the platform your team actually uses. Your customers never need to know our name.",
+    "Put your brand on the whole platform (your name, your domain, your interface) and deliver agents to the clients you already serve. They see your product. We never meet them.",
+  note: "Run it internally, sell it to your clients, or launch a vertical product: same engine underneath.",
+  screenshotCaption:
+    "One settings screen re-brands everything: the interface your clients use and the console you run it from.",
 };
 
 export const whiteLabelFeatures = [
@@ -23,36 +21,39 @@ export const whiteLabelFeatures = [
     strong: "Co-brand per client or business unit",
   },
   {
+    title: "Isolated environments per client",
+    icon: "layers",
+    description:
+      "Each client sees only their own data. You manage every environment from one console.",
+    strong: "only their own data",
+  },
+  {
+    title: "Unlimited end users",
+    icon: "users",
+    description:
+      "You never pay per person, so your margin doesn't shrink as your clients grow. You set your own pricing and your own contracts.",
+    strong: "never pay per person",
+  },
+  {
     title: "Your cloud or on-prem",
     icon: "cloud",
     description:
-      "Deploy enterprise-grade agents in your own environment. Your data never leaves your walls.",
-    strong: "Your data never leaves your walls",
+      "The whole platform runs in your environment. Nothing leaves it by default, yours or your clients'.",
+    strong: "Nothing leaves it by default",
   },
   {
     title: "Bring your own models",
     icon: "cpu",
     description:
-      "Open protocols (MCP) put you in control of cost, data residency and model choice.",
-    strong: "cost, data residency and model choice",
+      "Cost, data residency and model choice stay in your hands. Tools connect through the open MCP standard.",
+    strong: "Cost, data residency and model choice",
   },
   {
-    title: "Unlimited end users",
-    icon: "users",
-    description: "You never pay per person.",
-    strong: "never pay per person",
-  },
-  {
-    title: "Isolated environments",
-    icon: "layers",
-    description: "For every client or business unit, managed from one console.",
-    strong: "managed from one console",
-  },
-  {
-    title: "Memory-native answers",
-    icon: "brain-circuit",
-    description: "Answers you can trust — not just sentences that sound right.",
-    strong: "trust",
+    title: "A product, not a project",
+    icon: "package",
+    description:
+      "The platform is pre-built: console, interface, retrieval, memory, governance. You add your brand and your agents, not a year of engineering.",
+    strong: "not a year of engineering",
   },
 ];
 
@@ -60,10 +61,10 @@ export const whiteLabelBanner =
   "Run it internally, sell it externally, or launch a vertical — the power of an agentic platform, without building one.";
 
 export const presetDemo = {
-  eyebrow: "Pick a preset. Watch the interface change.",
+  eyebrow: "Pick a preset. Watch this page change.",
   title: "Your colors, your logo, your name.",
   subtitle:
-    "This is the real product interface — it changes from one set of settings, live, in front of you.",
+    "The product interface changes from one set of settings, live, in front of you.",
   presets: [
     { name: "Pengui", accent: "oklch(0.5 0.06 185)" },
     { name: "Ember", accent: "oklch(0.58 0.19 35)" },
