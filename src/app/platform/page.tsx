@@ -1,6 +1,4 @@
 import type { Metadata } from "next";
-import { Container } from "@/components/layout/container";
-import { ProductScreenshot } from "@/components/shared/product-screenshot";
 import { PlatformHero } from "@/components/sections/platform/hero";
 import { Interconnections } from "@/components/sections/platform/interconnections";
 import { ServicePaths } from "@/components/sections/platform/service-paths";
@@ -22,14 +20,6 @@ export default function PlatformPage() {
       <Interconnections />
       <ServicePaths />
       <ProductOffering />
-      <section className="py-24 sm:py-32">
-        <Container>
-          <ProductScreenshot
-            label="The console, step by step"
-            caption="Screenshot placeholder: the guided installer and first-agent setup flow."
-          />
-        </Container>
-      </section>
       <Difference />
       <FinalCta {...finalCta} />
     </>
