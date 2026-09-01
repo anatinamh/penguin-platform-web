@@ -15,7 +15,6 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { Container } from "@/components/layout/container";
-import { cn } from "@/lib/utils";
 import { productOffering } from "@/content/pages/home";
 
 const icons: Record<string, LucideIcon> = {
@@ -219,12 +218,8 @@ export function ProductOffering() {
                   <span className="text-sm font-medium">{agent}</span>
                 </div>
               ))}
-              <div
-                className={cn(
-                  "flex items-center gap-3 rounded-lg border border-dashed border-border p-3 text-sm text-muted-foreground",
-                )}
-              >
-                <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-secondary">
+              <div className="flex items-center gap-3 rounded-lg border border-dashed border-primary/45 bg-primary/8 p-3 text-sm font-semibold text-primary">
+                <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-primary/15 text-primary">
                   <Plus className="size-3.5" />
                 </span>
                 {marketplace.more}

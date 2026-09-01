@@ -6,6 +6,7 @@ import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/layout/container";
+import { Reveal, RevealGroup } from "@/components/shared/reveal";
 import { hero } from "@/content/pages/home";
 import { handleGlowMove } from "@/lib/glow";
 
@@ -84,27 +85,35 @@ export function Hero() {
         </div>
       </div>
 
-      <Container className="relative flex flex-col items-center text-center">
-        <span className="text-sm font-medium text-primary">
-          {hero.eyebrow}
-        </span>
+      <Container className="relative">
+        <RevealGroup className="flex flex-col items-center text-center" amount={0.3}>
+          <Reveal>
+            <span className="text-sm font-medium text-primary">{hero.eyebrow}</span>
+          </Reveal>
 
-        <h1 className="mt-3 max-w-3xl text-balance font-heading text-4xl font-medium tracking-tight sm:text-5xl">
-          {hero.title}
-        </h1>
+          <Reveal>
+            <h1 className="mt-3 max-w-3xl text-balance font-heading text-4xl font-medium tracking-tight sm:text-5xl">
+              {hero.title}
+            </h1>
+          </Reveal>
 
-        <p className="mt-4 max-w-2xl text-pretty text-lg text-muted-foreground">
-          {hero.subtitle}
-        </p>
+          <Reveal>
+            <p className="mt-4 max-w-2xl text-pretty text-lg text-muted-foreground">
+              {hero.subtitle}
+            </p>
+          </Reveal>
 
-        <div id="hero-primary-cta" className="mt-8">
-          <Button size="lg" asChild>
-            <Link href={hero.primaryCta.href}>
-              {hero.primaryCta.label}
-              <ArrowRight className="size-4" />
-            </Link>
-          </Button>
-        </div>
+          <Reveal>
+            <div id="hero-primary-cta" className="mt-8">
+              <Button size="lg" asChild>
+                <Link href={hero.primaryCta.href}>
+                  {hero.primaryCta.label}
+                  <ArrowRight className="size-4" />
+                </Link>
+              </Button>
+            </div>
+          </Reveal>
+        </RevealGroup>
       </Container>
 
       <Image
