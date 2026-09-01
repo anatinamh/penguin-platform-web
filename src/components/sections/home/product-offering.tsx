@@ -105,98 +105,94 @@ export function ProductOffering() {
 
           <Connector />
 
-          {/* The Pengui stack */}
+          {/* The Pengui stack — same treatment as Solution's featured middle
+              card: one color-block surface, not two competing ones. */}
           <div>
             <p className="text-center text-xs font-semibold tracking-wide text-muted-foreground uppercase">
               {stack.label}
             </p>
 
-            <div className="relative mt-4">
-              <div className="mr-6 rounded-2xl bg-primary p-5 pb-14 text-primary-foreground shadow-sm">
-                <p className="text-xs font-medium tracking-wide text-primary-foreground/70 uppercase">
-                  {stack.addOn.eyebrow}
-                </p>
-                <p className="mt-1 flex items-center gap-2 text-lg font-medium">
-                  {(() => {
-                    const AddOnIcon = icons[stack.addOn.icon];
-                    return AddOnIcon ? (
-                      <span className="flex size-7 items-center justify-center rounded-lg bg-primary-foreground/15">
-                        <AddOnIcon className="size-4" />
-                      </span>
-                    ) : null;
-                  })()}
-                  {stack.addOn.name}
-                </p>
-                <p className="mt-1.5 text-sm text-primary-foreground/80">
-                  {stack.addOn.description}
+            <div className="color-block relative mt-4 rounded-2xl border border-primary/25 p-6 shadow-2xl ring-4 ring-primary/10 lg:scale-[1.03]">
+              <span className="absolute top-6 right-6 size-2.5 rounded-full bg-primary shadow-[0_0_0_4px] shadow-primary/20" />
+
+              <div className="flex items-center gap-2.5">
+                <Image
+                  src="/mascot/pengui-avatar.png"
+                  alt=""
+                  aria-hidden
+                  width={28}
+                  height={28}
+                  className="size-7 shrink-0 rounded-full"
+                />
+                <p className="text-xs font-medium tracking-wide text-primary uppercase">
+                  {stack.base.eyebrow}
                 </p>
               </div>
+              <p className="mt-2 text-lg font-medium">{stack.base.name}</p>
 
-              <div className="color-block relative -mt-10 ml-6 rounded-2xl border border-black/10 p-5 text-foreground shadow-md [&>*]:relative [&>*]:z-10 sm:p-6">
-                <div className="flex items-center gap-3">
-                  <Image
-                    src="/mascot/pengui-avatar.png"
-                    alt=""
-                    aria-hidden
-                    width={36}
-                    height={36}
-                    className="size-9 shrink-0 rounded-full"
-                  />
-                  <div>
-                    <p className="text-xs font-medium tracking-wide text-primary uppercase">
-                      {stack.base.eyebrow}
-                    </p>
-                    <p className="text-lg font-medium">{stack.base.name}</p>
-                  </div>
-                </div>
+              <span
+                className="mt-2 inline-flex w-fit items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold tracking-wide text-foreground uppercase"
+                style={{ backgroundColor: "var(--mascot-lime)" }}
+              >
+                {stack.base.badge}
+              </span>
 
-                <span
-                  className={cn(
-                    "mt-3 inline-flex w-fit items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold tracking-wide uppercase",
-                    "text-foreground",
-                  )}
-                  style={{ backgroundColor: "var(--mascot-lime)" }}
-                >
-                  {stack.base.badge}
-                </span>
+              <p className="mt-3 text-sm text-muted-foreground">
+                <Body text={stack.base.description} strong={stack.base.strong} />
+              </p>
 
-                <p className="mt-3 text-sm text-muted-foreground">
-                  <Body text={stack.base.description} strong={stack.base.strong} />
-                </p>
+              <div className="mt-5 grid grid-cols-2 gap-2">
+                {stack.base.modules.map((module) => {
+                  const Icon = icons[module.icon];
+                  return (
+                    <div
+                      key={module.label}
+                      className="flex items-center gap-2 rounded-xl border border-primary/25 bg-primary/10 px-3 py-2.5 text-sm font-medium"
+                    >
+                      {Icon ? <Icon className="size-3.5 shrink-0 text-primary" /> : null}
+                      <span>
+                        {module.label}
+                        {"tag" in module && module.tag ? (
+                          <span className="ml-1 font-normal text-muted-foreground">
+                            · {module.tag}
+                          </span>
+                        ) : null}
+                      </span>
+                    </div>
+                  );
+                })}
+              </div>
 
-                <div className="mt-5 grid grid-cols-1 gap-2 sm:grid-cols-2">
-                  {stack.base.modules.map((module) => {
-                    const Icon = icons[module.icon];
-                    return (
-                      <div
-                        key={module.label}
-                        className="flex items-center gap-2 rounded-lg border border-border/60 bg-card/80 px-3 py-2 text-sm font-medium"
-                      >
-                        {Icon ? <Icon className="size-4 shrink-0 text-primary" /> : null}
-                        <span>
-                          {module.label}
-                          {"tag" in module && module.tag ? (
-                            <span className="ml-1 font-normal text-muted-foreground">
-                              · {module.tag}
-                            </span>
-                          ) : null}
-                        </span>
-                      </div>
-                    );
-                  })}
-                </div>
-
-                <div className="mt-4 flex items-center gap-2 rounded-lg border border-primary/30 bg-primary/10 px-3 py-2.5 text-sm font-medium">
-                  {(() => {
-                    const ConnIcon = icons[stack.base.connectivity.icon];
-                    return ConnIcon ? (
-                      <ConnIcon className="size-4 shrink-0 text-primary" />
-                    ) : null;
-                  })()}
+              <div className="mt-2 flex items-center gap-2 rounded-xl border border-primary/25 bg-primary/10 px-3 py-2.5 text-sm font-medium">
+                {(() => {
+                  const ConnIcon = icons[stack.base.connectivity.icon];
+                  return ConnIcon ? (
+                    <ConnIcon className="size-3.5 shrink-0 text-primary" />
+                  ) : null;
+                })()}
+                <span>
                   {stack.base.connectivity.label}
-                  <span className="font-normal text-muted-foreground">
+                  <span className="ml-1 font-normal text-muted-foreground">
                     · {stack.base.connectivity.tag}
                   </span>
+                </span>
+              </div>
+
+              <div className="mt-5 flex items-start gap-2.5 rounded-xl border border-border/60 bg-background/70 p-3.5">
+                {(() => {
+                  const AddOnIcon = icons[stack.addOn.icon];
+                  return AddOnIcon ? (
+                    <span className="flex size-7 shrink-0 items-center justify-center rounded-lg bg-accent text-accent-foreground">
+                      <AddOnIcon className="size-3.5" />
+                    </span>
+                  ) : null;
+                })()}
+                <div>
+                  <p className="text-[10px] font-semibold tracking-wide text-muted-foreground uppercase">
+                    {stack.addOn.eyebrow} · optional
+                  </p>
+                  <p className="text-sm font-medium">{stack.addOn.name}</p>
+                  <p className="mt-0.5 text-xs text-muted-foreground">{stack.addOn.description}</p>
                 </div>
               </div>
             </div>
