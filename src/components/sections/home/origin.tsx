@@ -57,18 +57,18 @@ export function Origin() {
                   <div
                     key={swap.from}
                     className={cn(
-                      "flex flex-wrap items-center gap-3 border-t border-border/60 py-4",
+                      "flex flex-wrap items-center gap-1 border-t border-border/60 py-4 sm:flex-nowrap sm:overflow-x-auto",
                       i === origin.swaps.length - 1 && "border-b",
                     )}
                   >
-                    <span className="flex items-center gap-2 text-sm text-muted-foreground/70 line-through decoration-border decoration-2">
-                      <OldIcon className="size-3.5 shrink-0 text-muted-foreground/50" />
+                    <span className="flex shrink-0 items-center gap-1 text-[11px] text-muted-foreground line-through decoration-muted-foreground/70 decoration-2">
+                      <OldIcon className="size-2.5 shrink-0 text-muted-foreground/80" />
                       {swap.from}
                     </span>
-                    <ArrowRight className="size-3.5 shrink-0 text-muted-foreground/40" />
-                    <span className="flex items-center gap-2 text-sm font-semibold">
-                      <span className="flex size-5 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
-                        <Check className="size-3" />
+                    <ArrowRight className="size-2.5 shrink-0 text-muted-foreground/40" />
+                    <span className="flex shrink-0 items-center gap-1 text-[11px] font-semibold">
+                      <span className="flex size-3.5 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
+                        <Check className="size-2" />
                       </span>
                       {swap.to}
                     </span>
@@ -91,14 +91,6 @@ export function Origin() {
               />
 
               <div className="relative -rotate-1 overflow-hidden rounded-2xl border border-border/60 bg-card shadow-2xl">
-                <div className="flex items-center gap-2 border-b border-border/60 bg-secondary/40 px-3.5 py-2.5">
-                  <span className="size-2.5 rounded-full bg-[#ECAAA0]" />
-                  <span className="size-2.5 rounded-full bg-[#EFD08F]" />
-                  <span className="size-2.5 rounded-full bg-[#A6D3B4]" />
-                  <span className="ml-2 flex-1 rounded-md border border-border/60 bg-card px-2.5 py-1 font-mono text-[10px] text-muted-foreground">
-                    app.pengui.ai/console
-                  </span>
-                </div>
                 <Image
                   src="/screenshots/pengui-dark.png"
                   alt="Pengui console — Hello again, Ana"
