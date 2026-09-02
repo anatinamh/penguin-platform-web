@@ -75,7 +75,7 @@ export const presetDemo: typeof En.presetDemo = {
     "La interfaz del producto cambia desde un solo panel de configuración, en vivo, frente a vos.",
   presets: [
     { name: "Pengui", accent: "oklch(0.5 0.06 185)" },
-    { name: "Ember", accent: "oklch(0.58 0.19 35)" },
+    { name: "Ember", accent: "oklch(0.55 0.16 55)" },
     { name: "Indigo", accent: "oklch(0.5 0.15 275)" },
     { name: "Moss", accent: "oklch(0.55 0.1 140)" },
   ],

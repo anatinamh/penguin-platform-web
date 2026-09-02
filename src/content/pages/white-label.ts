@@ -71,7 +71,7 @@ export const presetDemo = {
     "The product interface changes from one set of settings, live, in front of you.",
   presets: [
     { name: "Pengui", accent: "oklch(0.5 0.06 185)" },
-    { name: "Ember", accent: "oklch(0.58 0.19 35)" },
+    { name: "Ember", accent: "oklch(0.55 0.16 55)" },
     { name: "Indigo", accent: "oklch(0.5 0.15 275)" },
     { name: "Moss", accent: "oklch(0.55 0.1 140)" },
   ],
