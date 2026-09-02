@@ -5,7 +5,8 @@ import Image from "next/image";
 import { BrainCircuit, Palette, ShieldCheck, Zap, type LucideIcon } from "lucide-react";
 import { motion, useAnimationFrame, useReducedMotion } from "framer-motion";
 import { Container } from "@/components/layout/container";
-import { shift } from "@/content/pages/home";
+import { getHome } from "@/content";
+import type { Locale } from "@/lib/i18n";
 
 // Clockwise from 12 o'clock — matches the order of shift.agentic.items.
 const nodeIcons: LucideIcon[] = [BrainCircuit, ShieldCheck, Palette, Zap];
@@ -38,7 +39,8 @@ const ORBIT_INSET = "inset-[18%]";
 const orbitPath = "M50 10 A40 40 0 1 1 50 90 A40 40 0 1 1 50 10";
 const ORBIT_DURATION_MS = 7000;
 
-export function Shift() {
+export function Shift({ locale }: { locale: Locale }) {
+  const { shift } = getHome(locale);
   const reduceMotion = useReducedMotion();
   const orbitDotRef = useRef<SVGCircleElement>(null);
 
@@ -77,7 +79,7 @@ export function Shift() {
 
               <div className="mt-8 flex w-full max-w-xs flex-1 flex-col justify-center gap-3">
                 <div className="self-end rounded-2xl rounded-br-sm border border-primary/20 bg-accent px-4 py-2.5 text-sm text-accent-foreground shadow-sm">
-                  Can you take care of this?
+                  {shift.chatbot.prompt}
                 </div>
 
                 <div className="flex w-fit items-center gap-1 self-start rounded-2xl rounded-bl-sm border border-border/60 bg-card px-4 py-2.5 shadow-sm">

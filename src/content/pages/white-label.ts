@@ -10,6 +10,10 @@ export const whiteLabelHeader = {
   note: "Run it internally, sell it to your clients, or launch a vertical product: same engine underneath.",
   screenshotCaption:
     "One settings screen re-brands everything: the interface your clients use and the console you run it from.",
+  badges: { cloud: "Runs in your own cloud", unseen: "Your clients never see us" },
+  screenshotLabel: "Your branded workspace",
+  screenshotPlaceholder:
+    "Screenshot placeholder: the same console, dressed in a client's logo, colors and domain.",
 };
 
 export const whiteLabelFeatures = [

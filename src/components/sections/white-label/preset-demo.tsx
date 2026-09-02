@@ -4,9 +4,11 @@ import { useState } from "react";
 import { Sparkles } from "lucide-react";
 import { Container } from "@/components/layout/container";
 import { cn } from "@/lib/utils";
-import { presetDemo } from "@/content/pages/white-label";
+import { getWhiteLabel } from "@/content";
+import type { Locale } from "@/lib/i18n";
 
-export function PresetDemo() {
+export function PresetDemo({ locale }: { locale: Locale }) {
+  const { presetDemo } = getWhiteLabel(locale);
   const [active, setActive] = useState(presetDemo.presets[0]);
 
   return (

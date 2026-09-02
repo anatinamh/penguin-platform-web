@@ -16,7 +16,9 @@ import {
 } from "lucide-react";
 import { Container } from "@/components/layout/container";
 import { cn } from "@/lib/utils";
-import { servicePaths } from "@/content/pages/platform";
+import type { servicePaths as ServicePathsEn } from "@/content/pages/platform";
+import { getPlatform } from "@/content";
+import type { Locale } from "@/lib/i18n";
 
 const pathIcons: Record<string, LucideIcon> = {
   handshake: Handshake,
@@ -35,8 +37,7 @@ const buildIcons: Record<string, LucideIcon> = {
   cable: Cable,
 };
 
-function EmphasizedTitle() {
-  const { title, titleEmphasis } = servicePaths;
+function EmphasizedTitle({ title, titleEmphasis }: Pick<typeof ServicePathsEn, "title" | "titleEmphasis">) {
   const parts: { text: string; color?: string }[] = [];
   let rest = title;
   titleEmphasis.forEach((emphasis, i) => {
@@ -76,7 +77,8 @@ function Body({ text, strong }: { text: string; strong?: string }) {
   );
 }
 
-export function ServicePaths() {
+export function ServicePaths({ locale }: { locale: Locale }) {
+  const { servicePaths } = getPlatform(locale);
   return (
     <section id="services" className="py-24 sm:py-32">
       <Container>
@@ -85,7 +87,7 @@ export function ServicePaths() {
             {servicePaths.eyebrow}
           </span>
           <h2 className="mt-3 text-balance font-heading text-3xl font-medium tracking-tight sm:text-4xl">
-            <EmphasizedTitle />
+            <EmphasizedTitle title={servicePaths.title} titleEmphasis={servicePaths.titleEmphasis} />
           </h2>
           <p className="mt-4 text-pretty text-muted-foreground">
             <Body text={servicePaths.subtitle} strong={servicePaths.strong} />

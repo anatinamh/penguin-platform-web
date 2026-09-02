@@ -5,6 +5,7 @@ export const platformHeader = {
   title: "One platform to build, govern and run trusted agents.",
   subtitle:
     "For the team that builds: everything an agent needs — interface, retrieval, data access, memory, permissions, observability — already assembled, running on your infrastructure.",
+  badges: { permissions: "Pick who can use each agent", audit: "Every action is logged" },
   screenshotCaption:
     "Every agent in one place — see what each one does, who uses it, and what it's allowed to touch.",
 };

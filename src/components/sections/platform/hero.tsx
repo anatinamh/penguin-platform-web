@@ -5,7 +5,8 @@ import { Check, Users } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
 import { Container } from "@/components/layout/container";
 import { cn } from "@/lib/utils";
-import { platformHeader } from "@/content/pages/platform";
+import { getPlatform } from "@/content";
+import type { Locale } from "@/lib/i18n";
 
 function FloatingBadge({
   icon: Icon,
@@ -36,7 +37,8 @@ function FloatingBadge({
   );
 }
 
-export function PlatformHero() {
+export function PlatformHero({ locale }: { locale: Locale }) {
+  const { platformHeader } = getPlatform(locale);
   return (
     <section
       className="relative overflow-hidden border-b border-border/60 py-24 sm:py-32"
@@ -80,12 +82,12 @@ export function PlatformHero() {
 
             <FloatingBadge
               icon={Users}
-              label="Pick who can use each agent"
+              label={platformHeader.badges.permissions}
               className="-top-4 -left-6"
             />
             <FloatingBadge
               icon={Check}
-              label="Every action is logged"
+              label={platformHeader.badges.audit}
               className="right-6 bottom-24"
               delay={0.6}
             />

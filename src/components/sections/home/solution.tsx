@@ -25,7 +25,8 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { solution } from "@/content/pages/home";
+import { getHome } from "@/content";
+import type { Locale } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 
 const icons: Record<string, LucideIcon> = {
@@ -149,7 +150,8 @@ function Connector() {
   );
 }
 
-export function Solution() {
+export function Solution({ locale }: { locale: Locale }) {
+  const { solution } = getHome(locale);
   const [surfaces, layer, enterprise] = solution.columns;
   const reduceMotion = useReducedMotion();
 

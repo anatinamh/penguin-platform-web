@@ -5,21 +5,14 @@ import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/layout/container";
+import { getHome } from "@/content";
+import { type Locale, localizeHref } from "@/lib/i18n";
 import { handleGlowMove } from "@/lib/glow";
 
-export function FinalCta({
-  eyebrow,
-  title,
-  body,
-  primaryCta,
-  microcopy,
-}: {
-  eyebrow: string;
-  title: string;
-  body: string;
-  primaryCta: { label: string; href: string };
-  microcopy?: string;
-}) {
+// Every page closes with this same block, so it reads its own copy rather than
+// making each page thread the same object through.
+export function FinalCta({ locale }: { locale: Locale }) {
+  const { eyebrow, title, body, primaryCta, microcopy } = getHome(locale).finalCta;
   return (
     <section
       id="contact"
@@ -46,7 +39,7 @@ export function FinalCta({
         <p className="mt-4 max-w-xl text-pretty text-muted-foreground">{body}</p>
         <div className="mt-8">
           <Button size="lg" asChild>
-            <Link href={primaryCta.href}>{primaryCta.label}</Link>
+            <Link href={localizeHref(primaryCta.href, locale)}>{primaryCta.label}</Link>
           </Button>
         </div>
         {microcopy ? <p className="mt-4 text-xs text-muted-foreground">{microcopy}</p> : null}

@@ -2,7 +2,8 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { Container } from "@/components/layout/container";
 import { Button } from "@/components/ui/button";
-import { howItWorks } from "@/content/pages/platform";
+import { getPlatform } from "@/content";
+import type { Locale } from "@/lib/i18n";
 
 const stepIcons = [
   <svg key="deploy" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
@@ -33,7 +34,8 @@ function StepDescription({ text, strong }: { text: string; strong?: string }) {
   );
 }
 
-export function HowItWorks() {
+export function HowItWorks({ locale }: { locale: Locale }) {
+  const { howItWorks } = getPlatform(locale);
   return (
     <section id="how-it-works" className="hiw-scene bg-secondary px-8 py-24 sm:py-32">
       <Container className="max-w-[1120px]">

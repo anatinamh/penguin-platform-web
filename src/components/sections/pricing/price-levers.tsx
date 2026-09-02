@@ -1,7 +1,9 @@
 import { Container } from "@/components/layout/container";
-import { priceLevers } from "@/content/pages/pricing";
+import { getPricing } from "@/content";
+import type { Locale } from "@/lib/i18n";
 
-export function PriceLevers() {
+export function PriceLevers({ locale }: { locale: Locale }) {
+  const { priceLevers } = getPricing(locale);
   return (
     <section className="py-24 sm:py-32">
       <Container>

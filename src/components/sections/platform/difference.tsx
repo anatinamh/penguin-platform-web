@@ -6,7 +6,8 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Container } from "@/components/layout/container";
-import { difference } from "@/content/pages/platform";
+import { getPlatform } from "@/content";
+import type { Locale } from "@/lib/i18n";
 
 function ComparisonLine({
   positive,
@@ -31,7 +32,8 @@ function ComparisonLine({
   );
 }
 
-export function Difference() {
+export function Difference({ locale }: { locale: Locale }) {
+  const { difference } = getPlatform(locale);
   return (
     <section className="bg-secondary py-24 sm:py-32">
       <Container className="max-w-2xl">

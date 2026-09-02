@@ -11,7 +11,8 @@ import {
 } from "lucide-react";
 import { Container } from "@/components/layout/container";
 import { HoverLift, RevealGroup } from "@/components/shared/reveal";
-import { whiteLabelBanner, whiteLabelFeatures } from "@/content/pages/white-label";
+import { getWhiteLabel } from "@/content";
+import type { Locale } from "@/lib/i18n";
 
 const icons: Record<string, LucideIcon> = {
   palette: Palette,
@@ -35,7 +36,8 @@ function Description({ text, strong }: { text: string; strong?: string }) {
   );
 }
 
-export function WhiteLabelFeatures() {
+export function WhiteLabelFeatures({ locale }: { locale: Locale }) {
+  const { whiteLabelBanner, whiteLabelFeatures } = getWhiteLabel(locale);
   return (
     <section className="bg-secondary py-24 sm:py-32">
       <Container>

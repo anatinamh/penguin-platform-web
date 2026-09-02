@@ -15,6 +15,7 @@ export const shift = {
   title: "Convert your company into an agentic company.",
   note: "An agentic layer performs real work — at a scalable cost.",
   chatbot: {
+    prompt: "Can you take care of this?",
     label: "A chatbot",
     heading: "Tells you how. Then waits.",
     items: ["Answers the question", "Suggests next steps", "Forgets the context"],
@@ -32,6 +33,7 @@ export const shift = {
 };
 
 export const origin = {
+  badges: { infra: "Runs in your own cloud", brand: "Your logo, your colors" },
   eyebrow: "Why Pengui exists",
   title: "The requirement was always the same. The product didn't exist.",
   lede: "We built a product that has the 3 things companies are asking for:",

@@ -1,5 +1,21 @@
 // Trust & control page copy — sourced verbatim from the approved landing doc, sections 13, 14.
 
+export const trustHeader = {
+  eyebrow: "Trust & control",
+  title: "Enterprise-grade, running inside your own network.",
+  subtitle:
+    "The questions your security team, your legal team and your CFO will ask, answered plainly: the perimeter, the access model, and who owns what.",
+  badges: {
+    region: "Data stays in-region",
+    soc2: "SOC 2 ready",
+    rbac: "Role-based access",
+    audit: "Full audit trail",
+  },
+  screenshotLabel: "Permissions & audit log",
+  screenshotCaption:
+    "Screenshot placeholder: every role, every action, every agent — recorded and reviewable.",
+};
+
 export const control = {
   eyebrow: "Yours to control",
   subtitle:

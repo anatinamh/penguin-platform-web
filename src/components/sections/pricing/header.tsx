@@ -2,10 +2,12 @@
 
 import { Users } from "lucide-react";
 import { Container } from "@/components/layout/container";
-import { pricingHeader } from "@/content/pages/pricing";
+import { getPricing } from "@/content";
+import type { Locale } from "@/lib/i18n";
 import { handleGlowMove } from "@/lib/glow";
 
-export function PricingHeader() {
+export function PricingHeader({ locale }: { locale: Locale }) {
+  const { pricingHeader } = getPricing(locale);
   return (
     <section
       onMouseMove={handleGlowMove}

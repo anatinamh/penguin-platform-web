@@ -4,7 +4,8 @@ import { Building2 } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
 import { Container } from "@/components/layout/container";
 import { cn } from "@/lib/utils";
-import { whiteLabelHeader } from "@/content/pages/white-label";
+import { getWhiteLabel } from "@/content";
+import type { Locale } from "@/lib/i18n";
 
 function FloatingBadge({
   dotColor,
@@ -33,7 +34,8 @@ function FloatingBadge({
   );
 }
 
-export function WhiteLabelHero() {
+export function WhiteLabelHero({ locale }: { locale: Locale }) {
+  const { whiteLabelHeader } = getWhiteLabel(locale);
   return (
     <section
       className="relative overflow-hidden border-b border-border/60 py-24 sm:py-32"
@@ -127,12 +129,12 @@ export function WhiteLabelHero() {
 
             <FloatingBadge
               dotColor="var(--primary)"
-              label="Runs in your own cloud"
+              label={whiteLabelHeader.badges.cloud}
               className="-top-4 -left-6"
             />
             <FloatingBadge
               dotColor="#6C63FF"
-              label="Your clients never see us"
+              label={whiteLabelHeader.badges.unseen}
               className="right-4 bottom-24"
               delay={0.6}
             />

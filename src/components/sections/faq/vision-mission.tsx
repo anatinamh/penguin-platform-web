@@ -1,7 +1,9 @@
 import { Megaphone, Target, type LucideIcon } from "lucide-react";
 import { Container } from "@/components/layout/container";
 import { cn } from "@/lib/utils";
-import { visionMission } from "@/content/pages/faq";
+import type { visionMission as VisionMissionEn } from "@/content/pages/faq";
+import { getFaq } from "@/content";
+import type { Locale } from "@/lib/i18n";
 
 const icons: Record<string, LucideIcon> = {
   megaphone: Megaphone,
@@ -24,7 +26,7 @@ function Card({
   card,
   dark,
 }: {
-  card: (typeof visionMission)["vision"] | (typeof visionMission)["mission"];
+  card: (typeof VisionMissionEn)["vision"] | (typeof VisionMissionEn)["mission"];
   dark?: boolean;
 }) {
   const Icon = icons[card.icon];
@@ -83,7 +85,8 @@ function Card({
   );
 }
 
-export function VisionMission() {
+export function VisionMission({ locale }: { locale: Locale }) {
+  const { visionMission } = getFaq(locale);
   return (
     <section className="py-24 sm:py-32">
       <Container className="max-w-3xl">

@@ -7,7 +7,8 @@ import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/layout/container";
 import { Reveal, RevealGroup } from "@/components/shared/reveal";
-import { hero } from "@/content/pages/home";
+import { getHome } from "@/content";
+import type { Locale } from "@/lib/i18n";
 import { handleGlowMove } from "@/lib/glow";
 
 // Scattered around the hero canvas — kept off small screens, where there's
@@ -28,7 +29,8 @@ const floatStyles: CSSProperties[] = [
   { "--float-duration": "12s", "--float-delay": "-8s", "--float-x": "-5px", "--float-y": "-7px" } as CSSProperties,
 ];
 
-export function Hero() {
+export function Hero({ locale }: { locale: Locale }) {
+  const { hero } = getHome(locale);
   return (
     <section
       onMouseMove={handleGlowMove}

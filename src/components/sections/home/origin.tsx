@@ -4,7 +4,8 @@ import Image from "next/image";
 import { Check, Palette, Server } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
 import { Container } from "@/components/layout/container";
-import { origin } from "@/content/pages/home";
+import { getHome } from "@/content";
+import type { Locale } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 
 function FloatingBadge({
@@ -36,7 +37,8 @@ function FloatingBadge({
   );
 }
 
-export function Origin() {
+export function Origin({ locale }: { locale: Locale }) {
+  const { origin } = getHome(locale);
   return (
     <section className="relative overflow-hidden bg-secondary py-24 sm:py-32">
       <div
@@ -100,12 +102,12 @@ export function Origin() {
 
               <FloatingBadge
                 icon={Server}
-                label="Runs in your own cloud"
+                label={origin.badges.infra}
                 className="-top-4 -left-6"
               />
               <FloatingBadge
                 icon={Palette}
-                label="Your logo, your colors"
+                label={origin.badges.brand}
                 className="-right-5 -bottom-4"
                 delay={0.6}
               />

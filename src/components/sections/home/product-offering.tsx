@@ -15,7 +15,8 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { Container } from "@/components/layout/container";
-import { productOffering } from "@/content/pages/home";
+import { getHome } from "@/content";
+import type { Locale } from "@/lib/i18n";
 
 const icons: Record<string, LucideIcon> = {
   cloud: Cloud,
@@ -52,7 +53,8 @@ function Body({ text, strong }: { text: string; strong?: string }) {
   );
 }
 
-export function ProductOffering() {
+export function ProductOffering({ locale }: { locale: Locale }) {
+  const { productOffering } = getHome(locale);
   const { whereItRuns, stack, marketplace } = productOffering;
 
   return (

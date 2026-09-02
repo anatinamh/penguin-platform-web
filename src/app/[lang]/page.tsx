@@ -4,17 +4,22 @@ import { Origin } from "@/components/sections/home/origin";
 import { Solution } from "@/components/sections/home/solution";
 import { HowItWorks } from "@/components/sections/platform/how-it-works";
 import { FinalCta } from "@/components/sections/shared/final-cta";
-import { finalCta } from "@/content/pages/home";
+import { defaultLocale, isLocale } from "@/lib/i18n";
 
-export default function Home() {
+type LangParams = { params: Promise<{ lang: string }> };
+
+export default async function Home({ params }: LangParams) {
+  const { lang } = await params;
+  const locale = isLocale(lang) ? lang : defaultLocale;
+
   return (
     <>
-      <Hero />
-      <Shift />
-      <Origin />
-      <Solution />
-      <HowItWorks />
-      <FinalCta {...finalCta} />
+      <Hero locale={locale} />
+      <Shift locale={locale} />
+      <Origin locale={locale} />
+      <Solution locale={locale} />
+      <HowItWorks locale={locale} />
+      <FinalCta locale={locale} />
     </>
   );
 }

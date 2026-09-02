@@ -23,7 +23,8 @@ export const visionMission = {
 };
 
 export const faqHeader = {
-  eyebrow: "FAQ",
+  eyebrow: "About",
+  faqEyebrow: "FAQ",
   title: "Answers to the last question before you start.",
 };
 

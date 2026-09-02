@@ -4,28 +4,39 @@ import { ProductScreenshot } from "@/components/shared/product-screenshot";
 import { TrustHero } from "@/components/sections/trust/hero";
 import { Control } from "@/components/sections/trust/control";
 import { FinalCta } from "@/components/sections/shared/final-cta";
-import { control } from "@/content/pages/trust";
-import { finalCta } from "@/content/pages/home";
+import { getTrust } from "@/content";
+import { defaultLocale, isLocale } from "@/lib/i18n";
 
-export const metadata: Metadata = {
-  title: "Trust & control — Pengui AI",
-  description: control.subtitle,
-};
+type LangParams = { params: Promise<{ lang: string }> };
 
-export default function TrustPage() {
+export async function generateMetadata({ params }: LangParams): Promise<Metadata> {
+  const { lang } = await params;
+  const locale = isLocale(lang) ? lang : defaultLocale;
+  const { trustHeader, control } = getTrust(locale);
+  return {
+    title: `${trustHeader.eyebrow} — Pengui AI`,
+    description: control.subtitle,
+  };
+}
+
+export default async function TrustPage({ params }: LangParams) {
+  const { lang } = await params;
+  const locale = isLocale(lang) ? lang : defaultLocale;
+  const { trustHeader } = getTrust(locale);
+
   return (
     <>
-      <TrustHero />
-      <Control />
+      <TrustHero locale={locale} />
+      <Control locale={locale} />
       <section className="py-24 sm:py-32">
         <Container>
           <ProductScreenshot
-            label="Permissions & audit log"
-            caption="Screenshot placeholder: every role, every action, every agent — recorded and reviewable."
+            label={trustHeader.screenshotLabel}
+            caption={trustHeader.screenshotCaption}
           />
         </Container>
       </section>
-      <FinalCta {...finalCta} />
+      <FinalCta locale={locale} />
     </>
   );
 }

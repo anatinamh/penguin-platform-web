@@ -2,14 +2,26 @@ import type { Metadata } from "next";
 import { Container } from "@/components/layout/container";
 import { RequestDemoForm } from "@/components/sections/request-demo/form";
 import { RequestDemoVisualPanel } from "@/components/sections/request-demo/visual-panel";
-import { requestDemoHeader } from "@/content/pages/request-demo";
+import { getRequestDemo } from "@/content";
+import { defaultLocale, isLocale } from "@/lib/i18n";
 
-export const metadata: Metadata = {
-  title: "Request a demo — Pengui AI",
-  description: requestDemoHeader.subtitle,
-};
+type LangParams = { params: Promise<{ lang: string }> };
 
-export default function RequestDemoPage() {
+export async function generateMetadata({ params }: LangParams): Promise<Metadata> {
+  const { lang } = await params;
+  const locale = isLocale(lang) ? lang : defaultLocale;
+  const { requestDemoHeader } = getRequestDemo(locale);
+  return {
+    title: `${requestDemoHeader.eyebrow} — Pengui AI`,
+    description: requestDemoHeader.subtitle,
+  };
+}
+
+export default async function RequestDemoPage({ params }: LangParams) {
+  const { lang } = await params;
+  const locale = isLocale(lang) ? lang : defaultLocale;
+  const { requestDemoHeader } = getRequestDemo(locale);
+
   return (
     <section className="py-16 sm:py-24">
       <Container>
@@ -22,7 +34,7 @@ export default function RequestDemoPage() {
         </div>
 
         <div className="mt-12 grid gap-6 lg:grid-cols-2">
-          <RequestDemoForm />
+          <RequestDemoForm locale={locale} />
           <RequestDemoVisualPanel />
         </div>
       </Container>

@@ -3,9 +3,11 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/layout/container";
 import { cn } from "@/lib/utils";
-import { tiers, tiersNote } from "@/content/pages/pricing";
+import { getPricing } from "@/content";
+import type { Locale } from "@/lib/i18n";
 
-export function Tiers() {
+export function Tiers({ locale }: { locale: Locale }) {
+  const { tiers, tiersNote } = getPricing(locale);
   const plans = tiers.filter((tier) => !tier.dashed);
   const custom = tiers.find((tier) => tier.dashed);
 

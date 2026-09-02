@@ -5,6 +5,8 @@ import { Check, ClipboardCheck, Lock, User } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
 import { Container } from "@/components/layout/container";
 import { cn } from "@/lib/utils";
+import { getTrust } from "@/content";
+import type { Locale } from "@/lib/i18n";
 
 function FloatingBadge({
   icon,
@@ -35,7 +37,8 @@ function FloatingBadge({
   );
 }
 
-export function TrustHero() {
+export function TrustHero({ locale }: { locale: Locale }) {
+  const { trustHeader } = getTrust(locale);
   const reduceMotion = useReducedMotion();
   return (
     <section
@@ -48,13 +51,12 @@ export function TrustHero() {
     >
       <Container className="relative flex flex-col items-center gap-12 lg:flex-row lg:items-center lg:gap-10">
         <div className="w-full text-center lg:flex-1 lg:text-left">
-          <span className="text-sm font-medium text-primary">Trust &amp; control</span>
+          <span className="text-sm font-medium text-primary">{trustHeader.eyebrow}</span>
           <h1 className="mt-3 max-w-xl text-balance font-heading text-4xl font-medium tracking-tight sm:text-5xl">
-            Enterprise-grade, running inside your own network.
+            {trustHeader.title}
           </h1>
           <p className="mt-4 max-w-md text-pretty text-lg text-muted-foreground lg:mx-0">
-            The questions your security team, your legal team and your CFO will ask, answered
-            plainly: the perimeter, the access model, and who owns what.
+            {trustHeader.subtitle}
           </p>
         </div>
 
@@ -114,24 +116,24 @@ export function TrustHero() {
 
             <FloatingBadge
               icon={<Lock className="size-3" />}
-              label="Data stays in-region"
+              label={trustHeader.badges.region}
               className="top-2 -left-4"
             />
             <FloatingBadge
               icon={<Check className="size-3" />}
-              label="SOC 2 ready"
+              label={trustHeader.badges.soc2}
               className="top-0 -right-2"
               delay={0.5}
             />
             <FloatingBadge
               icon={<User className="size-3" />}
-              label="Role-based access"
+              label={trustHeader.badges.rbac}
               className="bottom-10 -left-8"
               delay={1}
             />
             <FloatingBadge
               icon={<ClipboardCheck className="size-3" />}
-              label="Full audit trail"
+              label={trustHeader.badges.audit}
               className="bottom-4 -right-4"
               delay={1.5}
             />

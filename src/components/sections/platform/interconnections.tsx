@@ -22,7 +22,8 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { capabilities } from "@/content/pages/platform";
+import { getPlatform } from "@/content";
+import type { Locale } from "@/lib/i18n";
 
 const HUB_DESCRIPTION =
   "Everything above and below runs through one engine — your infrastructure, your models, your data, always included.";
@@ -106,7 +107,8 @@ function Pill({
   );
 }
 
-export function Interconnections() {
+export function Interconnections({ locale }: { locale: Locale }) {
+  const { capabilities } = getPlatform(locale);
   const [controlPlane, core, caps, connect] = capabilities.groups;
   const topClusters = [controlPlane, core, caps];
   const bottomItems = connect.items;

@@ -4,22 +4,32 @@ import { TrialBanner } from "@/components/sections/pricing/trial-banner";
 import { Tiers } from "@/components/sections/pricing/tiers";
 import { PriceLevers } from "@/components/sections/pricing/price-levers";
 import { FinalCta } from "@/components/sections/shared/final-cta";
-import { pricingHeader } from "@/content/pages/pricing";
-import { finalCta } from "@/content/pages/home";
+import { getPricing } from "@/content";
+import { defaultLocale, isLocale } from "@/lib/i18n";
 
-export const metadata: Metadata = {
-  title: "Pricing — Pengui AI",
-  description: pricingHeader.subtitle,
-};
+type LangParams = { params: Promise<{ lang: string }> };
 
-export default function PricingPage() {
+export async function generateMetadata({ params }: LangParams): Promise<Metadata> {
+  const { lang } = await params;
+  const locale = isLocale(lang) ? lang : defaultLocale;
+  const { pricingHeader } = getPricing(locale);
+  return {
+    title: `${pricingHeader.eyebrow} — Pengui AI`,
+    description: pricingHeader.subtitle,
+  };
+}
+
+export default async function PricingPage({ params }: LangParams) {
+  const { lang } = await params;
+  const locale = isLocale(lang) ? lang : defaultLocale;
+
   return (
     <>
-      <PricingHeader />
-      <TrialBanner />
-      <Tiers />
-      <PriceLevers />
-      <FinalCta {...finalCta} />
+      <PricingHeader locale={locale} />
+      <TrialBanner locale={locale} />
+      <Tiers locale={locale} />
+      <PriceLevers locale={locale} />
+      <FinalCta locale={locale} />
     </>
   );
 }

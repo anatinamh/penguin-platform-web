@@ -1,8 +1,10 @@
 import { ShieldCheck } from "lucide-react";
 import { Container } from "@/components/layout/container";
-import { control } from "@/content/pages/trust";
+import { getTrust } from "@/content";
+import type { Locale } from "@/lib/i18n";
 
-export function Control() {
+export function Control({ locale }: { locale: Locale }) {
+  const { control } = getTrust(locale);
   return (
     <section className="bg-secondary py-24 sm:py-32">
       <Container>

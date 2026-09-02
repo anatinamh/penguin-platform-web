@@ -3,9 +3,11 @@ import { ArrowRight, Check } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/layout/container";
-import { trial } from "@/content/pages/pricing";
+import { getPricing } from "@/content";
+import type { Locale } from "@/lib/i18n";
 
-export function TrialBanner() {
+export function TrialBanner({ locale }: { locale: Locale }) {
+  const { trial } = getPricing(locale);
   return (
     <section className="py-16 sm:py-20">
       <Container>

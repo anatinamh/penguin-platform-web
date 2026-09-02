@@ -5,9 +5,11 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Container } from "@/components/layout/container";
-import { faqCategories } from "@/content/pages/faq";
+import { getFaq } from "@/content";
+import type { Locale } from "@/lib/i18n";
 
-export function FaqCategories() {
+export function FaqCategories({ locale }: { locale: Locale }) {
+  const { faqCategories } = getFaq(locale);
   return (
     <section className="bg-secondary py-24 sm:py-32">
       <Container className="max-w-3xl">

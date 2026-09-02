@@ -3,23 +3,34 @@ import { PageHeader } from "@/components/layout/page-header";
 import { VisionMission } from "@/components/sections/faq/vision-mission";
 import { FaqCategories } from "@/components/sections/faq/categories";
 import { FinalCta } from "@/components/sections/shared/final-cta";
-import { faqHeader } from "@/content/pages/faq";
-import { finalCta } from "@/content/pages/home";
+import { getFaq } from "@/content";
+import { defaultLocale, isLocale } from "@/lib/i18n";
 
-export const metadata: Metadata = {
-  title: "About — Pengui AI",
-  description: faqHeader.title,
-};
+type LangParams = { params: Promise<{ lang: string }> };
 
-export default function FaqPage() {
+export async function generateMetadata({ params }: LangParams): Promise<Metadata> {
+  const { lang } = await params;
+  const locale = isLocale(lang) ? lang : defaultLocale;
+  const { faqHeader } = getFaq(locale);
+  return {
+    title: `${faqHeader.eyebrow} — Pengui AI`,
+    description: faqHeader.title,
+  };
+}
+
+export default async function FaqPage({ params }: LangParams) {
+  const { lang } = await params;
+  const locale = isLocale(lang) ? lang : defaultLocale;
+  const { faqHeader } = getFaq(locale);
+
   return (
     <>
-      <PageHeader eyebrow="About" title={faqHeader.title} />
-      <VisionMission />
+      <PageHeader eyebrow={faqHeader.eyebrow} title={faqHeader.title} />
+      <VisionMission locale={locale} />
       <div id="faq">
-        <FaqCategories />
+        <FaqCategories locale={locale} />
       </div>
-      <FinalCta {...finalCta} />
+      <FinalCta locale={locale} />
     </>
   );
 }
