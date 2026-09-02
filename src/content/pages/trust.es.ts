@@ -14,8 +14,8 @@ export const trustHeader: typeof En.trustHeader = {
     audit: "Auditoría completa",
   },
   screenshotLabel: "Permisos y registro de auditoría",
-  screenshotCaption:
-    "Captura de referencia: cada rol, cada acción, cada agente — registrado y auditable.",
+  figureCaption:
+    "Cada rol, cada acción, cada agente — registrado y auditable desde una sola Console.",
 };
 
 export const control: typeof En.control = {

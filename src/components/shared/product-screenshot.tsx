@@ -35,7 +35,7 @@ export function ProductScreenshot({
               src={src}
               alt={label}
               fill
-              sizes="(max-width: 1024px) 100vw, 50vw"
+              sizes="(max-width: 768px) 100vw, 768px"
               className="object-cover object-top"
             />
           </div>
@@ -54,6 +54,11 @@ export function ProductScreenshot({
           </div>
         )}
       </div>
+      {/* With a real screenshot the caption sits under the frame, where the
+          placeholder used to print it inside. */}
+      {src && caption ? (
+        <p className="mt-4 text-pretty text-center text-sm text-muted-foreground">{caption}</p>
+      ) : null}
     </div>
   );
 }

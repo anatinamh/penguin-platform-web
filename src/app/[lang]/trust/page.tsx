@@ -31,8 +31,10 @@ export default async function TrustPage({ params }: LangParams) {
       <section className="py-24 sm:py-32">
         <Container>
           <ProductScreenshot
+            src={`/screenshots/permissions-${locale}.webp`}
+            aspect="67/50"
             label={trustHeader.screenshotLabel}
-            caption={trustHeader.screenshotCaption}
+            caption={trustHeader.figureCaption}
           />
         </Container>
       </section>

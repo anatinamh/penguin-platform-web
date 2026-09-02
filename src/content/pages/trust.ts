@@ -12,8 +12,8 @@ export const trustHeader = {
     audit: "Full audit trail",
   },
   screenshotLabel: "Permissions & audit log",
-  screenshotCaption:
-    "Screenshot placeholder: every role, every action, every agent — recorded and reviewable.",
+  figureCaption:
+    "Every role, every action, every agent — recorded and reviewable from one console.",
 };
 
 export const control = {

@@ -16,8 +16,8 @@ export const whiteLabelHeader: typeof En.whiteLabelHeader = {
     "Una sola pantalla de configuración le cambia la marca a todo: la interfaz que usan tus clientes y la Console desde la que operas.",
   badges: { cloud: "Corre en tu propia nube", unseen: "Tus clientes nunca nos ven" },
   screenshotLabel: "Tu workspace con tu marca",
-  screenshotPlaceholder:
-    "Captura de referencia: la misma Console, vestida con el logo, los colores y el dominio de un cliente.",
+  figureCaption:
+    "La misma Console, vestida con el logo, los colores y el dominio de un cliente.",
 };
 
 export const whiteLabelFeatures: typeof En.whiteLabelFeatures = [

@@ -33,8 +33,10 @@ export default async function WhiteLabelPage({ params }: LangParams) {
       <section className="py-24 sm:py-32">
         <Container>
           <ProductScreenshot
+            src={`/screenshots/branding-${locale}.webp`}
+            aspect="67/50"
             label={whiteLabelHeader.screenshotLabel}
-            caption={whiteLabelHeader.screenshotPlaceholder}
+            caption={whiteLabelHeader.figureCaption}
           />
         </Container>
       </section>
