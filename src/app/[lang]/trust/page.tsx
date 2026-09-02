@@ -1,6 +1,4 @@
 import type { Metadata } from "next";
-import { Container } from "@/components/layout/container";
-import { ScreenshotFigure } from "@/components/shared/screenshot-figure";
 import { TrustHero } from "@/components/sections/trust/hero";
 import { Control } from "@/components/sections/trust/control";
 import { FinalCta } from "@/components/sections/shared/final-cta";
@@ -26,27 +24,10 @@ export async function generateMetadata({ params }: LangParams): Promise<Metadata
 export default async function TrustPage({ params }: LangParams) {
   const { lang } = await params;
   const locale = isLocale(lang) ? lang : defaultLocale;
-  const { trustHeader } = getTrust(locale);
-
   return (
     <>
       <TrustHero locale={locale} />
       <Control locale={locale} />
-      <section className="py-24 sm:py-32">
-        <Container>
-          <ScreenshotFigure
-            src={`/screenshots/permissions-${locale}.webp`}
-            alt={trustHeader.screenshotLabel}
-            width={1536}
-            height={1147}
-            caption={trustHeader.figureCaption}
-            badges={[
-              { icon: "key-round", label: trustHeader.figureBadges.access },
-              { icon: "scroll-text", label: trustHeader.figureBadges.audit },
-            ]}
-          />
-        </Container>
-      </section>
       <FinalCta locale={locale} />
     </>
   );

@@ -16,7 +16,7 @@ export const site: SiteContent = {
     { label: "Marca blanca", href: "/white-label" },
     { label: "Confianza y control", href: "/trust" },
     { label: "Precios", href: "/pricing" },
-    { label: "Nosotros", href: "/faq" },
+    { label: "Preguntas frecuentes", href: "/faq" },
   ],
   footerNav: {
     platform: {

@@ -1,4 +1,7 @@
+"use client";
+
 import { ArrowUp, Check } from "lucide-react";
+import { motion, useReducedMotion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/layout/container";
@@ -8,6 +11,7 @@ import type { Locale } from "@/lib/i18n";
 
 export function Tiers({ locale }: { locale: Locale }) {
   const { tiers, tiersNote } = getPricing(locale);
+  const reduceMotion = useReducedMotion();
   const plans = tiers.filter((tier) => !tier.dashed);
   const custom = tiers.find((tier) => tier.dashed);
 
@@ -15,14 +19,28 @@ export function Tiers({ locale }: { locale: Locale }) {
     <section className="bg-secondary py-20 sm:py-28">
       <Container>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {plans.map((tier) => (
-            <div
+          {plans.map((tier, i) => (
+            <motion.div
               key={tier.name}
+              initial={reduceMotion ? false : { opacity: 0, y: 18 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.25 }}
+              transition={{ duration: 0.45, delay: i * 0.07, ease: [0.22, 0.61, 0.36, 1] }}
+              whileHover={reduceMotion ? undefined : { y: -8 }}
               className={cn(
-                "flex flex-col rounded-2xl border p-5",
+                "group relative flex flex-col overflow-hidden rounded-2xl border bg-card p-5",
+                "transition-[box-shadow,border-color] duration-300 hover:border-primary hover:shadow-xl hover:shadow-primary/10",
                 tier.featured ? "border-primary shadow-sm" : "border-border/60",
               )}
             >
+              <span
+                aria-hidden
+                className="pointer-events-none absolute inset-x-0 top-0 h-28 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                style={{
+                  background:
+                    "linear-gradient(to bottom, color-mix(in oklch, var(--primary) 12%, transparent), transparent)",
+                }}
+              />
               {tier.badge ? (
                 <Badge className="mb-2 w-fit text-[10px]">{tier.badge}</Badge>
               ) : (
@@ -57,7 +75,7 @@ export function Tiers({ locale }: { locale: Locale }) {
               </ul>
 
               <p className="mt-4 text-[11px] text-muted-foreground">{tier.prebuilt}</p>
-            </div>
+            </motion.div>
           ))}
         </div>
 

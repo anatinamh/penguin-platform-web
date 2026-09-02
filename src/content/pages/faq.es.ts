@@ -1,57 +1,51 @@
-// Spanish sibling of ./faq.ts (English source); its types are pinned to it.
+// Spanish (LatAm) sibling of ./faq — types pinned to the English source so
+// structure drift is a compile error.
 
 import type * as En from "./faq";
 
-export const visionMission: typeof En.visionMission = {
-  eyebrow: "01 — Dirección",
-  title: "Hacia dónde vamos, y cómo.",
-  vision: {
-    label: "Visión",
-    sub: "Nuestro norte",
-    icon: "megaphone",
-    body: "Convertir a cada empresa en una organización aumentada por IA — donde los agentes entienden sus datos, operan sus herramientas y ejecutan trabajo real bajo su propia marca, sus reglas y su contexto.",
-    strong: "organización aumentada por IA",
-    tags: ["Entender", "Operar", "Ejecutar"],
-  },
-  mission: {
-    label: "Misión",
-    sub: "Cómo llegamos ahí",
-    icon: "target",
-    body: "Hacer que la IA empresarial sea accesible, personalizable y accionable — una plataforma para crear agentes, conectarlos al conocimiento del negocio y desplegarlos como herramientas internas, productos white-label o soluciones a medida.",
-    strong: "accesible, personalizable y accionable",
-    tags: ["Crear", "Conectar", "Desplegar"],
-  },
-};
-
 export const faqHeader: typeof En.faqHeader = {
-  eyebrow: "Nosotros",
-  faqEyebrow: "Preguntas frecuentes",
-  title: "Respuestas a la última pregunta antes de empezar.",
+  eyebrow: "Preguntas frecuentes",
+  title: "Las respuestas a la última duda antes de empezar.",
 };
 
 export const faqCategories: typeof En.faqCategories = [
   {
+    category: "Rumbo",
+    items: [
+      {
+        question: "¿Hacia dónde va Pengui?",
+        answer:
+          "Hacia un mundo donde cada empresa funcione con agentes que le pertenecen de verdad — agentes que entienden sus datos, actúan en sus herramientas y hacen trabajo real bajo su propio nombre. Cada decisión de producto apunta ahí.",
+      },
+      {
+        question: "¿Y cómo llegan?",
+        answer:
+          "Haciendo que la IA empresarial sea algo que instalás, no algo que alquilás: una plataforma para construir agentes, conectarlos al conocimiento de tu negocio y lanzarlos — como herramientas internas, como productos con tu marca, o construidos por nosotros para vos.",
+      },
+    ],
+  },
+  {
     category: "Despliegue y tus datos",
     items: [
       {
-        question: "¿Dónde corre Pengui?",
+        question: "¿Dónde se ejecuta Pengui?",
         answer:
-          "En tu propia nube o data center. La plataforma se instala en tu propio entorno. Tus datos y el tráfico hacia tu modelo se quedan dentro de tu red, salvo que decidas lo contrario.",
+          "En tu propia nube o en tu propio data center — air-gapped si lo necesitás. Toda la plataforma se instala dentro de tu red: la interfaz, el motor, el almacenamiento. Nada de eso vive de nuestro lado.",
       },
       {
         question: "¿Nuestros datos salen alguna vez de nuestro entorno?",
         answer:
-          "No, salvo que lo decidas. Lo único que sale es lo que le envías al modelo que elegiste — y si alojas el modelo por tu cuenta, no sale nada.",
+          "Solo si vos lo decidís. Tus datos, tus documentos y la memoria de tus agentes viven dentro de tu red. Lo único que sale es lo que le mandás al modelo que elegiste, con tus propias claves — y si apuntás Pengui a un modelo que hospedás vos, no sale nada. El sandbox de evaluación hospedado es la única excepción, y está pensado solo para datos no sensibles.",
       },
       {
         question: "¿Quién es responsable de nuestros datos?",
         answer:
-          "Tú, y ese es justamente el punto. Pengui se instala de tu lado, así que tu información se almacena y se gobierna dentro de tu propio entorno, bajo las políticas y certificaciones con las que ya trabajas. Nosotros nunca la tocamos.",
+          "Vos — por arquitectura, no solo por contrato. La plataforma corre en tu entorno, bajo tus controles de acceso, y en el despliegue estándar tu información nunca llega hasta nosotros — así que no hay nada de nuestro lado que guardar, ver o filtrar. Los detalles están en el acuerdo.",
       },
       {
         question: "Si dejamos de pagar la suscripción, ¿perdemos nuestros datos?",
         answer:
-          "No. Tus datos y la memoria de tus agentes viven en tu propia base de datos, y puedes leerlos o exportarlos cuando quieras. La suscripción paga el motor — y el core es open source.",
+          "No. Tus datos, la configuración de tus agentes y la memoria que construyeron viven en tu propia base de datos, en tu propia nube — legibles y exportables en cualquier momento, con suscripción o sin ella. La suscripción licencia el motor que pone esos datos a trabajar; nunca guarda los datos. Y el núcleo de ese motor es open source. Los términos post-terminación están en el acuerdo.",
       },
     ],
   },
@@ -61,22 +55,22 @@ export const faqCategories: typeof En.faqCategories = [
       {
         question: "¿Qué cuenta como un agente?",
         answer:
-          "Un asistente configurado que pones en marcha — para un proceso, un cliente, un flujo de trabajo. Las personas que lo usan son usuarios finales: ilimitados en todos los planes, sin costo. Los agentes de desarrollo y prueba son gratis.",
+          "Un agente es un asistente configurado que desplegás — para un proceso, un cliente, un flujo de trabajo. Las personas que lo usan son usuarios finales: ilimitados en todos los planes, sin costo. Se te cobra por los agentes que corrés, nunca por la gente que los usa — y los agentes de desarrollo y prueba son gratis.",
       },
       {
         question: "¿Qué tipo de agentes podemos construir?",
         answer:
-          "Los que tu negocio necesite. Los agentes no están atados a departamentos — arma uno por proceso, por cliente, por flujo de trabajo o por línea de producto. Nada viene preestablecido.",
+          "Los que tu negocio necesite. Los agentes no están atados a departamentos — armá uno por proceso, por cliente, por línea de producto o por flujo de trabajo, o uno que cubra varios. Nada viene preestablecido, así que nada limita lo que podés construir.",
       },
       {
-        question: "¿Los agentes pueden recordar sin exponer datos privados?",
+        question: "¿Pueden los agentes recordar sin exponer datos privados?",
         answer:
-          "Sí. La memoria de cada cliente se mantiene separada, cada acceso queda registrado y puedes exportar o borrar los datos de un cliente cuando lo pida. Aun así, los agentes comparten lo que aprenden en toda tu empresa.",
+          "Sí. La memoria está gobernada y aislada: cada cliente — o equipo — solo ve su propia información, cada acceso queda registrado, y podés exportar o borrar los datos de cualquiera cuando lo pidan. Los agentes igual se vuelven más certeros con lo que la organización aprende, sin exponer nada privado.",
       },
       {
         question: "¿Pueden construir los agentes por nosotros?",
         answer:
-          "Sí. Nuestro equipo de Professional AI Service diseña, despliega y da soporte a agentes, servidores MCP e integraciones a medida para tus datos, tu marca y tus flujos de trabajo.",
+          "Sí. Nuestro equipo de Professional Agent Services se encarga del relevamiento, el diseño, la integración, las pruebas y el despliegue — agentes hechos a medida de tus datos, tu marca y tus flujos de trabajo, corriendo dentro de tu entorno. O los construye tu equipo sobre la plataforma. Vos elegís.",
       },
     ],
   },
@@ -86,32 +80,27 @@ export const faqCategories: typeof En.faqCategories = [
       {
         question: "¿Qué modelos de IA puedo usar?",
         answer:
-          "Cualquier modelo de cualquier proveedor importante — comercial, open-weight o uno que alojes tú mismo. Cámbialo cuando quieras: por costo, por calidad o por dónde tienen que vivir los datos.",
+          "Cualquier modelo de cualquier proveedor importante — comercial, open-weight, o uno que hospedes vos. Vos elegís, y podés cambiarlo cuando quieras por costo, calidad o residencia de datos. (MCP es cómo Pengui se conecta a tus herramientas y sistemas, no a tus modelos.)",
       },
       {
-        question: "¿Pengui se conecta a los sistemas que ya usamos?",
+        question: "¿Pengui se puede conectar a los sistemas que ya usamos?",
         answer:
-          "Sí. Pengui habla MCP, el estándar de la industria, así que las apps, bases de datos y sistemas internos que ya usa tu empresa se pueden conectar — cualquier cosa con una API. Lo hace tu equipo, o el nuestro.",
+          "Sí. Microsoft 365, Google Workspace y BambooHR ya funcionan, y cualquier cosa con una API — tu CRM, tu ERP, tus bases de datos y tu warehouse — se puede conectar a través del estándar abierto MCP o como integración a medida. La construye tu equipo, o el nuestro.",
       },
       {
         question: "¿Y si traemos un modelo más débil?",
         answer:
-          "La mayor parte de la confiabilidad viene de la plataforma, no del modelo. La memoria controlada, las consultas de datos verificadas, la recuperación y los guardrails detectan los errores que cometería un modelo más débil.",
+          "La mayor parte de la confiabilidad viene de la plataforma, no del modelo. La memoria gobernada, las consultas de datos validadas, la recuperación y los guardrails atajan lo que un modelo más débil erraría. Un modelo más potente ayuda — pero la plataforma es lo que hace que una respuesta se sostenga.",
       },
     ],
   },
   {
-    category: "White-label y tus clientes",
+    category: "White-label",
     items: [
       {
-        question: "¿Qué significa “white-label” aquí, en concreto?",
+        question: "¿Qué significa “white-label” acá, concretamente?",
         answer:
-          "Tu marca, tu dominio, tus clientes — usuarios ilimitados, sin cargo por persona. No se trata de revender Pengui: tus clientes reciben tus agentes, construidos sobre tus datos y tus procesos, no una plataforma para armar los suyos.",
-      },
-      {
-        question: "¿Compiten con nosotros por nuestros clientes?",
-        answer:
-          "No, y estructuralmente no podríamos. Nunca tratamos con tus clientes y no tenemos los datos de tu negocio — no tendríamos nada que ofrecerles que tenga sentido sin ti. La relación es tuya.",
+          "Tu marca, tu dominio, tus clientes. Toda la plataforma — la interfaz que usan tus clientes y la Console desde la que operás — lleva tu nombre. Nuestros clientes entregan agentes a sus propios clientes como producto propio, y a esos clientes nunca los conocemos. Usuarios finales ilimitados, sin cargo por persona.",
       },
     ],
   },
@@ -119,18 +108,14 @@ export const faqCategories: typeof En.faqCategories = [
     category: "Prueba y primeros pasos",
     items: [
       {
-        question: "¿Cuánto tardamos en estar en producción?",
+        question: "¿Hay una prueba gratis?",
         answer:
-          "Desplegar Pengui es una instalación, no un proyecto de desarrollo. El instalador guiado levanta la plataforma con Console, interfaz, recuperación, Memory y gobernanza ya funcionando — el día uno se dedica a tu primer agente.",
-      },
-      {
-        question: "¿Hay una prueba gratuita?",
-        answer: "Sí — construye gratis durante 30 días. Sin tarjeta de crédito, y solo pagas los tokens de tu propio modelo.",
+          "Sí — desplegá el stack completo de agentes (Console, Canvas y el RAG Server) en tu propio entorno y construí gratis por 30 días. Sin tarjeta de crédito, nada sale de tu entorno, y pagás solo tus propios tokens de modelo. ¿Todavía no estás listo para desplegar? Hay un sandbox hospedado para empezar — solo para datos no sensibles.",
       },
       {
         question: "¿Qué pasa después de la prueba?",
         answer:
-          "Lo conversamos y encontramos el plan que se ajuste a cómo terminaste usándolo. En cualquier caso, tus datos y la memoria de tus agentes se quedan en tu propia base de datos.",
+          "Elegís un plan para que tus agentes sigan corriendo. Tus datos y la memoria que construyeron tus agentes se quedan en tu base de datos en cualquier caso.",
       },
     ],
   },

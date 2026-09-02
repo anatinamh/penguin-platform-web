@@ -19,7 +19,7 @@ export const site = {
     { label: "White label", href: "/white-label" },
     { label: "Trust & control", href: "/trust" },
     { label: "Pricing", href: "/pricing" },
-    { label: "About", href: "/faq" },
+    { label: "FAQs", href: "/faq" },
   ],
   footerNav: {
     platform: {
@@ -35,7 +35,7 @@ export const site = {
       title: "About",
       links: [
         { label: "Trust & control", href: "/trust" },
-        { label: "FAQ", href: "/faq#faq" },
+        { label: "FAQs", href: "/faq#faq" },
         { label: "Pricing", href: "/pricing" },
       ],
     },

@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { PageHeader } from "@/components/layout/page-header";
-import { VisionMission } from "@/components/sections/faq/vision-mission";
 import { FaqCategories } from "@/components/sections/faq/categories";
 import { FinalCta } from "@/components/sections/shared/final-cta";
 import { getFaq } from "@/content";
@@ -30,7 +29,6 @@ export default async function FaqPage({ params }: LangParams) {
   return (
     <>
       <PageHeader eyebrow={faqHeader.eyebrow} title={faqHeader.title} />
-      <VisionMission locale={locale} />
       <div id="faq">
         <FaqCategories locale={locale} />
       </div>
