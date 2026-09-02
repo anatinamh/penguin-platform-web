@@ -122,7 +122,7 @@ export function PenguiInterface({
 
       <aside
         className={cn(
-          "w-[38%] max-w-[220px] shrink-0 flex-col border-r p-2.5 transition-colors duration-300",
+          "w-[28%] max-w-[168px] shrink-0 flex-col border-r p-2 transition-colors duration-300",
           collapsed ? "hidden" : "hidden sm:flex",
         )}
         style={sidebarTint}
@@ -178,6 +178,12 @@ export function PenguiInterface({
 
       {/* ── Chat home ───────────────────────────────────────────────────── */}
       <div className="flex min-w-0 flex-1 flex-col items-center px-4 py-7">
+        <span
+          className="mb-2.5 flex size-8 items-center justify-center rounded-full text-[13px] font-semibold text-white shadow-sm transition-colors duration-300"
+          style={onAccent}
+        >
+          {brand.charAt(0)}
+        </span>
         <span
           className="text-[8.5px] font-semibold tracking-[0.14em] uppercase transition-colors duration-300"
           style={inAccent}
