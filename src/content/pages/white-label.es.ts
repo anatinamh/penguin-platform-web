@@ -10,7 +10,7 @@ export const whiteLabelHeader: typeof En.whiteLabelHeader = {
   eyebrow: "White-label desde el primer día",
   title: "Lanza agentes como tu propio producto.",
   subtitle:
-    "Pon tu marca en toda la plataforma (tu nombre, tu dominio, tu interfaz) y entrega agentes a los clientes que ya atiendes. Ellos ven tu producto. A nosotros nunca nos conocen.",
+    "Poné tu marca en toda la plataforma (tu nombre, tu dominio, tu interfaz) y entrega agentes a los clientes que ya atiendes. Ellos ven tu producto. A nosotros nunca nos conocen.",
   note: "Úsala internamente, véndela a tus clientes o lanza un producto vertical: el mismo motor por debajo.",
   screenshotCaption:
     "Una sola pantalla de configuración le cambia la marca a todo: la interfaz que usan tus clientes y la Console desde la que operas.",
@@ -39,8 +39,8 @@ export const whiteLabelFeatures: typeof En.whiteLabelFeatures = [
     title: "Usuarios finales ilimitados",
     icon: "users",
     description:
-      "Nunca pagas por persona, así que tu margen no se achica a medida que tus clientes crecen. Defines tus precios y tus contratos.",
-    strong: "Nunca pagas por persona",
+      "Nunca pagás por persona, así que tu margen no se achica a medida que tus clientes crecen. Defines tus precios y tus contratos.",
+    strong: "Nunca pagás por persona",
   },
   {
     title: "Tu nube o on-prem",
@@ -69,10 +69,10 @@ export const whiteLabelBanner: Widen<typeof En.whiteLabelBanner> =
   "Úsala internamente, véndela hacia afuera o lanza un vertical — el poder de una plataforma agéntica, sin tener que construirla.";
 
 export const presetDemo: typeof En.presetDemo = {
-  eyebrow: "Elige un preset. Mira cómo cambia esta página.",
+  eyebrow: "Elegí un preset. Mirá cómo cambia esta página.",
   title: "Tus colores, tu logo, tu nombre.",
   subtitle:
-    "La interfaz del producto cambia desde un solo panel de configuración, en vivo, frente a ti.",
+    "La interfaz del producto cambia desde un solo panel de configuración, en vivo, frente a vos.",
   presets: [
     { name: "Pengui", accent: "oklch(0.5 0.06 185)" },
     { name: "Ember", accent: "oklch(0.58 0.19 35)" },
@@ -82,7 +82,7 @@ export const presetDemo: typeof En.presetDemo = {
 };
 
 export const whiteLabelClosing: Widen<typeof En.whiteLabelClosing> =
-  "Usas tu propio despliegue para llevar tus agentes — construidos sobre tus datos, tus procesos y tu marca — a los clientes que ya atiendes.";
+  "Usás tu propio despliegue para llevar tus agentes — construidos sobre tus datos, tus procesos y tu marca — a los clientes que ya atiendes.";
 
 export const interfaceMockup: typeof En.interfaceMockup = {
   newChat: "Nuevo chat",
@@ -111,4 +111,20 @@ export const interfaceMockup: typeof En.interfaceMockup = {
     { title: "Revisión contrato proveedor", assistant: "Pengui Legal", time: "2d" },
   ],
   user: { name: "Alex Rivera", email: "alex.rivera@acme.com" },
+};
+
+export const adminConsole: typeof En.adminConsole = {
+  title: "Consola de",
+  titleAccent: "administración",
+  subtitle: "Administrá integraciones, Penguis y la configuración de tu organización.",
+  tabs: ["Usuarios", "Integraciones", "Penguis", "Personalización"],
+  terminology: {
+    label: "Terminología",
+    hint: "Cómo se llaman tus asistentes en toda la plataforma.",
+    singular: "Singular",
+    plural: "Plural",
+  },
+  logo: { label: "Logo", hint: "Aparece en la barra lateral de la plataforma.", drop: "Arrastrá tu logo" },
+  primaryColor: { label: "Color primario", hint: "Botones, íconos y acentos principales." },
+  secondaryColor: { label: "Color secundario", hint: "Elementos de apoyo y etiquetas visuales." },
 };

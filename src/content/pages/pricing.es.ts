@@ -8,14 +8,14 @@ type Widen<T> = T extends string ? string : T;
 
 export const pricingHeader: typeof En.pricingHeader = {
   eyebrow: "Precios",
-  titleLead: "Empieza gratis en tu nube.",
-  titleEmphasis: "Paga solo por lo que enciendes.",
+  titleLead: "Empezá gratis en tu nube.",
+  titleEmphasis: "Pagá solo por lo que encendés.",
   badge: "Usuarios ilimitados en todos los planes",
   subtitle: "Usuarios ilimitados en todos los planes.",
 };
 
 export const trial: typeof En.trial = {
-  startHere: "Empieza aquí",
+  startHere: "Empezá acá",
   title: "Prueba gratis de 30 días · en tu nube",
   description: "Despliega el stack completo de agentes en tu propia nube y evalúalo gratis",
   includes: [
@@ -23,11 +23,11 @@ export const trial: typeof En.trial = {
     "Canvas (la interfaz)",
     "RAG Server (respuestas a partir de tus documentos).",
   ],
-  closing: "Crea y pon a correr agentes con usuarios ilimitados; solo pagas los tokens de tu propio modelo.",
-  altNote: "¿Todavía no quieres desplegar en tu propia nube? Usa Pengui alojado por nosotros y empieza ahora.",
+  closing: "Creá y poné a correr agentes con usuarios ilimitados; solo pagás los tokens de tu propio modelo.",
+  altNote: "¿Todavía no querés desplegar en tu propia nube? Usá Pengui alojado por nosotros y empezá ahora.",
   price: "$0",
   priceNote: "durante 30 días · tokens propios",
-  primaryCta: { label: "Empieza gratis", href: "#contact" },
+  primaryCta: { label: "Empezá gratis", href: "#contact" },
 };
 
 export const tiers: typeof En.tiers = [
@@ -92,15 +92,15 @@ export const tiers: typeof En.tiers = [
   },
   {
     name: "Custom",
-    tagline: "Elige tus módulos",
+    tagline: "Elegí tus módulos",
     price: "Hablemos",
     period: "",
-    seatsLabel: "Licencias de agente a la medida de lo que necesitas",
+    seatsLabel: "Licencias de agente a la medida de lo que necesitás",
     featured: false,
     dashed: true,
     inherits: "Se arma desde cualquier plan",
     includes: [
-      "Elige solo los módulos que necesitas",
+      "Elegí solo los módulos que necesitás",
       "Niveles de Memory y Explorer à la carte",
       "El nivel de soporte que prefieras",
     ],
@@ -112,7 +112,7 @@ export const tiersNote: Widen<typeof En.tiersNote> =
   "Todos los planes corren en tu propia nube. Los despliegues bare-metal y totalmente aislados se manejan como un acuerdo a medida.";
 
 export const priceLevers: typeof En.priceLevers = {
-  title: "Pagas por funcionalidades, no por personas.",
+  title: "Pagás por funcionalidades, no por personas.",
   subtitle:
     "Tres cosas mueven el precio. Todo lo demás — Console, interfaz, recuperación, onboarding y soporte — viene incluido.",
   items: [

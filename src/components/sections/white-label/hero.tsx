@@ -78,6 +78,8 @@ export function WhiteLabelHero({ locale }: { locale: Locale }) {
               accent={pengui.accent}
               brand={pengui.name}
               copy={interfaceMockup}
+              collapsed
+              showRecentChats={false}
               className="-rotate-1"
             />
 

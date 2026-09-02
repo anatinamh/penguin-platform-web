@@ -55,11 +55,17 @@ export function PenguiInterface({
   brand,
   copy,
   className,
+  /** Narrow icon rail instead of the full navigation. */
+  collapsed,
+  /** The recent-chats list below the composer. */
+  showRecentChats = true,
 }: {
   accent: string;
   brand: string;
   copy: InterfaceCopy;
   className?: string;
+  collapsed?: boolean;
+  showRecentChats?: boolean;
 }) {
   // Every accent-driven surface goes through these, so a preset swap can never
   // leave one element on the old colour.
@@ -78,7 +84,38 @@ export function PenguiInterface({
       )}
     >
       {/* ── Sidebar ─────────────────────────────────────────────────────── */}
-      <aside className="hidden w-[38%] max-w-[220px] shrink-0 flex-col border-r border-border/60 bg-secondary/50 p-2.5 sm:flex">
+      {collapsed ? (
+        <aside className="hidden w-11 shrink-0 flex-col items-center gap-2 border-r border-border/60 bg-secondary/50 py-2.5 sm:flex">
+          <span
+            className="size-4 shrink-0 rounded-[5px] transition-colors duration-300"
+            style={onAccent}
+          />
+          <span
+            className="mt-1.5 flex size-6 items-center justify-center rounded-md transition-colors duration-300"
+            style={tintAccent}
+          >
+            <Home className="size-3" />
+          </span>
+          {[Plus, Search, Folder, Sparkles].map((Icon, i) => (
+            <span key={i} className="flex size-6 items-center justify-center text-muted-foreground">
+              <Icon className="size-3" />
+            </span>
+          ))}
+          <span
+            className="mt-auto flex size-5 items-center justify-center rounded-full text-[9px] font-semibold text-white transition-colors duration-300"
+            style={onAccent}
+          >
+            {copy.user.name.charAt(0)}
+          </span>
+        </aside>
+      ) : null}
+
+      <aside
+        className={cn(
+          "w-[38%] max-w-[220px] shrink-0 flex-col border-r border-border/60 bg-secondary/50 p-2.5",
+          collapsed ? "hidden" : "hidden sm:flex",
+        )}
+      >
         <div className="flex items-center gap-1.5 px-1 py-1">
           <span
             className="size-4 shrink-0 rounded-[5px] transition-colors duration-300"
@@ -168,6 +205,7 @@ export function PenguiInterface({
           </div>
         </div>
 
+        {showRecentChats ? (
         <div className="mt-4 w-full max-w-[300px]">
           <div className="flex items-baseline justify-between">
             <span className="text-[9.5px] font-medium">{copy.recentChats}</span>
@@ -196,6 +234,7 @@ export function PenguiInterface({
             ))}
           </div>
         </div>
+        ) : null}
       </div>
     </div>
   );

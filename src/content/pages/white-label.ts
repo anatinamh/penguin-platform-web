@@ -111,3 +111,21 @@ export const interfaceMockup = {
   ],
   user: { name: "Alex Rivera", email: "alex.rivera@acme.com" },
 };
+
+// Copy for the pared-back admin-console branding tab shown beside the
+// "one settings screen re-brands everything" claim.
+export const adminConsole = {
+  title: "Admin",
+  titleAccent: "console",
+  subtitle: "Manage integrations, Penguis and your organization's settings.",
+  tabs: ["Users", "Integrations", "Penguis", "Branding"],
+  terminology: {
+    label: "Terminology",
+    hint: "What your assistants are called across the platform.",
+    singular: "Singular",
+    plural: "Plural",
+  },
+  logo: { label: "Logo", hint: "Appears in the platform sidebar.", drop: "Drag your logo in" },
+  primaryColor: { label: "Primary color", hint: "Buttons, icons and main accents." },
+  secondaryColor: { label: "Secondary color", hint: "Supporting elements and visual tags." },
+};

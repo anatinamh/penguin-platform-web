@@ -60,8 +60,8 @@ export const capabilities: typeof En.capabilities = {
           piece: "Memory",
           icon: "brain-circuit",
           description:
-            "Memoria gobernada e inspeccionable: los agentes aprenden qué significan las cosas en tu organización, y puedes ver qué recuerdan y por qué.",
-          long: "Memoria gobernada e inspeccionable: los agentes aprenden qué significan las cosas en tu organización, y puedes ver qué recuerdan y por qué — con alcance por tenant, así nada se filtra entre equipos ni entre clientes.",
+            "Memoria gobernada e inspeccionable: los agentes aprenden qué significan las cosas en tu organización, y podés ver qué recuerdan y por qué.",
+          long: "Memoria gobernada e inspeccionable: los agentes aprenden qué significan las cosas en tu organización, y podés ver qué recuerdan y por qué — con alcance por tenant, así nada se filtra entre equipos ni entre clientes.",
           connects: ["Orchestration", "Pregúntale a tus datos", "RAG Server"],
         },
       ],
@@ -83,7 +83,7 @@ export const capabilities: typeof En.capabilities = {
           icon: "message-square-text",
           description:
             "Preguntas en lenguaje natural sobre tus bases de datos y tu data warehouse, validadas antes de que salga la respuesta.",
-          long: "Preguntas en lenguaje natural sobre tus bases de datos y tu data warehouse, validadas antes de que salga la respuesta — así el resultado es algo que puedes defender, no solo algo que suena bien.",
+          long: "Preguntas en lenguaje natural sobre tus bases de datos y tu data warehouse, validadas antes de que salga la respuesta — así el resultado es algo que podés defender, no solo algo que suena bien.",
           connects: ["RAG Server", "Memory"],
         },
         {
@@ -137,7 +137,7 @@ export const capabilities: typeof En.capabilities = {
 
 export const servicePaths: typeof En.servicePaths = {
   eyebrow: "Servicios profesionales de agentes",
-  title: "Hecho para ti, o hecho por ti.",
+  title: "Hecho para vos, o hecho por vos.",
   titleEmphasis: [
     { text: "para", color: "primary" },
     { text: "por", color: "indigo" },
@@ -149,7 +149,7 @@ export const servicePaths: typeof En.servicePaths = {
   paths: [
     {
       key: "a",
-      label: "Camino A · Hecho para ti",
+      label: "Camino A · Hecho para vos",
       sub: "Professional Services",
       icon: "handshake",
       accent: "primary",
@@ -167,11 +167,11 @@ export const servicePaths: typeof En.servicePaths = {
     },
     {
       key: "b",
-      label: "Camino B · Hecho por ti",
+      label: "Camino B · Hecho por vos",
       sub: "Pengui Platform",
       icon: "code",
       accent: "indigo",
-      title: "Constrúyelo tú mismo",
+      title: "Construilo vos mismo",
       body: [
         {
           text: "Tu equipo construye, lanza y es dueño de los agentes, con control total sobre despliegue, gobernanza y roadmap.",
@@ -208,19 +208,19 @@ export const howItWorks: typeof En.howItWorks = {
       number: "01",
       title: "Despliega",
       description:
-        "Instala Pengui en tu propia nube o en tu propio data center, air-gapped si lo necesitas, con el instalador guiado.",
+        "Instalá Pengui en tu propia nube o en tu propio data center, air-gapped si lo necesitás, con el instalador guiado.",
     },
     {
       number: "02",
-      title: "Conecta",
+      title: "Conectá",
       description:
-        "Conecta tus modelos, tus datos y tus aplicaciones corporativas a través de MCP. Tus claves, tus endpoints, y tú decides dónde viven los datos.",
+        "Conectá tus modelos, tus datos y tus aplicaciones corporativas a través de MCP. Tus claves, tus endpoints, y vos decidís dónde viven los datos.",
     },
     {
       number: "03",
-      title: "Construye y gobierna",
+      title: "Construí y goberná",
       description:
-        "Construye tus agentes o parte de una plantilla del marketplace. Dales memoria y herramientas, y observa todo lo que hacen desde la consola.",
+        "Construí tus agentes o partí de una plantilla del marketplace. Dales memoria y herramientas, y observá todo lo que hacen desde la consola.",
     },
     {
       number: "04",

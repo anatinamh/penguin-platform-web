@@ -3,7 +3,7 @@ import type * as En from "./request-demo";
 
 export const requestDemoHeader: typeof En.requestDemoHeader = {
   eyebrow: "Contáctanos",
-  title: "Descubre cómo Pengui puede funcionar dentro de tu empresa.",
+  title: "Descubrí cómo Pengui puede funcionar dentro de tu empresa.",
   subtitle:
     "Solicita una demo con nuestro equipo y explora cómo Pengui puede impulsar tus prioridades de IA — desde flujos de trabajo agénticos y gobernanza hasta despliegue seguro y control operativo.",
 };

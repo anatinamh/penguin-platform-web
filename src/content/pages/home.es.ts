@@ -170,7 +170,7 @@ export const productOffering: typeof En.productOffering = {
       ],
       connectivity: {
         label: "Platform Connectivity Layer",
-        tag: "conecta tus propios agentes y MCPs",
+        tag: "conectá tus propios agentes y MCPs",
         icon: "plug",
       },
     },
@@ -185,14 +185,14 @@ export const productOffering: typeof En.productOffering = {
       "Agente de Finanzas",
       "Agente de Soporte IT",
     ],
-    more: "Y más — construye el tuyo",
+    more: "Y más — construí el tuyo",
   },
 };
 
 export const finalCta: typeof En.finalCta = {
-  eyebrow: "Empieza gratis · 30 días",
-  title: "Empieza gratis. Paga solo el uso de tu modelo. Escala cuando estés listo.",
-  body: "Instala Pengui en tu propia nube, conecta tus documentos y datos, y construye tu primer agente — gratis por 30 días.",
+  eyebrow: "Empezá gratis · 30 días",
+  title: "Empezá gratis. Pagá solo el uso de tu modelo. Escalá cuando estés listo.",
+  body: "Instalá Pengui en tu propia nube, conectá tus documentos y datos, y construí tu primer agente — gratis por 30 días.",
   primaryCta: { label: "Solicitar una demo", href: "/request-demo" },
   microcopy: "Sin tarjeta de crédito, y nada sale de tu entorno por defecto.",
 };
