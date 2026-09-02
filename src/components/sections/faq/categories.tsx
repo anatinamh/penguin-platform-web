@@ -12,20 +12,21 @@ export function FaqCategories({ locale }: { locale: Locale }) {
   const { faqCategories } = getFaq(locale);
   return (
     <section className="bg-secondary py-24 sm:py-32">
-      <Container className="max-w-3xl">
-        <div className="flex flex-col gap-14">
+      <Container className="max-w-5xl">
+        <div className="flex flex-col gap-16">
           {faqCategories.map((category) => (
-            <div key={category.category}>
-              {/* The category label was the same size, weight and colour as the
-                  questions under it, so it read as one more row rather than as
-                  the thing that groups them. It now differs on three axes at
-                  once — colour, a leading rule, and the space beneath it — so
-                  the grouping survives even if colour alone doesn't land. */}
-              <h2 className="flex items-center gap-3 text-sm font-semibold tracking-[0.08em] text-primary uppercase">
-                <span aria-hidden className="h-px w-6 shrink-0 bg-primary/40" />
+            // The category sits in its own column and stays put while you read
+            // its questions, so the answer to "which group am I in?" is always
+            // on screen. That is what separates it from the questions — no
+            // decorative rule needed, and it earns its place by doing something.
+            <div
+              key={category.category}
+              className="grid gap-x-10 gap-y-4 lg:grid-cols-[minmax(9rem,13rem)_1fr]"
+            >
+              <h2 className="font-heading text-xl font-medium tracking-tight text-balance lg:sticky lg:top-24 lg:self-start lg:text-2xl">
                 {category.category}
               </h2>
-              <Accordion type="single" collapsible className="mt-5 w-full">
+              <Accordion type="single" collapsible className="w-full">
                 {category.items.map((item, index) => (
                   <AccordionItem key={item.question} value={`${category.category}-${index}`}>
                     <AccordionTrigger className="text-left">{item.question}</AccordionTrigger>

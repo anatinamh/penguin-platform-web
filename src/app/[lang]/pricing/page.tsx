@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { PricingHeader } from "@/components/sections/pricing/header";
-import { TrialBanner } from "@/components/sections/pricing/trial-banner";
 import { Tiers } from "@/components/sections/pricing/tiers";
 import { PriceLevers } from "@/components/sections/pricing/price-levers";
 import { FinalCta } from "@/components/sections/shared/final-cta";
@@ -30,7 +29,6 @@ export default async function PricingPage({ params }: LangParams) {
   return (
     <>
       <PricingHeader locale={locale} />
-      <TrialBanner locale={locale} />
       <Tiers locale={locale} />
       <PriceLevers locale={locale} />
       <FinalCta locale={locale} />
