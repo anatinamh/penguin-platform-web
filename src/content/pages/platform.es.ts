@@ -153,7 +153,7 @@ export const servicePaths: typeof En.servicePaths = {
       sub: "Professional Services",
       icon: "handshake",
       accent: "primary",
-      title: "Lo construimos por ti",
+      title: "Lo construimos por vos",
       body: [
         {
           text: "Nos encargamos del descubrimiento, el diseño, la integración, las pruebas y el despliegue — lanzas un agente funcionando sin contratar especialistas en IA.",
