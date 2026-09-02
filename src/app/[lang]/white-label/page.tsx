@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { Container } from "@/components/layout/container";
-import { ProductScreenshot } from "@/components/shared/product-screenshot";
 import { WhiteLabelHero } from "@/components/sections/white-label/hero";
 import { WhiteLabelFeatures } from "@/components/sections/white-label/features";
 import { PresetDemo } from "@/components/sections/white-label/preset-demo";
+import { BrandSettingsPanel } from "@/components/sections/white-label/brand-settings-panel";
 import { FinalCta } from "@/components/sections/shared/final-cta";
 import { getWhiteLabel } from "@/content";
 import { alternatesFor, canonicalFor, defaultLocale, isLocale } from "@/lib/i18n";
@@ -27,23 +27,14 @@ export async function generateMetadata({ params }: LangParams): Promise<Metadata
 export default async function WhiteLabelPage({ params }: LangParams) {
   const { lang } = await params;
   const locale = isLocale(lang) ? lang : defaultLocale;
-  const { whiteLabelClosing, whiteLabelHeader } = getWhiteLabel(locale);
+  const { whiteLabelClosing } = getWhiteLabel(locale);
 
   return (
     <>
       <WhiteLabelHero locale={locale} />
       <PresetDemo locale={locale} />
       <WhiteLabelFeatures locale={locale} />
-      <section className="py-24 sm:py-32">
-        <Container>
-          <ProductScreenshot
-            src={`/screenshots/branding-${locale}.webp`}
-            aspect="67/50"
-            label={whiteLabelHeader.screenshotLabel}
-            caption={whiteLabelHeader.figureCaption}
-          />
-        </Container>
-      </section>
+      <BrandSettingsPanel locale={locale} />
       <Container className="py-16 text-center">
         <p className="mx-auto max-w-2xl text-pretty text-muted-foreground">
           {whiteLabelClosing}

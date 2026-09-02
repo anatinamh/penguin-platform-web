@@ -1,14 +1,14 @@
 "use client";
 
 import { useState } from "react";
-import { Sparkles } from "lucide-react";
 import { Container } from "@/components/layout/container";
+import { PenguiInterface } from "@/components/shared/pengui-interface";
 import { cn } from "@/lib/utils";
 import { getWhiteLabel } from "@/content";
 import type { Locale } from "@/lib/i18n";
 
 export function PresetDemo({ locale }: { locale: Locale }) {
-  const { presetDemo } = getWhiteLabel(locale);
+  const { presetDemo, interfaceMockup } = getWhiteLabel(locale);
   const [active, setActive] = useState(presetDemo.presets[0]);
 
   return (
@@ -47,36 +47,15 @@ export function PresetDemo({ locale }: { locale: Locale }) {
           ))}
         </div>
 
-        <div className="mt-10 w-full max-w-md overflow-hidden rounded-2xl border border-border/60 bg-background text-left shadow-sm">
-          <div
-            className="flex items-center justify-between px-5 py-3 transition-colors"
-            style={{ backgroundColor: active.accent }}
-          >
-            <span className="text-sm font-medium text-white">{active.name} workspace</span>
-            <Sparkles className="size-4 text-white/80" />
-          </div>
-          <div className="flex flex-col gap-3 p-5">
-            <div className="flex items-start gap-3">
-              <div
-                className="flex size-7 shrink-0 items-center justify-center rounded-full text-xs font-medium text-white transition-colors"
-                style={{ backgroundColor: active.accent }}
-              >
-                A
-              </div>
-              <div className="rounded-lg rounded-tl-none bg-secondary px-3 py-2 text-sm">
-                How can I help with your Q3 report?
-              </div>
-            </div>
-            <div className="flex justify-end">
-              <div
-                className="rounded-lg rounded-tr-none px-3 py-2 text-sm text-white transition-colors"
-                style={{ backgroundColor: active.accent, opacity: 0.9 }}
-              >
-                Summarize last quarter&apos;s churn.
-              </div>
-            </div>
-          </div>
-        </div>
+        {/* The real interface, not a stand-in: only the accent colour and the
+            brand name change between presets — everything else is identical,
+            which is exactly the claim the section is making. */}
+        <PenguiInterface
+          accent={active.accent}
+          brand={active.name}
+          copy={interfaceMockup}
+          className="mt-10 w-full max-w-3xl text-left"
+        />
       </Container>
     </section>
   );

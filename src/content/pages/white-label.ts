@@ -79,3 +79,35 @@ export const presetDemo = {
 
 export const whiteLabelClosing =
   "You use your own deployment to deliver your agents — built on your data, your processes and your brand — to the clients you already serve.";
+
+// Copy for the shared Pengui-interface mockup (sidebar + chat home). "{brand}"
+// is substituted with the active preset's name, so the white-label story holds
+// everywhere the product names itself — not just on the wordmark.
+export const interfaceMockup = {
+  newChat: "New chat",
+  search: "Search",
+  projects: "Projects",
+  projectItems: ["Q3 Sales", "Legal", "Onboarding"],
+  newProject: "New project",
+  penguis: "Penguis",
+  newPengui: "New pengui",
+  scheduled: "Scheduled work",
+  noScheduled: "No scheduled work yet.",
+  canvas: "Canvas",
+  eyebrow: "Start with a message",
+  greeting: "Good afternoon,",
+  greetingName: "Alex",
+  subtext: "Write what you need and {brand} takes care of the rest.",
+  assistantPill: "{brand} Assistant",
+  inputPlaceholder: "Hello",
+  addContext: "Add context",
+  tools: "Tools",
+  recentChats: "Recent chats",
+  seeAllChats: "See all chats →",
+  chats: [
+    { title: "Q3 launch narrative", assistant: "{brand} Assistant", time: "18m" },
+    { title: "Pricing page feedback", assistant: "{brand} Assistant", time: "1d" },
+    { title: "Vendor contract review", assistant: "Legal Pengui", time: "2d" },
+  ],
+  user: { name: "Alex Rivera", email: "alex.rivera@acme.com" },
+};

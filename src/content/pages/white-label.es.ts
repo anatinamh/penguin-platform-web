@@ -83,3 +83,32 @@ export const presetDemo: typeof En.presetDemo = {
 
 export const whiteLabelClosing: Widen<typeof En.whiteLabelClosing> =
   "Usas tu propio despliegue para llevar tus agentes — construidos sobre tus datos, tus procesos y tu marca — a los clientes que ya atiendes.";
+
+export const interfaceMockup: typeof En.interfaceMockup = {
+  newChat: "Nuevo chat",
+  search: "Buscar",
+  projects: "Proyectos",
+  projectItems: ["Ventas Q3", "Legal", "Onboarding"],
+  newProject: "Nuevo proyecto",
+  penguis: "Penguis",
+  newPengui: "Nuevo pengui",
+  scheduled: "Tareas programadas",
+  noScheduled: "No hay tareas programadas aún.",
+  canvas: "Canvas",
+  eyebrow: "Empezá con un mensaje",
+  greeting: "Buenas tardes,",
+  greetingName: "Alex",
+  subtext: "Escribí lo que necesitás y {brand} se encarga del resto.",
+  assistantPill: "Asistente {brand}",
+  inputPlaceholder: "Hola",
+  addContext: "Agregar contexto",
+  tools: "Herramientas",
+  recentChats: "Chats recientes",
+  seeAllChats: "Ver todos los chats →",
+  chats: [
+    { title: "Narrativa de lanzamiento Q3", assistant: "Asistente {brand}", time: "18m" },
+    { title: "Feedback de la página de precios", assistant: "Asistente {brand}", time: "1d" },
+    { title: "Revisión contrato proveedor", assistant: "Pengui Legal", time: "2d" },
+  ],
+  user: { name: "Alex Rivera", email: "alex.rivera@acme.com" },
+};
