@@ -6,7 +6,7 @@ import { WhiteLabelFeatures } from "@/components/sections/white-label/features";
 import { PresetDemo } from "@/components/sections/white-label/preset-demo";
 import { FinalCta } from "@/components/sections/shared/final-cta";
 import { getWhiteLabel } from "@/content";
-import { defaultLocale, isLocale } from "@/lib/i18n";
+import { alternatesFor, canonicalFor, defaultLocale, isLocale } from "@/lib/i18n";
 
 type LangParams = { params: Promise<{ lang: string }> };
 
@@ -17,6 +17,10 @@ export async function generateMetadata({ params }: LangParams): Promise<Metadata
   return {
     title: "White-label — Pengui AI",
     description: whiteLabelHeader.subtitle,
+    alternates: {
+      canonical: canonicalFor("/white-label", locale),
+      ...alternatesFor("/white-label"),
+    },
   };
 }
 

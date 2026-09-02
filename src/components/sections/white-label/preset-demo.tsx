@@ -26,8 +26,12 @@ export function PresetDemo({ locale }: { locale: Locale }) {
               key={preset.name}
               type="button"
               onClick={() => setActive(preset)}
+              // The filled-vs-outlined styling is what marks the selection
+              // visually; aria-pressed is what carries it to a screen reader.
+              aria-pressed={active.name === preset.name}
               className={cn(
-                "flex items-center gap-2 rounded-full border px-4 py-1.5 text-sm font-medium transition-colors",
+                "flex cursor-pointer items-center gap-2 rounded-full border px-4 py-1.5 text-sm font-medium transition-colors",
+                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-secondary",
                 active.name === preset.name
                   ? "border-transparent text-primary-foreground"
                   : "border-border bg-background text-foreground hover:bg-secondary",
@@ -54,7 +58,7 @@ export function PresetDemo({ locale }: { locale: Locale }) {
           <div className="flex flex-col gap-3 p-5">
             <div className="flex items-start gap-3">
               <div
-                className="flex size-7 shrink-0 items-center justify-center rounded-full text-xs font-medium text-white"
+                className="flex size-7 shrink-0 items-center justify-center rounded-full text-xs font-medium text-white transition-colors"
                 style={{ backgroundColor: active.accent }}
               >
                 A
@@ -65,7 +69,7 @@ export function PresetDemo({ locale }: { locale: Locale }) {
             </div>
             <div className="flex justify-end">
               <div
-                className="rounded-lg rounded-tr-none px-3 py-2 text-sm text-white"
+                className="rounded-lg rounded-tr-none px-3 py-2 text-sm text-white transition-colors"
                 style={{ backgroundColor: active.accent, opacity: 0.9 }}
               >
                 Summarize last quarter&apos;s churn.

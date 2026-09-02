@@ -29,6 +29,15 @@ const dmSans = DM_Sans({
   weight: ["400", "500", "600"],
 });
 
+function siteUrl() {
+  const explicit = process.env.NEXT_PUBLIC_SITE_URL;
+  if (explicit) return explicit;
+  // Vercel exposes the stable production hostname of the project.
+  const vercel = process.env.VERCEL_PROJECT_PRODUCTION_URL;
+  if (vercel) return `https://${vercel}`;
+  return "http://localhost:3000";
+}
+
 // Both locales are prerendered. English is additionally reachable un-prefixed at
 // the site root, via the rewrite in proxy.ts.
 export function generateStaticParams() {
@@ -47,6 +56,12 @@ export async function generateMetadata({ params }: LangParams): Promise<Metadata
   // /es/platform's canonical URL is /es. hreflang/canonical are per-page and
   // belong in each page's own generateMetadata.
   return {
+    // canonical/hreflang have to be absolute for crawlers, and Next resolves
+    // the relative ones each page declares against this. Pointing it at a
+    // domain that isn't serving the site would be worse than omitting it, so
+    // it follows the deployment unless NEXT_PUBLIC_SITE_URL says otherwise —
+    // set that to the real domain (https://pengui.ai) at launch.
+    metadataBase: new URL(siteUrl()),
     title: `${config.name} — ${config.tagline}`,
     description: config.description,
   };

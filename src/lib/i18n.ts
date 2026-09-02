@@ -36,6 +36,41 @@ export function stripLocale(pathname: string): string {
   return pathname;
 }
 
+/**
+ * Canonical + hreflang for one page, as Next's Metadata `alternates`.
+ *
+ * Without this, /platform and /es/platform look to a crawler like two separate
+ * pages carrying the same content: it picks one and usually drops the other.
+ * hreflang says "these are the same page in two languages", and canonical says
+ * which URL is the official one for each.
+ *
+ * This has to be declared per page. Setting it on the shared layout would
+ * apply one canonical to every page beneath it — which is what happened first
+ * here, telling crawlers /es/platform's canonical was /es.
+ *
+ * `path` is the route without any locale prefix: "/" , "/platform", …
+ */
+export function alternatesFor(path: string) {
+  const languages = Object.fromEntries(
+    locales.map((locale) => [locale, localizeHref(path, locale)]),
+  ) as Record<Locale, string>;
+
+  return {
+    // Each locale's own URL is its canonical; they are alternates of each
+    // other, not duplicates of one original.
+    languages: {
+      ...languages,
+      // Anything we don't publish a translation for should land on English.
+      "x-default": localizeHref(path, defaultLocale),
+    },
+  };
+}
+
+/** The canonical URL for this page in this locale. */
+export function canonicalFor(path: string, locale: Locale) {
+  return localizeHref(path, locale);
+}
+
 export const localeNames: Record<Locale, string> = {
   en: "English",
   es: "Español",

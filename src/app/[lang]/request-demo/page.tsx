@@ -3,7 +3,7 @@ import { Container } from "@/components/layout/container";
 import { RequestDemoForm } from "@/components/sections/request-demo/form";
 import { RequestDemoVisualPanel } from "@/components/sections/request-demo/visual-panel";
 import { getRequestDemo } from "@/content";
-import { defaultLocale, isLocale } from "@/lib/i18n";
+import { alternatesFor, canonicalFor, defaultLocale, isLocale } from "@/lib/i18n";
 
 type LangParams = { params: Promise<{ lang: string }> };
 
@@ -14,6 +14,10 @@ export async function generateMetadata({ params }: LangParams): Promise<Metadata
   return {
     title: `${requestDemoHeader.eyebrow} — Pengui AI`,
     description: requestDemoHeader.subtitle,
+    alternates: {
+      canonical: canonicalFor("/request-demo", locale),
+      ...alternatesFor("/request-demo"),
+    },
   };
 }
 

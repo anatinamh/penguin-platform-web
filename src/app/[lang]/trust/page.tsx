@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import { Container } from "@/components/layout/container";
-import { ProductScreenshot } from "@/components/shared/product-screenshot";
+import { ScreenshotFigure } from "@/components/shared/screenshot-figure";
 import { TrustHero } from "@/components/sections/trust/hero";
 import { Control } from "@/components/sections/trust/control";
 import { FinalCta } from "@/components/sections/shared/final-cta";
 import { getTrust } from "@/content";
-import { defaultLocale, isLocale } from "@/lib/i18n";
+import { alternatesFor, canonicalFor, defaultLocale, isLocale } from "@/lib/i18n";
 
 type LangParams = { params: Promise<{ lang: string }> };
 
@@ -16,6 +16,10 @@ export async function generateMetadata({ params }: LangParams): Promise<Metadata
   return {
     title: `${trustHeader.eyebrow} — Pengui AI`,
     description: control.subtitle,
+    alternates: {
+      canonical: canonicalFor("/trust", locale),
+      ...alternatesFor("/trust"),
+    },
   };
 }
 
@@ -30,11 +34,16 @@ export default async function TrustPage({ params }: LangParams) {
       <Control locale={locale} />
       <section className="py-24 sm:py-32">
         <Container>
-          <ProductScreenshot
+          <ScreenshotFigure
             src={`/screenshots/permissions-${locale}.webp`}
-            aspect="67/50"
-            label={trustHeader.screenshotLabel}
+            alt={trustHeader.screenshotLabel}
+            width={1536}
+            height={1147}
             caption={trustHeader.figureCaption}
+            badges={[
+              { icon: "key-round", label: trustHeader.figureBadges.access },
+              { icon: "scroll-text", label: trustHeader.figureBadges.audit },
+            ]}
           />
         </Container>
       </section>

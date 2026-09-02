@@ -6,7 +6,7 @@ import { ProductOffering } from "@/components/sections/home/product-offering";
 import { Difference } from "@/components/sections/platform/difference";
 import { FinalCta } from "@/components/sections/shared/final-cta";
 import { getPlatform } from "@/content";
-import { defaultLocale, isLocale } from "@/lib/i18n";
+import { alternatesFor, canonicalFor, defaultLocale, isLocale } from "@/lib/i18n";
 
 type LangParams = { params: Promise<{ lang: string }> };
 
@@ -17,6 +17,10 @@ export async function generateMetadata({ params }: LangParams): Promise<Metadata
   return {
     title: `${platformHeader.eyebrow} — Pengui AI`,
     description: platformHeader.subtitle,
+    alternates: {
+      canonical: canonicalFor("/platform", locale),
+      ...alternatesFor("/platform"),
+    },
   };
 }
 

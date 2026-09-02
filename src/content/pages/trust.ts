@@ -12,6 +12,7 @@ export const trustHeader = {
     audit: "Full audit trail",
   },
   screenshotLabel: "Permissions & audit log",
+  figureBadges: { access: "Access by role", audit: "Nothing goes unlogged" },
   figureCaption:
     "Every role, every action, every agent — recorded and reviewable from one console.",
 };

@@ -14,6 +14,7 @@ export const trustHeader: typeof En.trustHeader = {
     audit: "Auditoría completa",
   },
   screenshotLabel: "Permisos y registro de auditoría",
+  figureBadges: { access: "Acceso por rol", audit: "Nada queda sin registrar" },
   figureCaption:
     "Cada rol, cada acción, cada agente — registrado y auditable desde una sola Console.",
 };
