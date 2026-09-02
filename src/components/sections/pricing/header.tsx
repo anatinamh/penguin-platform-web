@@ -45,7 +45,7 @@ export function PricingHeader({ locale }: { locale: Locale }) {
               }}
             />
 
-            <div className="color-block rounded-2xl border border-primary/30 p-6 shadow-2xl ring-4 ring-primary/10 sm:p-7">
+            <div className="dark-surface rounded-2xl border border-primary/25 p-6 shadow-2xl ring-4 ring-primary/10 sm:p-7">
               <div className="flex items-start justify-between gap-4">
                 <div>
                   <Badge variant="secondary" className="mb-2 w-fit">

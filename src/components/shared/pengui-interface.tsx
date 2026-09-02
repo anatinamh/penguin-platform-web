@@ -72,8 +72,15 @@ export function PenguiInterface({
   const onAccent = { backgroundColor: accent };
   const inAccent = { color: accent };
   const tintAccent = {
-    backgroundColor: `color-mix(in oklch, ${accent} 12%, transparent)`,
+    backgroundColor: `color-mix(in oklch, ${accent} 14%, transparent)`,
     color: accent,
+  };
+  // The sidebar itself carries a wash of the accent: at a glance that is what
+  // makes Ember look like a different product from Moss, rather than the two
+  // differing only in a handful of small details.
+  const sidebarTint = {
+    backgroundColor: `color-mix(in oklch, ${accent} 7%, var(--secondary))`,
+    borderColor: `color-mix(in oklch, ${accent} 18%, transparent)`,
   };
 
   return (
@@ -85,7 +92,10 @@ export function PenguiInterface({
     >
       {/* ── Sidebar ─────────────────────────────────────────────────────── */}
       {collapsed ? (
-        <aside className="hidden w-11 shrink-0 flex-col items-center gap-2 border-r border-border/60 bg-secondary/50 py-2.5 sm:flex">
+        <aside
+          className="hidden w-11 shrink-0 flex-col items-center gap-2 border-r py-2.5 transition-colors duration-300 sm:flex"
+          style={sidebarTint}
+        >
           <span
             className="size-4 shrink-0 rounded-[5px] transition-colors duration-300"
             style={onAccent}
@@ -112,9 +122,10 @@ export function PenguiInterface({
 
       <aside
         className={cn(
-          "w-[38%] max-w-[220px] shrink-0 flex-col border-r border-border/60 bg-secondary/50 p-2.5",
+          "w-[38%] max-w-[220px] shrink-0 flex-col border-r p-2.5 transition-colors duration-300",
           collapsed ? "hidden" : "hidden sm:flex",
         )}
+        style={sidebarTint}
       >
         <div className="flex items-center gap-1.5 px-1 py-1">
           <span

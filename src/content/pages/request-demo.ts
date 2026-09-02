@@ -13,7 +13,6 @@ export const requestDemoForm = {
     phone: "Phone",
     message: "Message",
   },
-  optionalHint: "Optional",
   consent:
     "By submitting this form, you agree to our Privacy Policy and consent to the collection, storage, processing and transfer of your information in accordance with that policy.",
   submitLabel: "Submit",

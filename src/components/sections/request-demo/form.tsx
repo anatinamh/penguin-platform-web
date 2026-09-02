@@ -35,21 +35,21 @@ export function RequestDemoForm({ locale }: { locale: Locale }) {
       <p className="font-heading text-xl font-medium">{requestDemoForm.title}</p>
 
       <div className="mt-6 grid gap-4">
-        <Field label={fields.name} htmlFor="name">
+        <Field label={fields.name} htmlFor="name" required>
           <Input id="name" name="name" required autoComplete="name" />
         </Field>
 
-        <Field label={fields.workEmail} htmlFor="workEmail">
+        <Field label={fields.workEmail} htmlFor="workEmail" required>
           <Input id="workEmail" name="workEmail" type="email" required autoComplete="email" />
         </Field>
 
         {/* Only two of the four are required, so marking what's optional says
             more than starring what isn't. */}
-        <Field label={fields.phone} htmlFor="phone" hint={requestDemoForm.optionalHint}>
+        <Field label={fields.phone} htmlFor="phone">
           <Input id="phone" name="phone" type="tel" autoComplete="tel" />
         </Field>
 
-        <Field label={fields.message} htmlFor="message" hint={requestDemoForm.optionalHint}>
+        <Field label={fields.message} htmlFor="message">
           <Textarea id="message" name="message" rows={4} />
         </Field>
       </div>
@@ -73,19 +73,25 @@ export function RequestDemoForm({ locale }: { locale: Locale }) {
 function Field({
   label,
   htmlFor,
-  hint,
+  required,
   children,
 }: {
   label: string;
   htmlFor: string;
-  hint?: string;
+  required?: boolean;
   children: React.ReactNode;
 }) {
   return (
     <div className="flex flex-col gap-1.5">
-      <Label htmlFor={htmlFor} className="gap-1.5">
+      <Label htmlFor={htmlFor} className="gap-0.5">
         {label}
-        {hint ? <span className="font-normal text-muted-foreground">· {hint}</span> : null}
+        {/* The input carries `required`, so this is decoration for sighted
+            users — hidden from screen readers, which already hear "required". */}
+        {required ? (
+          <span aria-hidden className="text-destructive">
+            *
+          </span>
+        ) : null}
       </Label>
       {children}
     </div>

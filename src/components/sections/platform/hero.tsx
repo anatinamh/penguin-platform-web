@@ -70,27 +70,32 @@ export function PlatformHero({ locale }: { locale: Locale }) {
               }}
             />
 
-            <div className="relative rotate-1 overflow-hidden rounded-2xl border border-border/60 bg-card shadow-2xl">
-              <Image
-                src="/screenshots/pengui-platform-dark.png"
-                alt="Your Penguis — browse and subscribe to agents"
-                width={1879}
-                height={991}
-                className="w-full"
+            {/* Badges anchor to the image, not the figure — against the figure
+                the lower one measured from below the caption and landed in the
+                middle of the screenshot. */}
+            <div className="relative">
+              <div className="relative rotate-1 overflow-hidden rounded-2xl border border-border/60 bg-card shadow-2xl">
+                <Image
+                  src="/screenshots/pengui-platform-dark.png"
+                  alt="Your Penguis — browse and subscribe to agents"
+                  width={1879}
+                  height={991}
+                  className="w-full"
+                />
+              </div>
+
+              <FloatingBadge
+                icon={Users}
+                label={platformHeader.badges.permissions}
+                className="-top-4 -left-6"
+              />
+              <FloatingBadge
+                icon={Check}
+                label={platformHeader.badges.audit}
+                className="-right-5 -bottom-4"
+                delay={0.6}
               />
             </div>
-
-            <FloatingBadge
-              icon={Users}
-              label={platformHeader.badges.permissions}
-              className="-top-4 -left-6"
-            />
-            <FloatingBadge
-              icon={Check}
-              label={platformHeader.badges.audit}
-              className="right-6 bottom-24"
-              delay={0.6}
-            />
 
             <p className="mt-8 text-pretty text-center text-sm text-muted-foreground">
               {platformHeader.screenshotCaption}

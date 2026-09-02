@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Container } from "@/components/layout/container";
 import { WhiteLabelHero } from "@/components/sections/white-label/hero";
 import { WhiteLabelFeatures } from "@/components/sections/white-label/features";
 import { PresetDemo } from "@/components/sections/white-label/preset-demo";
@@ -27,19 +26,12 @@ export async function generateMetadata({ params }: LangParams): Promise<Metadata
 export default async function WhiteLabelPage({ params }: LangParams) {
   const { lang } = await params;
   const locale = isLocale(lang) ? lang : defaultLocale;
-  const { whiteLabelClosing } = getWhiteLabel(locale);
-
   return (
     <>
       <WhiteLabelHero locale={locale} />
       <PresetDemo locale={locale} />
       <WhiteLabelFeatures locale={locale} />
       <BrandSettingsPanel locale={locale} />
-      <Container className="py-16 text-center">
-        <p className="mx-auto max-w-2xl text-pretty text-muted-foreground">
-          {whiteLabelClosing}
-        </p>
-      </Container>
       <FinalCta locale={locale} />
     </>
   );

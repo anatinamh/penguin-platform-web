@@ -16,7 +16,6 @@ export const requestDemoForm: typeof En.requestDemoForm = {
     phone: "Teléfono",
     message: "Mensaje",
   },
-  optionalHint: "Opcional",
   consent:
     "Al enviar este formulario, aceptas nuestra Política de Privacidad y das tu consentimiento para la recopilación, el almacenamiento, el tratamiento y la transferencia de tu información conforme a dicha política.",
   submitLabel: "Enviar",

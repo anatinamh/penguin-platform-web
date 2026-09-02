@@ -58,7 +58,7 @@ export function ScreenshotFigure({
         {badges ? (
           <>
             <FloatingBadge {...badges[0]} className="-top-4 -left-6" />
-            <FloatingBadge {...badges[1]} className="-right-5 bottom-8" delay={0.6} />
+            <FloatingBadge {...badges[1]} className="-right-5 -bottom-4" delay={0.6} />
           </>
         ) : null}
       </div>
