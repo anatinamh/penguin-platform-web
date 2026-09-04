@@ -144,7 +144,7 @@ export function Difference({ locale }: { locale: Locale }) {
                 whileInView="show"
                 viewport={{ once: true, amount: 0.3 }}
                 whileHover={reduceMotion ? undefined : { y: -4 }}
-                className="relative flex flex-col gap-4 overflow-hidden rounded-2xl border border-border/60 bg-card p-6 shadow-lg transition-[border-color,border-width] duration-300 hover:border-2 hover:border-primary/40 sm:p-7"
+                className="relative flex flex-col gap-4 overflow-hidden rounded-2xl border-2 border-border/60 bg-card p-6 shadow-lg transition-colors duration-300 hover:border-primary/40 sm:p-7"
               >
                 <GhostIcon icon={featured.icon} color="var(--primary)" />
                 <CardHeader icon={featured.icon} dimension={featured.dimension} tint />
@@ -163,7 +163,7 @@ export function Difference({ locale }: { locale: Locale }) {
                 whileInView="show"
                 viewport={{ once: true, amount: 0.3 }}
                 whileHover={reduceMotion ? undefined : { y: -4 }}
-                className="relative flex flex-col gap-4 overflow-hidden rounded-2xl border border-border/60 bg-card p-6 shadow-lg transition-[border-color,border-width] duration-300 hover:border-2 hover:border-[color:var(--mascot-lime)] sm:p-7"
+                className="relative flex flex-col gap-4 overflow-hidden rounded-2xl border-2 border-border/60 bg-card p-6 shadow-lg transition-colors duration-300 hover:border-[color:var(--mascot-lime)] sm:p-7"
               >
                 <GhostIcon icon={closer.icon} color="var(--mascot-lime)" />
                 <CardHeader icon={closer.icon} dimension={closer.dimension} tint />
@@ -185,7 +185,7 @@ export function Difference({ locale }: { locale: Locale }) {
                 whileInView="show"
                 viewport={{ once: true, amount: 0.3 }}
                 whileHover={reduceMotion ? undefined : { y: -4 }}
-                className="flex flex-col gap-3 rounded-2xl border border-border/60 bg-card p-5 shadow-sm transition-[border-color,border-width] duration-300 hover:border-2 hover:border-primary/40"
+                className="flex flex-col gap-3 rounded-2xl border-2 border-border/60 bg-card p-5 shadow-sm transition-colors duration-300 hover:border-primary/40"
               >
                 <CardHeader icon={row.icon} dimension={row.dimension} />
                 <div className="flex flex-col gap-1.5">
