@@ -135,14 +135,9 @@ export const productOffering = {
     label: "Where it runs",
     options: [
       {
-        name: "Pengui Cloud",
-        icon: "cloud",
-        description: "Hosted by us, in our tenant. Instant start, zero infrastructure.",
-      },
-      {
         name: "Client Cloud",
         icon: "server",
-        description: "Your tenant or on-prem. Your data never leaves home.",
+        description: "Your tenant, on-prem or air-gapped. Your data never leaves home.",
       },
     ],
   },
@@ -204,7 +199,6 @@ export const productOffering = {
   },
   marketplace: {
     label: "Agent Marketplace",
-    note: "out of the box",
     agents: ["HR Agent", "Sales Agent", "Marketing Agent", "Finance Agent", "Support IT Agent"],
     more: "And more — build your own",
   },

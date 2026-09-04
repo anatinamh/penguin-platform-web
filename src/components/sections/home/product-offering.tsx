@@ -2,7 +2,6 @@ import Image from "next/image";
 import {
   ArrowLeftRight,
   BrainCircuit,
-  Cloud,
   Compass,
   FileSearch,
   Gauge,
@@ -20,7 +19,6 @@ import { getHome } from "@/content";
 import type { Locale } from "@/lib/i18n";
 
 const icons: Record<string, LucideIcon> = {
-  cloud: Cloud,
   server: Server,
   users: Users,
   gauge: Gauge,
@@ -195,7 +193,14 @@ export function ProductOffering({ locale }: { locale: Locale }) {
                 </TooltipContent>
               </Tooltip>
 
-              <div className="mt-5 flex items-start gap-2.5 rounded-xl border border-border/60 bg-background/70 p-3.5">
+              {/* Stroked in the same lime as the "Full brand customization"
+                  badge above, so the two visibly read as connected — this
+                  add-on rides on top of the branded base, not a separate
+                  offer. */}
+              <div
+                className="mt-5 flex items-start gap-2.5 rounded-xl border-2 bg-background/70 p-3.5"
+                style={{ borderColor: "var(--mascot-lime)" }}
+              >
                 {(() => {
                   const AddOnIcon = icons[stack.addOn.icon];
                   return AddOnIcon ? (
@@ -219,11 +224,8 @@ export function ProductOffering({ locale }: { locale: Locale }) {
 
           {/* Agent Marketplace */}
           <div>
-            <p className="flex items-baseline justify-between gap-2 text-xs font-semibold tracking-wide text-muted-foreground uppercase">
+            <p className="text-xs font-semibold tracking-wide text-muted-foreground uppercase">
               {marketplace.label}
-              <span className="font-normal text-muted-foreground/70 normal-case">
-                {marketplace.note}
-              </span>
             </p>
             <div className="mt-4 flex flex-col gap-2.5">
               {marketplace.agents.map((agent) => (

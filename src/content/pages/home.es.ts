@@ -136,14 +136,9 @@ export const productOffering: typeof En.productOffering = {
     label: "Dónde se ejecuta",
     options: [
       {
-        name: "Pengui Cloud",
-        icon: "cloud",
-        description: "Alojado por nosotros, en nuestro tenant. Arranque inmediato, cero infraestructura.",
-      },
-      {
         name: "Client Cloud",
         icon: "server",
-        description: "Tu tenant o on-prem. Tus datos nunca salen de casa.",
+        description: "Tu tenant, on-prem o air-gapped. Tus datos nunca salen de casa.",
       },
     ],
   },
@@ -205,7 +200,6 @@ export const productOffering: typeof En.productOffering = {
   },
   marketplace: {
     label: "Agent Marketplace",
-    note: "listos para usar",
     agents: [
       "Agente de RR. HH.",
       "Agente de Ventas",

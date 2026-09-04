@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { PlatformHero } from "@/components/sections/platform/hero";
-import { ServicePaths } from "@/components/sections/platform/service-paths";
 import { ProductOffering } from "@/components/sections/home/product-offering";
+import { ServicePaths } from "@/components/sections/platform/service-paths";
 import { Difference } from "@/components/sections/platform/difference";
 import { FinalCta } from "@/components/sections/shared/final-cta";
 import { getPlatform } from "@/content";
@@ -30,8 +30,8 @@ export default async function PlatformPage({ params }: LangParams) {
   return (
     <>
       <PlatformHero locale={locale} />
-      <ServicePaths locale={locale} />
       <ProductOffering locale={locale} />
+      <ServicePaths locale={locale} />
       <Difference locale={locale} />
       <FinalCta locale={locale} />
     </>
