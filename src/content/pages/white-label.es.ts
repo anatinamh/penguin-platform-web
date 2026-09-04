@@ -12,8 +12,6 @@ export const whiteLabelHeader: typeof En.whiteLabelHeader = {
   subtitle:
     "Poné tu marca en toda la plataforma (tu nombre, tu dominio, tu interfaz) y entrega agentes a los clientes que ya atiendes. Ellos ven tu producto. A nosotros nunca nos conocen.",
   note: "Úsala internamente, véndela a tus clientes o lanza un producto vertical: el mismo motor por debajo.",
-  screenshotCaption:
-    "Una sola pantalla de configuración le cambia la marca a todo: la interfaz que usan tus clientes y la Console desde la que operas.",
   badges: { cloud: "Corre en tu propia nube", unseen: "Tus clientes nunca nos ven" },
   screenshotLabel: "Tu workspace con tu marca",
   figureCaption:
@@ -111,20 +109,4 @@ export const interfaceMockup: typeof En.interfaceMockup = {
     { title: "Revisión contrato proveedor", assistant: "Pengui Legal", time: "2d" },
   ],
   user: { name: "Alex Rivera", email: "alex.rivera@acme.com" },
-};
-
-export const adminConsole: typeof En.adminConsole = {
-  title: "Consola de",
-  titleAccent: "administración",
-  subtitle: "Administrá integraciones, Penguis y la configuración de tu organización.",
-  tabs: ["Usuarios", "Integraciones", "Penguis", "Personalización"],
-  terminology: {
-    label: "Terminología",
-    hint: "Cómo se llaman tus asistentes en toda la plataforma.",
-    singular: "Singular",
-    plural: "Plural",
-  },
-  logo: { label: "Logo", hint: "Aparece en la barra lateral de la plataforma.", drop: "Arrastrá tu logo" },
-  primaryColor: { label: "Color primario", hint: "Botones, íconos y acentos principales." },
-  secondaryColor: { label: "Color secundario", hint: "Elementos de apoyo y etiquetas visuales." },
 };

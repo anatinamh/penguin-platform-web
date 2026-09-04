@@ -114,33 +114,41 @@ export const difference = {
   rows: [
     {
       dimension: "Where it runs",
+      icon: "server",
       boltOn: "Vendor's cloud; your data leaves",
       pengui: "Your cloud or on-prem; data stays",
     },
     {
       dimension: "The model",
+      icon: "cpu",
       boltOn: "Locked to one provider",
       pengui: "Bring your own",
     },
     {
       dimension: "The intelligence",
+      icon: "brain-circuit",
       boltOn: "An extra bolted onto someone else's UI",
       pengui: "Agents, memory & data access are the platform",
+      featured: true,
     },
     {
       dimension: "Memory",
+      icon: "database",
       boltOn: "Stateless or opaque",
       pengui: "Governed, inspectable, owned by you",
     },
     {
       dimension: "Observability",
+      icon: "gauge",
       boltOn: "An add-on you build or rent",
       pengui: "Included in every plan — traces, logs, cost, permissions",
     },
     {
       dimension: "Your customers",
+      icon: "users",
       boltOn: "The vendor's, ultimately",
       pengui: "Yours — you deliver under your own brand, and we never meet them",
+      closer: true,
     },
   ],
 };

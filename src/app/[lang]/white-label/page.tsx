@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { WhiteLabelHero } from "@/components/sections/white-label/hero";
 import { WhiteLabelFeatures } from "@/components/sections/white-label/features";
 import { PresetDemo } from "@/components/sections/white-label/preset-demo";
-import { BrandSettingsPanel } from "@/components/sections/white-label/brand-settings-panel";
 import { FinalCta } from "@/components/sections/shared/final-cta";
 import { getWhiteLabel } from "@/content";
 import { alternatesFor, canonicalFor, defaultLocale, isLocale } from "@/lib/i18n";
@@ -31,7 +30,6 @@ export default async function WhiteLabelPage({ params }: LangParams) {
       <WhiteLabelHero locale={locale} />
       <PresetDemo locale={locale} />
       <WhiteLabelFeatures locale={locale} />
-      <BrandSettingsPanel locale={locale} />
       <FinalCta locale={locale} />
     </>
   );

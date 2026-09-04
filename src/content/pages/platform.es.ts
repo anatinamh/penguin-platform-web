@@ -119,33 +119,41 @@ export const difference: typeof En.difference = {
   rows: [
     {
       dimension: "Dónde corre",
+      icon: "server",
       boltOn: "La nube del proveedor; tus datos salen",
       pengui: "Tu nube u on-prem; los datos se quedan",
     },
     {
       dimension: "El modelo",
+      icon: "cpu",
       boltOn: "Atado a un solo proveedor",
       pengui: "Trae el tuyo",
     },
     {
       dimension: "La inteligencia",
+      icon: "brain-circuit",
       boltOn: "Un extra atornillado a la UI de otro",
       pengui: "Los agentes, la memoria y el acceso a datos son la plataforma",
+      featured: true,
     },
     {
       dimension: "Memory",
+      icon: "database",
       boltOn: "Sin estado u opaca",
       pengui: "Gobernada, inspeccionable y tuya",
     },
     {
       dimension: "Observabilidad",
+      icon: "gauge",
       boltOn: "Un extra que construyes o alquilas",
       pengui: "Incluida en todos los planes — trazas, logs, costo, permisos",
     },
     {
       dimension: "Tus clientes",
+      icon: "users",
       boltOn: "En el fondo, del proveedor",
       pengui: "Tuyos — entregas bajo tu propia marca y nosotros nunca los conocemos",
+      closer: true,
     },
   ],
 };

@@ -8,8 +8,6 @@ export const whiteLabelHeader = {
   subtitle:
     "Put your brand on the whole platform (your name, your domain, your interface) and deliver agents to the clients you already serve. They see your product. We never meet them.",
   note: "Run it internally, sell it to your clients, or launch a vertical product: same engine underneath.",
-  screenshotCaption:
-    "One settings screen re-brands everything: the interface your clients use and the console you run it from.",
   badges: { cloud: "Runs in your own cloud", unseen: "Your clients never see us" },
   screenshotLabel: "Your branded workspace",
   figureCaption:
@@ -110,22 +108,4 @@ export const interfaceMockup = {
     { title: "Vendor contract review", assistant: "Legal Pengui", time: "2d" },
   ],
   user: { name: "Alex Rivera", email: "alex.rivera@acme.com" },
-};
-
-// Copy for the pared-back admin-console branding tab shown beside the
-// "one settings screen re-brands everything" claim.
-export const adminConsole = {
-  title: "Admin",
-  titleAccent: "console",
-  subtitle: "Manage integrations, Penguis and your organization's settings.",
-  tabs: ["Users", "Integrations", "Penguis", "Branding"],
-  terminology: {
-    label: "Terminology",
-    hint: "What your assistants are called across the platform.",
-    singular: "Singular",
-    plural: "Plural",
-  },
-  logo: { label: "Logo", hint: "Appears in the platform sidebar.", drop: "Drag your logo in" },
-  primaryColor: { label: "Primary color", hint: "Buttons, icons and main accents." },
-  secondaryColor: { label: "Secondary color", hint: "Supporting elements and visual tags." },
 };
