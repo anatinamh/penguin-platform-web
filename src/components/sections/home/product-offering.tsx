@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import {
   ArrowLeftRight,
@@ -13,10 +16,21 @@ import {
   Users,
   type LucideIcon,
 } from "lucide-react";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { Container } from "@/components/layout/container";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
+import { cn } from "@/lib/utils";
 import { getHome } from "@/content";
 import type { Locale } from "@/lib/i18n";
+
+// Same decelerate-and-settle curve used for every other scroll/loop
+// animation on the site (see components/shared/reveal.tsx).
+const EASE = [0.22, 0.61, 0.36, 1] as const;
+const CAROUSEL_INTERVAL_MS = 2600;
+// Matches "Where it runs" single card's rendered height, so the two side
+// columns read as the same weight even though one is a static card and the
+// other is a slot that cycles through several.
+const CAROUSEL_MIN_HEIGHT = "min-h-[164px]";
 
 const icons: Record<string, LucideIcon> = {
   server: Server,
@@ -36,6 +50,83 @@ function Connector() {
       <span className="flex size-9 items-center justify-center rounded-full border border-border/60 bg-card text-muted-foreground shadow-sm">
         <ArrowLeftRight className="size-4" />
       </span>
+    </div>
+  );
+}
+
+// Cycles through the marketplace's prebuilt agents one at a time, in the
+// same footprint as "Where it runs" single card — a vertical reel instead of
+// a tall stack, with a soft zoom-and-settle on each new agent.
+//
+// Always renders this same structure regardless of reduceMotion — branching
+// to an entirely different tree (a static stacked list) when reduceMotion is
+// true caused a server/client hydration mismatch: Framer Motion's hook
+// resolves synchronously on the client in a browser that has the OS setting
+// on, but the server (no `window`) can't know that, so the two would render
+// different markup on the very first paint. Reduced motion instead just
+// stops the auto-advance timer and collapses the transition duration to 0 —
+// manual clicks still work, instantly, so nothing is unreachable.
+function AgentCarousel({ agents }: { agents: string[] }) {
+  const reduceMotion = useReducedMotion();
+  const [index, setIndex] = useState(0);
+  const [paused, setPaused] = useState(false);
+
+  useEffect(() => {
+    if (reduceMotion || paused || agents.length < 2) return;
+    const id = setInterval(() => {
+      setIndex((i) => (i + 1) % agents.length);
+    }, CAROUSEL_INTERVAL_MS);
+    return () => clearInterval(id);
+  }, [reduceMotion, paused, agents.length]);
+
+  return (
+    <div>
+      <div
+        className={cn(
+          "relative overflow-hidden rounded-2xl border border-border/60 bg-card shadow-sm",
+          CAROUSEL_MIN_HEIGHT,
+        )}
+        onMouseEnter={() => setPaused(true)}
+        onMouseLeave={() => setPaused(false)}
+        onFocus={() => setPaused(true)}
+        onBlur={() => setPaused(false)}
+      >
+        <AnimatePresence mode="wait" initial={false}>
+          <motion.button
+            key={index}
+            type="button"
+            aria-label={`Next: ${agents[(index + 1) % agents.length]}`}
+            onClick={() => setIndex((i) => (i + 1) % agents.length)}
+            initial={{ opacity: 0, y: 28, scale: 0.86 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -28, scale: 0.86 }}
+            transition={{ duration: reduceMotion ? 0 : 0.55, ease: EASE }}
+            className="absolute inset-0 flex cursor-pointer flex-col items-center justify-center gap-3 p-5 text-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          >
+            <Image
+              src="/mascot/pengui-avatar.png"
+              alt=""
+              aria-hidden
+              width={44}
+              height={44}
+              className="size-11 rounded-full shadow-sm"
+            />
+            <span className="font-medium">{agents[index]}</span>
+          </motion.button>
+        </AnimatePresence>
+      </div>
+
+      <div className="mt-2.5 flex justify-center gap-1.5" aria-hidden>
+        {agents.map((agent, i) => (
+          <span
+            key={agent}
+            className={cn(
+              "size-1.5 rounded-full transition-colors duration-300",
+              i === index ? "bg-primary" : "bg-border",
+            )}
+          />
+        ))}
+      </div>
     </div>
   );
 }
@@ -71,7 +162,7 @@ export function ProductOffering({ locale }: { locale: Locale }) {
         <div className="mt-14 grid gap-6 lg:grid-cols-[1fr_auto_1.3fr_auto_1fr] lg:items-center">
           {/* Where it runs */}
           <div>
-            <p className="text-xs font-semibold tracking-wide text-muted-foreground uppercase">
+            <p className="text-sm font-semibold tracking-wide text-muted-foreground uppercase">
               {whereItRuns.label}
             </p>
             <div className="mt-4 flex flex-col">
@@ -106,7 +197,7 @@ export function ProductOffering({ locale }: { locale: Locale }) {
           {/* The Pengui stack — same treatment as Solution's featured middle
               card: one color-block surface, not two competing ones. */}
           <div>
-            <p className="text-center text-xs font-semibold tracking-wide text-muted-foreground uppercase">
+            <p className="text-center text-sm font-semibold tracking-wide text-muted-foreground uppercase">
               {stack.label}
             </p>
 
@@ -224,26 +315,11 @@ export function ProductOffering({ locale }: { locale: Locale }) {
 
           {/* Agent Marketplace */}
           <div>
-            <p className="text-xs font-semibold tracking-wide text-muted-foreground uppercase">
+            <p className="text-sm font-semibold tracking-wide text-muted-foreground uppercase">
               {marketplace.label}
             </p>
             <div className="mt-4 flex flex-col gap-2.5">
-              {marketplace.agents.map((agent) => (
-                <div
-                  key={agent}
-                  className="flex items-center gap-3 rounded-lg border border-border/60 bg-card p-3"
-                >
-                  <Image
-                    src="/mascot/pengui-avatar.png"
-                    alt=""
-                    aria-hidden
-                    width={28}
-                    height={28}
-                    className="size-7 rounded-full"
-                  />
-                  <span className="text-sm font-medium">{agent}</span>
-                </div>
-              ))}
+              <AgentCarousel agents={marketplace.agents} />
               <div className="flex items-center gap-3 rounded-lg border border-dashed border-primary/45 bg-primary/8 p-3 text-sm font-semibold text-primary">
                 <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-primary/15 text-primary">
                   <Plus className="size-3.5" />
