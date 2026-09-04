@@ -97,7 +97,7 @@ export const solution = {
           description: "Plain-language questions over your numbers.",
         },
         {
-          label: "MCP apps",
+          label: "App MCP",
           icon: "cable",
           description: "Via the open MCP standard.",
         },

@@ -98,7 +98,7 @@ export const solution: typeof En.solution = {
           description: "Preguntas en lenguaje natural sobre tus números.",
         },
         {
-          label: "Apps MCP",
+          label: "App MCP",
           icon: "cable",
           description: "A través del estándar abierto MCP.",
         },

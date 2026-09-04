@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import Image from "next/image";
 import { BrainCircuit, Palette, ShieldCheck, Zap, type LucideIcon } from "lucide-react";
 import { motion, useAnimationFrame, useReducedMotion } from "framer-motion";
@@ -32,50 +32,41 @@ const labelPositions = [
   `${LABEL_BASE} lg:top-1/2 lg:right-full lg:left-auto lg:mt-0 lg:mr-2 lg:translate-x-0 lg:-translate-y-1/2`, // left, at 9 o'clock
 ];
 // Keeps the ring clear of the labels that ride just outside it.
-const ORBIT_INSET_PCT = 18;
 const ORBIT_INSET = "inset-[18%]";
 // A circular orbit through all four node positions (radius 40, centered on
 // the hub) — two semicircle arcs, both swept clockwise so a dot animated
 // along this path travels top → right → bottom → left.
 const orbitPath = "M50 10 A40 40 0 1 1 50 90 A40 40 0 1 1 50 10";
 const ORBIT_DURATION_MS = 7000;
-// The ring's own radius as a share of the *outer* square container: the SVG
-// box is inset ORBIT_INSET_PCT on each side, and within it the ring spans 80%
-// of that box's width (r=40 in a 0–100 viewBox). Keeping the dot's orbit in
-// this same unit, rather than the SVG's local 0–100 space, is what lets it
-// move via a plain CSS transform (below) instead of through the SVG.
-const ORBIT_RADIUS_PCT = (100 - 2 * ORBIT_INSET_PCT) * 0.4;
+// The dot's rest position (angle 0, 12 o'clock) in the same 0–100 viewBox
+// units as the ring path above — center (50,50), radius 40.
+const ORBIT_REST = { cx: 50, cy: 10 };
+const ORBIT_RADIUS = 40;
 
 export function Shift({ locale }: { locale: Locale }) {
   const { shift } = getHome(locale);
   const reduceMotion = useReducedMotion();
-  const diagramRef = useRef<HTMLDivElement>(null);
-  const orbitDotRef = useRef<HTMLSpanElement>(null);
+  const orbitDotRef = useRef<SVGCircleElement>(null);
 
-  // The dot used to be an SVG <circle> with cx/cy rewritten every frame —
-  // changing SVG geometry attributes forces the browser back onto the
-  // layout/paint path on each tick. A plain element moved by CSS `transform`
-  // stays on the compositor instead, which is what actually fixed the low
-  // frame rate (this is the same fix as the price-lever cards' box-shadow:
-  // stop animating a property that repaints, animate one that composites).
+  // The dot used to move via cx/cy rewritten every frame — changing SVG
+  // geometry attributes forces the browser back onto the layout/paint path on
+  // each tick instead of the compositor. Driving a CSS `transform` instead
+  // fixes that (same root cause, same fix, as the price-lever cards' animated
+  // box-shadow). It also has to stay *inside* the ring's own <svg>, sharing
+  // its viewBox: an earlier version moved the dot to a separate HTML element
+  // positioned from a measured container width, and any rounding between that
+  // measurement and the SVG's own inset math showed up as visible drift off
+  // the ring over the course of the orbit.
   useAnimationFrame((t) => {
-    if (reduceMotion || !orbitDotRef.current || !diagramRef.current) return;
+    if (reduceMotion || !orbitDotRef.current) return;
     const angle = ((t % ORBIT_DURATION_MS) / ORBIT_DURATION_MS) * Math.PI * 2;
-    const radiusPx = diagramRef.current.offsetWidth * (ORBIT_RADIUS_PCT / 100);
-    const x = radiusPx * Math.sin(angle);
-    const y = -radiusPx * Math.cos(angle);
-    orbitDotRef.current.style.transform = `translate(-50%, -50%) translate(${x}px, ${y}px)`;
+    // Translation from the rest point (angle 0) to the current point, in the
+    // SVG's own user-space units — a CSS transform on an SVG element resolves
+    // unit-less/px lengths in that local coordinate system, not real pixels.
+    const x = ORBIT_RADIUS * Math.sin(angle);
+    const y = ORBIT_RADIUS * (1 - Math.cos(angle));
+    orbitDotRef.current.style.transform = `translate(${x}px, ${y}px)`;
   });
-
-  // With motion reduced, the frame loop above never runs — this places the
-  // dot at its resting spot (12 o'clock, angle 0) once instead, using the
-  // same pixel math rather than a CSS percentage translate() would resolve
-  // against the dot's own tiny size rather than the diagram's.
-  useEffect(() => {
-    if (!reduceMotion || !orbitDotRef.current || !diagramRef.current) return;
-    const radiusPx = diagramRef.current.offsetWidth * (ORBIT_RADIUS_PCT / 100);
-    orbitDotRef.current.style.transform = `translate(-50%, -50%) translate(0px, -${radiusPx}px)`;
-  }, [reduceMotion]);
 
   return (
     <section className="relative overflow-hidden py-24 sm:py-32">
@@ -153,7 +144,7 @@ export function Shift({ locale }: { locale: Locale }) {
               <p className="text-sm font-medium text-primary uppercase">{shift.agentic.label}</p>
               <p className="mt-1 font-heading text-xl font-medium">{shift.agentic.heading}</p>
 
-              <div ref={diagramRef} className="relative mt-8 aspect-square w-full max-w-[420px]">
+              <div className="relative mt-8 aspect-square w-full max-w-[420px]">
                 <svg viewBox="0 0 100 100" className={`absolute ${ORBIT_INSET}`} aria-hidden>
                   <path
                     d={orbitPath}
@@ -163,12 +154,14 @@ export function Shift({ locale }: { locale: Locale }) {
                     vectorEffect="non-scaling-stroke"
                     fill="none"
                   />
+                  <circle
+                    ref={orbitDotRef}
+                    cx={ORBIT_REST.cx}
+                    cy={ORBIT_REST.cy}
+                    r={1.6}
+                    fill="var(--primary)"
+                  />
                 </svg>
-                <span
-                  ref={orbitDotRef}
-                  aria-hidden
-                  className="absolute top-1/2 left-1/2 size-[8px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary"
-                />
 
                 {/* sonar pulses, expanding outward from the hub */}
                 {[0, 1.6].map((delay) => (
