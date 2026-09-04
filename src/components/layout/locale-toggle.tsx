@@ -42,6 +42,9 @@ export function LocaleToggle({
           <Link
             key={code}
             href={switchLocalePath(pathname, code)}
+            // Same page in the other language, not a new one — keep the
+            // reader's scroll position instead of Next's default jump to top.
+            scroll={false}
             hrefLang={code}
             aria-current={active ? "true" : undefined}
             title={localeNames[code]}

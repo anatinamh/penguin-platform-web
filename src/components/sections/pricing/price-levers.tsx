@@ -55,49 +55,67 @@ export function PriceLevers({ locale }: { locale: Locale }) {
                 viewport={{ once: true, amount: 0.3 }}
                 transition={{ duration: 0.45, delay: i * 0.08, ease: EASE }}
                 whileHover={reduceMotion ? undefined : { y: -6 }}
-                className="group relative flex flex-col overflow-hidden rounded-2xl border border-border/60 bg-card p-6 transition-[box-shadow,border-color] duration-300 hover:border-primary/40 hover:shadow-xl hover:shadow-primary/10"
+                className="group relative flex flex-col rounded-2xl"
               >
+                {/* The hover shadow used to be an animated box-shadow value,
+                    which repaints the whole blurred region every frame — heavy
+                    enough to visibly lag three of these at once. A shadow
+                    that's always computed but fades in via opacity is
+                    compositor-only, so it costs nothing while animating. It
+                    has to live outside the card's own overflow-hidden, or that
+                    clips the shadow along with everything else. */}
                 <span
                   aria-hidden
-                  className="pointer-events-none absolute inset-x-0 top-0 h-24 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-                  style={{
-                    background:
-                      "linear-gradient(to bottom, color-mix(in oklch, var(--primary) 12%, transparent), transparent)",
-                  }}
+                  className="pointer-events-none absolute inset-0 rounded-2xl shadow-xl shadow-primary/10 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
                 />
 
-                <p className="relative font-medium">{item.title}</p>
+                <div className="relative flex flex-col overflow-hidden rounded-2xl border border-border/60 bg-card p-6 transition-colors duration-300 group-hover:border-primary/40">
+                  <span
+                    aria-hidden
+                    className="pointer-events-none absolute inset-x-0 top-0 h-24 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                    style={{
+                      background:
+                        "linear-gradient(to bottom, color-mix(in oklch, var(--primary) 12%, transparent), transparent)",
+                    }}
+                  />
 
-                {ladder ? (
-                  <>
-                    <ol className="relative mt-3 flex flex-col gap-1.5">
-                      {ladder.steps.map((step, s) => (
-                        <li key={step} className="flex items-center gap-1.5">
-                          {s > 0 ? (
-                            <ArrowRight
-                              aria-hidden
-                              className="size-3 shrink-0 text-muted-foreground/50 transition-colors duration-300 group-hover:text-primary/60"
+                  <p className="relative font-medium">{item.title}</p>
+
+                  {ladder ? (
+                    <>
+                      <ol className="relative mt-3 flex flex-col gap-1.5">
+                        {ladder.steps.map((step, s) => (
+                          <li key={step} className="flex items-center gap-1.5">
+                            {s > 0 ? (
+                              <ArrowRight
+                                aria-hidden
+                                className="size-3 shrink-0 text-muted-foreground/50 transition-colors duration-300 group-hover:text-primary/60"
+                                style={{ transitionDelay: `${s * 90}ms` }}
+                              />
+                            ) : (
+                              <span aria-hidden className="size-3 shrink-0" />
+                            )}
+                            <span
+                              className="rounded-md border border-border/60 px-2 py-1 text-xs font-medium transition-colors duration-300 group-hover:border-primary/30 group-hover:bg-primary/8 group-hover:text-primary"
                               style={{ transitionDelay: `${s * 90}ms` }}
-                            />
-                          ) : (
-                            <span aria-hidden className="size-3 shrink-0" />
-                          )}
-                          <span
-                            className="rounded-md border border-border/60 px-2 py-1 text-xs font-medium transition-colors duration-300 group-hover:border-primary/30 group-hover:bg-primary/8 group-hover:text-primary"
-                            style={{ transitionDelay: `${s * 90}ms` }}
-                          >
-                            {step}
-                          </span>
-                        </li>
-                      ))}
-                    </ol>
-                    {ladder.note ? (
-                      <p className="relative mt-3 text-sm text-muted-foreground">{ladder.note}</p>
-                    ) : null}
-                  </>
-                ) : (
-                  <p className="relative mt-2 text-sm text-muted-foreground">{item.description}</p>
-                )}
+                            >
+                              {step}
+                            </span>
+                          </li>
+                        ))}
+                      </ol>
+                      {ladder.note ? (
+                        <p className="relative mt-3 text-sm text-muted-foreground">
+                          {ladder.note}
+                        </p>
+                      ) : null}
+                    </>
+                  ) : (
+                    <p className="relative mt-2 text-sm text-muted-foreground">
+                      {item.description}
+                    </p>
+                  )}
+                </div>
               </motion.div>
             );
           })}

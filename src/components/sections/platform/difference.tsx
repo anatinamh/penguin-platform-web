@@ -1,4 +1,4 @@
-import { Check, X } from "lucide-react";
+import { Check } from "lucide-react";
 import {
   Accordion,
   AccordionContent,
@@ -9,23 +9,14 @@ import { Container } from "@/components/layout/container";
 import { getPlatform } from "@/content";
 import type { Locale } from "@/lib/i18n";
 
-function ComparisonLine({
-  positive,
-  children,
-}: {
-  positive?: boolean;
-  children: React.ReactNode;
-}) {
+// The bolt-on/Pengui contrast (a red X beside a green check) read as unclear
+// about which side was which once the row was collapsed to just the two
+// short lines — dropped in favor of stating Pengui's side plainly.
+function ComparisonLine({ children }: { children: React.ReactNode }) {
   return (
-    <span className={positive ? "flex items-start gap-2.5 text-sm font-semibold" : "flex items-start gap-2.5 text-sm text-muted-foreground"}>
-      <span
-        className={
-          positive
-            ? "mt-0.5 flex size-[18px] shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary"
-            : "mt-0.5 flex size-[18px] shrink-0 items-center justify-center rounded-full bg-destructive/10 text-destructive"
-        }
-      >
-        {positive ? <Check className="size-2.5" /> : <X className="size-2.5" />}
+    <span className="flex items-start gap-2.5 text-sm font-semibold">
+      <span className="mt-0.5 flex size-[18px] shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
+        <Check className="size-2.5" />
       </span>
       {children}
     </span>
@@ -56,10 +47,7 @@ export function Difference({ locale }: { locale: Locale }) {
                 {row.dimension}
               </AccordionTrigger>
               <AccordionContent>
-                <div className="flex flex-col gap-2.5">
-                  <ComparisonLine>{row.boltOn}</ComparisonLine>
-                  <ComparisonLine positive>{row.pengui}</ComparisonLine>
-                </div>
+                <ComparisonLine>{row.pengui}</ComparisonLine>
               </AccordionContent>
             </AccordionItem>
           ))}
