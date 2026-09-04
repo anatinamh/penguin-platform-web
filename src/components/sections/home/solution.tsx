@@ -4,6 +4,7 @@ import Image from "next/image";
 import {
   AppWindow,
   ArrowLeftRight,
+  ArrowUpDown,
   BrainCircuit,
   Briefcase,
   Cable,
@@ -136,7 +137,7 @@ const cardVariants: Variants = {
 function Connector() {
   const reduceMotion = useReducedMotion();
   return (
-    <div className="z-20 hidden shrink-0 items-center justify-center lg:-mx-2 lg:flex">
+    <div className="z-20 flex shrink-0 items-center justify-center lg:-mx-2">
       <motion.span
         initial={reduceMotion ? false : { opacity: 0, scale: 0.6 }}
         whileInView={{ opacity: 1, scale: 1 }}
@@ -144,7 +145,10 @@ function Connector() {
         transition={{ duration: 0.4 }}
         className="flex size-9 items-center justify-center rounded-full border border-border/60 bg-card text-muted-foreground shadow-sm"
       >
-        <ArrowLeftRight className="size-4" />
+        {/* Stacked vertically below lg, side by side above it — the
+            connector points the way the cards actually flow at each size. */}
+        <ArrowUpDown className="size-4 lg:hidden" />
+        <ArrowLeftRight className="hidden size-4 lg:block" />
       </motion.span>
     </div>
   );
