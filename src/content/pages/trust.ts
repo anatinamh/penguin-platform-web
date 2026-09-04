@@ -5,12 +5,6 @@ export const trustHeader = {
   title: "Enterprise-grade, running inside your own network.",
   subtitle:
     "The questions your security team, your legal team and your CFO will ask, answered plainly: the perimeter, the access model, and who owns what.",
-  badges: {
-    region: "Data stays in-region",
-    soc2: "SOC 2 ready",
-    rbac: "Role-based access",
-    audit: "Full audit trail",
-  },
   screenshotLabel: "Permissions & audit log",
   figureBadges: { access: "Access by role", audit: "Nothing goes unlogged" },
   figureCaption:

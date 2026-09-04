@@ -1,45 +1,9 @@
-"use client";
-
-import type { ReactNode } from "react";
-import { Check, ClipboardCheck, Lock, User } from "lucide-react";
-import { motion, useReducedMotion } from "framer-motion";
 import { Container } from "@/components/layout/container";
-import { cn } from "@/lib/utils";
 import { getTrust } from "@/content";
 import type { Locale } from "@/lib/i18n";
 
-function FloatingBadge({
-  icon,
-  label,
-  className,
-  delay = 0,
-}: {
-  icon: ReactNode;
-  label: string;
-  className: string;
-  delay?: number;
-}) {
-  const reduceMotion = useReducedMotion();
-  return (
-    <motion.div
-      className={cn(
-        "absolute z-10 hidden items-center gap-2 rounded-xl border border-border/60 bg-card px-3.5 py-2.5 text-sm font-semibold text-foreground shadow-lg sm:flex",
-        className,
-      )}
-      animate={reduceMotion ? undefined : { y: [0, -6, 0] }}
-      transition={{ duration: 4.2, repeat: Infinity, ease: "easeInOut", delay }}
-    >
-      <span className="flex size-5 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
-        {icon}
-      </span>
-      {label}
-    </motion.div>
-  );
-}
-
 export function TrustHero({ locale }: { locale: Locale }) {
   const { trustHeader } = getTrust(locale);
-  const reduceMotion = useReducedMotion();
   return (
     <section
       className="relative overflow-hidden border-b border-border/60 py-24 sm:py-32"
@@ -62,25 +26,6 @@ export function TrustHero({ locale }: { locale: Locale }) {
 
         <div className="w-full lg:flex-1">
           <div className="relative mx-auto flex max-w-[420px] items-center justify-center py-6">
-            <motion.div
-              aria-hidden
-              className="absolute -inset-[6%] rounded-full border border-dashed border-primary/25"
-              animate={reduceMotion ? undefined : { rotate: 360 }}
-              transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-            />
-            <motion.div
-              aria-hidden
-              className="absolute inset-[16%] rounded-full"
-              style={{
-                background:
-                  "radial-gradient(closest-side, color-mix(in oklch, var(--primary) 12%, transparent), transparent 72%)",
-              }}
-              animate={
-                reduceMotion ? undefined : { opacity: [0.4, 0.8, 0.4], scale: [0.94, 1.04, 0.94] }
-              }
-              transition={{ duration: 3.4, repeat: Infinity, ease: "easeInOut" }}
-            />
-
             <svg viewBox="0 0 260 300" className="relative w-56 drop-shadow-xl" aria-hidden>
               <defs>
                 <linearGradient id="shieldGrad" x1="0" y1="0" x2="0" y2="1">
@@ -113,30 +58,6 @@ export function TrustHero({ locale }: { locale: Locale }) {
                 fill="none"
               />
             </svg>
-
-            <FloatingBadge
-              icon={<Lock className="size-3" />}
-              label={trustHeader.badges.region}
-              className="top-2 -left-4"
-            />
-            <FloatingBadge
-              icon={<Check className="size-3" />}
-              label={trustHeader.badges.soc2}
-              className="top-0 -right-2"
-              delay={0.5}
-            />
-            <FloatingBadge
-              icon={<User className="size-3" />}
-              label={trustHeader.badges.rbac}
-              className="bottom-10 -left-8"
-              delay={1}
-            />
-            <FloatingBadge
-              icon={<ClipboardCheck className="size-3" />}
-              label={trustHeader.badges.audit}
-              className="bottom-4 -right-4"
-              delay={1.5}
-            />
           </div>
         </div>
       </Container>

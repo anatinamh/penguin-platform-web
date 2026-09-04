@@ -7,12 +7,6 @@ export const trustHeader: typeof En.trustHeader = {
   title: "Nivel enterprise, corriendo dentro de tu propia red.",
   subtitle:
     "Las preguntas que van a hacer tu equipo de seguridad, tu equipo legal y tu CFO, respondidas sin vueltas: el perímetro, el modelo de acceso y quién es dueño de qué.",
-  badges: {
-    region: "Los datos no salen de tu región",
-    soc2: "Listo para SOC 2",
-    rbac: "Acceso por rol",
-    audit: "Auditoría completa",
-  },
   screenshotLabel: "Permisos y registro de auditoría",
   figureBadges: { access: "Acceso por rol", audit: "Nada queda sin registrar" },
   figureCaption:
