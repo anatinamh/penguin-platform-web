@@ -94,7 +94,7 @@ export const interfaceMockup = {
   canvas: "Canvas",
   eyebrow: "Start with a message",
   greeting: "Good afternoon,",
-  greetingName: "Alex",
+  greetingName: "Annie",
   subtext: "Write what you need and {brand} takes care of the rest.",
   assistantPill: "{brand} Assistant",
   inputPlaceholder: "Hello",
@@ -107,5 +107,5 @@ export const interfaceMockup = {
     { title: "Pricing page feedback", assistant: "{brand} Assistant", time: "1d" },
     { title: "Vendor contract review", assistant: "Legal Pengui", time: "2d" },
   ],
-  user: { name: "Alex Rivera", email: "alex.rivera@acme.com" },
+  user: { name: "Annie Rivera", email: "annie.rivera@acme.com" },
 };

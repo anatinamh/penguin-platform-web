@@ -95,7 +95,7 @@ export const interfaceMockup: typeof En.interfaceMockup = {
   canvas: "Canvas",
   eyebrow: "Empezá con un mensaje",
   greeting: "Buenas tardes,",
-  greetingName: "Alex",
+  greetingName: "Annie",
   subtext: "Escribí lo que necesitás y {brand} se encarga del resto.",
   assistantPill: "Asistente {brand}",
   inputPlaceholder: "Hola",
@@ -108,5 +108,5 @@ export const interfaceMockup: typeof En.interfaceMockup = {
     { title: "Feedback de la página de precios", assistant: "Asistente {brand}", time: "1d" },
     { title: "Revisión contrato proveedor", assistant: "Pengui Legal", time: "2d" },
   ],
-  user: { name: "Alex Rivera", email: "alex.rivera@acme.com" },
+  user: { name: "Annie Rivera", email: "annie.rivera@acme.com" },
 };

@@ -1,9 +1,13 @@
 "use client";
 
+import Image from "next/image";
 import {
   ChevronDown,
+  Flame,
   Folder,
+  Gem,
   Home,
+  Leaf,
   MessageSquare,
   MoreVertical,
   Plus,
@@ -11,8 +15,19 @@ import {
   SendHorizonal,
   Sparkles,
   SlidersHorizontal,
+  type LucideIcon,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+
+// Each non-Pengui preset is a stand-in for a different client brand, so it
+// gets its own mark instead of reusing the penguin — Pengui is the one
+// identity actually named "Pengui". Falls back to the Pengui mark for any
+// future preset that doesn't have one yet, rather than an empty circle.
+const BRAND_MARKS: Record<string, LucideIcon> = {
+  Ember: Flame,
+  Indigo: Gem,
+  Moss: Leaf,
+};
 
 /**
  * A scaled-down rendering of the real Pengui app — sidebar plus chat home —
@@ -178,12 +193,26 @@ export function PenguiInterface({
 
       {/* ── Chat home ───────────────────────────────────────────────────── */}
       <div className="flex min-w-0 flex-1 flex-col items-center px-4 py-7">
-        <span
-          className="mb-2.5 flex size-8 items-center justify-center rounded-full text-[13px] font-semibold text-white shadow-sm transition-colors duration-300"
-          style={onAccent}
-        >
-          {brand.charAt(0)}
-        </span>
+        {brand === "Pengui" ? (
+          <Image
+            src="/mascot/pengui-avatar.png"
+            alt=""
+            aria-hidden
+            width={32}
+            height={32}
+            className="mb-2.5 size-8 rounded-full shadow-sm"
+          />
+        ) : (
+          <span
+            className="mb-2.5 flex size-8 items-center justify-center rounded-full text-white shadow-sm transition-colors duration-300"
+            style={onAccent}
+          >
+            {(() => {
+              const Mark = BRAND_MARKS[brand];
+              return Mark ? <Mark className="size-4" /> : brand.charAt(0);
+            })()}
+          </span>
+        )}
         <span
           className="text-[8.5px] font-semibold tracking-[0.14em] uppercase transition-colors duration-300"
           style={inAccent}
