@@ -381,7 +381,8 @@
 
 @media (prefers-reduced-motion: reduce) {
   .shift-hub,
-  .pengui.is-playing {
+  .pengui.is-playing,
+  .flow-connector-v {
     animation: none !important;
   }
 }
@@ -397,6 +398,29 @@
   stroke-dasharray: 5 7;
   stroke-dashoffset: var(--flow-offset, 0);
   vector-effect: non-scaling-stroke;
+}
+
+/* Interconnections' mobile flow: the same "everything runs through one
+   engine" line, drawn as a short vertical dashed segment between stacked
+   groups instead of the desktop radial layout. A CSS-only marching dash —
+   there's no per-frame JS here, the segment is 2px wide so animating its
+   background position never costs enough to matter. */
+.flow-connector-v {
+  width: 2px;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    var(--line-connector) 0 5px,
+    transparent 5px 12px
+  );
+  animation: flow-connector-v 0.7s linear infinite;
+}
+@keyframes flow-connector-v {
+  from {
+    background-position-y: 0;
+  }
+  to {
+    background-position-y: 12px;
+  }
 }
 
 /* How it works — a rail of four steps that lights up in sequence. */

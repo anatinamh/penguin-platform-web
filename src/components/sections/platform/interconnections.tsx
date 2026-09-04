@@ -77,6 +77,57 @@ const BOTTOM_LINE_END_Y = 90;
 // the hub and the bus row.
 const CONNECT_LABEL_Y = (HUB_BOTTOM_Y + BOTTOM_BUS_Y) / 2;
 
+type Group = {
+  layer: string;
+  caption: string;
+  items: { piece: string; tag?: string; icon: string; description: string }[];
+};
+
+// The label + caption + pill list shared by every group card, top or bottom,
+// desktop or mobile — only how each is positioned differs.
+function GroupCard({ group }: { group: Group }) {
+  return (
+    <>
+      <p className="text-xs font-semibold tracking-wide text-primary uppercase">{group.layer}</p>
+      <p className="mt-0.5 text-[11px] text-muted-foreground">{group.caption}</p>
+      <div className="mt-3 flex flex-wrap gap-1.5">
+        {group.items.map((item) => (
+          <Pill key={item.piece} icon={item.icon} label={item.piece} description={item.description} />
+        ))}
+      </div>
+    </>
+  );
+}
+
+function HubNode({ description }: { description: string }) {
+  return (
+    <div className="flex flex-col items-center gap-2">
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <span
+            tabIndex={0}
+            aria-label="Pengui Platform"
+            className="flex size-20 cursor-help items-center justify-center rounded-full border border-primary/30 bg-card p-2 shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          >
+            <Image
+              src="/mascot/pengui-avatar.png"
+              alt=""
+              aria-hidden
+              width={64}
+              height={64}
+              className="size-full rounded-full"
+            />
+          </span>
+        </TooltipTrigger>
+        <TooltipContent className="max-w-[210px] text-left whitespace-normal">
+          {description}
+        </TooltipContent>
+      </Tooltip>
+      <span className="font-heading text-sm font-medium whitespace-nowrap">Pengui Platform</span>
+    </div>
+  );
+}
+
 function Pill({
   icon,
   label,
@@ -167,51 +218,15 @@ export function Interconnections({ locale }: { locale: Locale }) {
               style={{ left: `${TOP_X[i]}%`, bottom: `${100 - TOP_LINE_START_Y}%` }}
               className="absolute w-56 -translate-x-1/2 rounded-2xl border border-border/60 bg-card p-4 shadow-sm"
             >
-              <p className="text-xs font-semibold tracking-wide text-primary uppercase">
-                {group.layer}
-              </p>
-              <p className="mt-0.5 text-[11px] text-muted-foreground">{group.caption}</p>
-              <div className="mt-3 flex flex-wrap gap-1.5">
-                {group.items.map((item) => (
-                  <Pill
-                    key={item.piece}
-                    icon={item.icon}
-                    label={item.piece}
-                    description={item.description}
-                  />
-                ))}
-              </div>
+              <GroupCard group={group} />
             </div>
           ))}
 
           <div
             style={{ left: `${HUB.x}%`, top: `${HUB.y}%` }}
-            className="absolute flex -translate-x-1/2 -translate-y-1/2 flex-col items-center gap-2"
+            className="absolute -translate-x-1/2 -translate-y-1/2"
           >
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <span
-                  tabIndex={0}
-                  aria-label="Pengui Platform"
-                  className="flex size-20 cursor-help items-center justify-center rounded-full border border-primary/30 bg-card p-2 shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                >
-                  <Image
-                    src="/mascot/pengui-avatar.png"
-                    alt=""
-                    aria-hidden
-                    width={64}
-                    height={64}
-                    className="size-full rounded-full"
-                  />
-                </span>
-              </TooltipTrigger>
-              <TooltipContent className="max-w-[210px] text-left whitespace-normal">
-                {HUB_DESCRIPTION}
-              </TooltipContent>
-            </Tooltip>
-            <span className="font-heading text-sm font-medium whitespace-nowrap">
-              Pengui Platform
-            </span>
+            <HubNode description={HUB_DESCRIPTION} />
           </div>
 
           {/* Sits on the trunk line with a matching backdrop so the dashed
@@ -242,16 +257,26 @@ export function Interconnections({ locale }: { locale: Locale }) {
           ))}
         </div>
 
-        {/* Mobile: a plain grid, no lines */}
-        <div className="mt-12 grid grid-cols-2 gap-2 sm:grid-cols-3 lg:hidden">
-          {[...topClusters.flatMap((g) => g.items), ...bottomItems].map((item) => (
-            <Pill
-              key={item.piece}
-              icon={item.icon}
-              label={item.piece}
-              description={item.description}
-            />
+        {/* Mobile: the same "everything runs through one engine" idea, read
+            top-to-bottom on a single connecting line instead of the desktop's
+            radial layout — a flat grid dropped that story entirely. */}
+        <div className="mt-12 flex flex-col items-center lg:hidden">
+          {topClusters.map((group, i) => (
+            <div key={group.layer} className="flex w-full max-w-sm flex-col items-center">
+              {i > 0 ? <span aria-hidden className="flow-connector-v h-6" /> : null}
+              <div className="w-full rounded-2xl border border-border/60 bg-card p-4 shadow-sm">
+                <GroupCard group={group} />
+              </div>
+            </div>
           ))}
+
+          <span aria-hidden className="flow-connector-v h-8" />
+          <HubNode description={HUB_DESCRIPTION} />
+          <span aria-hidden className="flow-connector-v h-8" />
+
+          <div className="w-full max-w-sm rounded-2xl border border-border/60 bg-card p-4 shadow-sm">
+            <GroupCard group={connect} />
+          </div>
         </div>
 
         <p className="mt-10 text-center text-sm text-muted-foreground">{capabilities.note}</p>
