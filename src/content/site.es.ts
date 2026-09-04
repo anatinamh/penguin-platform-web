@@ -41,7 +41,7 @@ export const site: SiteContent = {
       links: [
         { label: "Pedir una demo", href: "/request-demo" },
         { label: "Probar gratis", href: "/pricing" },
-        { label: "Hablar con ventas", href: "#contact" },
+        { label: "Hablar con ventas", href: "/request-demo" },
       ],
     },
   },

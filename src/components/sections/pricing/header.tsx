@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { ArrowRight, Check, Users } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/layout/container";
 import { getPricing } from "@/content";
@@ -47,18 +46,10 @@ export function PricingHeader({ locale }: { locale: Locale }) {
 
             <div className="dark-surface rounded-2xl border border-primary/25 p-6 shadow-2xl ring-4 ring-primary/10 sm:p-7">
               <div className="flex items-start justify-between gap-4">
-                <div>
-                  <Badge variant="secondary" className="mb-2 w-fit">
-                    {trial.startHere}
-                  </Badge>
-                  <p className="text-xs font-medium tracking-wide text-primary uppercase">
-                    {trial.title}
-                  </p>
-                </div>
-                <div className="shrink-0 text-right">
-                  <span className="font-heading text-4xl font-medium">{trial.price}</span>
-                  <p className="text-[11px] text-muted-foreground">{trial.priceNote}</p>
-                </div>
+                <p className="text-xs font-medium tracking-wide text-primary uppercase">
+                  {trial.title}
+                </p>
+                <span className="shrink-0 font-heading text-4xl font-medium">{trial.price}</span>
               </div>
 
               <p className="mt-4 text-sm text-muted-foreground">{trial.description}</p>

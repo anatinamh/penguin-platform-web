@@ -44,7 +44,7 @@ export const site = {
       links: [
         { label: "Request a demo", href: "/request-demo" },
         { label: "Start free trial", href: "/pricing" },
-        { label: "Contact sales", href: "#contact" },
+        { label: "Contact sales", href: "/request-demo" },
       ],
     },
   },

@@ -11,7 +11,6 @@ export const pricingHeader = {
 };
 
 export const trial = {
-  startHere: "Start here",
   title: "Free 30-day trial · in your cloud",
   description: "Deploy the full agent stack in your own cloud and evaluate it free",
   includes: [
@@ -22,8 +21,7 @@ export const trial = {
   closing: "Build and run agents with unlimited users; you pay only your own model tokens.",
   altNote: "Don't want to deploy in your own cloud yet? Use hosted Pengui to start now.",
   price: "$0",
-  priceNote: "for 30 days · BYO tokens",
-  primaryCta: { label: "Start free", href: "#contact" },
+  primaryCta: { label: "Start free", href: "/request-demo" },
 };
 
 export const tiers = [
@@ -35,7 +33,6 @@ export const tiers = [
     seatsLabel: "Up to 3 agent seats included",
     featured: false,
     includes: ["Console · observability", "Front End interface", "RAG System", "Standard support"],
-    prebuilt: "~1 prebuilt agent out of the box (HR)",
   },
   {
     name: "Growth",
@@ -51,7 +48,6 @@ export const tiers = [
       "Multi-IdP SSO",
       "Standard Support (Email or Chat)",
     ],
-    prebuilt: "~2 agents out of the box (HR, Marketing)",
   },
   {
     name: "Scale",
@@ -65,10 +61,8 @@ export const tiers = [
     includes: [
       "Memory M2 · shared knowledge",
       "Explorer E2 · + databases",
-      "Security & SOC · premium support",
       "Premium Support (Email, Chat & Virtual Call)",
     ],
-    prebuilt: "~3 agents out of the box (HR, Marketing, Finance)",
   },
   {
     name: "Enterprise+",
@@ -84,7 +78,6 @@ export const tiers = [
       "First access to M3 on launch",
       "Premium Support (Email, Chat & Virtual Call)",
     ],
-    prebuilt: "~4 agents out of the box (HR, Marketing, Finance, Support IT)",
   },
   {
     name: "Custom",

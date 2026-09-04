@@ -15,7 +15,6 @@ export const pricingHeader: typeof En.pricingHeader = {
 };
 
 export const trial: typeof En.trial = {
-  startHere: "Empezá acá",
   title: "Prueba gratis de 30 días · en tu nube",
   description: "Despliega el stack completo de agentes en tu propia nube y evalúalo gratis",
   includes: [
@@ -26,8 +25,7 @@ export const trial: typeof En.trial = {
   closing: "Creá y poné a correr agentes con usuarios ilimitados; solo pagás los tokens de tu propio modelo.",
   altNote: "¿Todavía no querés desplegar en tu propia nube? Usá Pengui alojado por nosotros y empezá ahora.",
   price: "$0",
-  priceNote: "durante 30 días · tokens propios",
-  primaryCta: { label: "Empezá gratis", href: "#contact" },
+  primaryCta: { label: "Empezá gratis", href: "/request-demo" },
 };
 
 export const tiers: typeof En.tiers = [
@@ -39,7 +37,6 @@ export const tiers: typeof En.tiers = [
     seatsLabel: "Hasta 3 licencias de agente incluidas",
     featured: false,
     includes: ["Console · observabilidad", "Interfaz front end", "RAG System", "Soporte estándar"],
-    prebuilt: "~1 agente listo para usar (RR. HH.)",
   },
   {
     name: "Growth",
@@ -55,7 +52,6 @@ export const tiers: typeof En.tiers = [
       "SSO multi-IdP",
       "Soporte estándar (email o chat)",
     ],
-    prebuilt: "~2 agentes listos para usar (RR. HH., Marketing)",
   },
   {
     name: "Scale",
@@ -69,10 +65,8 @@ export const tiers: typeof En.tiers = [
     includes: [
       "Memory M2 · conocimiento compartido",
       "Explorer E2 · + bases de datos",
-      "Seguridad y SOC · soporte premium",
       "Soporte premium (email, chat y videollamada)",
     ],
-    prebuilt: "~3 agentes listos para usar (RR. HH., Marketing, Finanzas)",
   },
   {
     name: "Enterprise+",
@@ -88,7 +82,6 @@ export const tiers: typeof En.tiers = [
       "Acceso anticipado a M3 en su lanzamiento",
       "Soporte premium (email, chat y videollamada)",
     ],
-    prebuilt: "~4 agentes listos para usar (RR. HH., Marketing, Finanzas, Soporte IT)",
   },
   {
     name: "Custom",
