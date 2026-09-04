@@ -3,7 +3,7 @@
 import Image from "next/image";
 import {
   ChevronDown,
-  Flame,
+  Bird,
   Folder,
   Gem,
   Home,
@@ -24,7 +24,7 @@ import { cn } from "@/lib/utils";
 // identity actually named "Pengui". Falls back to the Pengui mark for any
 // future preset that doesn't have one yet, rather than an empty circle.
 const BRAND_MARKS: Record<string, LucideIcon> = {
-  Ember: Flame,
+  Ember: Bird,
   Indigo: Gem,
   Moss: Leaf,
 };
