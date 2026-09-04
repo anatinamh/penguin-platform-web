@@ -12,7 +12,7 @@ export const platformHeader: typeof En.platformHeader = {
     audit: "Cada acción queda registrada",
   },
   screenshotCaption:
-    "Todos tus agentes en un solo lugar — mira qué hace cada uno, quién lo usa y qué tiene permitido tocar.",
+    "Todos tus agentes en un solo lugar — mirá qué hace cada uno, quién lo usa y qué tiene permitido tocar.",
 };
 
 export const servicePaths: typeof En.servicePaths = {
@@ -36,7 +36,7 @@ export const servicePaths: typeof En.servicePaths = {
       title: "Lo construimos por vos",
       body: [
         {
-          text: "Nos encargamos del descubrimiento, el diseño, la integración, las pruebas y el despliegue — lanzas un agente funcionando sin contratar especialistas en IA.",
+          text: "Nos encargamos del descubrimiento, el diseño, la integración, las pruebas y el despliegue — lanzás un agente funcionando sin contratar especialistas en IA.",
           strong: "sin contratar especialistas en IA",
         },
         {
@@ -58,7 +58,7 @@ export const servicePaths: typeof En.servicePaths = {
           strong: "es dueño de los agentes",
         },
         {
-          text: "Pengui se vuelve tu infraestructura interna de agentes — cada nuevo caso de uso es algo que construyes, no otra compra que negociar.",
+          text: "Pengui se vuelve tu infraestructura interna de agentes — cada nuevo caso de uso es algo que construís, no otra compra que negociar.",
         },
       ],
       footnote: "Impulsado por Pengui Platform",
@@ -86,7 +86,7 @@ export const howItWorks: typeof En.howItWorks = {
   steps: [
     {
       number: "01",
-      title: "Despliega",
+      title: "Desplegá",
       description:
         "Instalá Pengui en tu propia nube o en tu propio data center, air-gapped si lo necesitás, con el instalador guiado.",
     },
@@ -104,9 +104,9 @@ export const howItWorks: typeof En.howItWorks = {
     },
     {
       number: "04",
-      title: "Personaliza y lanza",
+      title: "Personalizá y lanzá",
       description:
-        "Ponle tu nombre y lánzalo a tus equipos, con cada pregunta respondida y cada acción registrada. Eso es nuestra oferta White label.",
+        "Ponele tu nombre y lanzalo a tus equipos, con cada pregunta respondida y cada acción registrada. Eso es nuestra oferta White label.",
       strong: "White label",
     },
   ],
@@ -127,7 +127,7 @@ export const difference: typeof En.difference = {
       dimension: "El modelo",
       icon: "cpu",
       boltOn: "Atado a un solo proveedor",
-      pengui: "Trae el tuyo",
+      pengui: "Traé el tuyo",
     },
     {
       dimension: "La inteligencia",
@@ -145,14 +145,14 @@ export const difference: typeof En.difference = {
     {
       dimension: "Observabilidad",
       icon: "gauge",
-      boltOn: "Un extra que construyes o alquilas",
+      boltOn: "Un extra que construís o alquilás",
       pengui: "Incluida en todos los planes — trazas, logs, costo, permisos",
     },
     {
       dimension: "Tus clientes",
       icon: "users",
       boltOn: "En el fondo, del proveedor",
-      pengui: "Tuyos — entregas bajo tu propia marca y nosotros nunca los conocemos",
+      pengui: "Tuyos — entregás bajo tu propia marca y nosotros nunca los conocemos",
       closer: true,
     },
   ],

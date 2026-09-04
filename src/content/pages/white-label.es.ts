@@ -8,10 +8,10 @@ type Widen<T> = T extends string ? string : T;
 
 export const whiteLabelHeader: typeof En.whiteLabelHeader = {
   eyebrow: "White-label desde el primer día",
-  title: "Lanza agentes como tu propio producto.",
+  title: "Lanzá agentes como tu propio producto.",
   subtitle:
-    "Poné tu marca en toda la plataforma (tu nombre, tu dominio, tu interfaz) y entrega agentes a los clientes que ya atiendes. Ellos ven tu producto. A nosotros nunca nos conocen.",
-  note: "Úsala internamente, véndela a tus clientes o lanza un producto vertical: el mismo motor por debajo.",
+    "Poné tu marca en toda la plataforma (tu nombre, tu dominio, tu interfaz) y entregá agentes a los clientes que ya atendés. Ellos ven tu producto. A nosotros nunca nos conocen.",
+  note: "Usala internamente, vendela a tus clientes o lanzá un producto vertical: el mismo motor por debajo.",
   badges: { cloud: "Corre en tu propia nube", unseen: "Tus clientes nunca nos ven" },
   screenshotLabel: "Tu workspace con tu marca",
   figureCaption:
@@ -30,14 +30,14 @@ export const whiteLabelFeatures: typeof En.whiteLabelFeatures = [
     title: "Entornos aislados por cliente",
     icon: "layers",
     description:
-      "Cada cliente ve solo sus propios datos. Gestionas todos los entornos desde una sola Console.",
+      "Cada cliente ve solo sus propios datos. Gestionás todos los entornos desde una sola Console.",
     strong: "solo sus propios datos",
   },
   {
     title: "Usuarios finales ilimitados",
     icon: "users",
     description:
-      "Nunca pagás por persona, así que tu margen no se achica a medida que tus clientes crecen. Defines tus precios y tus contratos.",
+      "Nunca pagás por persona, así que tu margen no se achica a medida que tus clientes crecen. Definís tus precios y tus contratos.",
     strong: "Nunca pagás por persona",
   },
   {
@@ -48,7 +48,7 @@ export const whiteLabelFeatures: typeof En.whiteLabelFeatures = [
     strong: "Nada sale de ahí por defecto",
   },
   {
-    title: "Trae tus propios modelos",
+    title: "Traé tus propios modelos",
     icon: "cpu",
     description:
       "Costo, residencia de datos y elección de modelo quedan en tus manos. Las herramientas se conectan a través del estándar abierto MCP.",
@@ -58,13 +58,13 @@ export const whiteLabelFeatures: typeof En.whiteLabelFeatures = [
     title: "Un producto, no un proyecto",
     icon: "package",
     description:
-      "La plataforma ya viene construida: Console, interfaz, recuperación, Memory, gobernanza. Le agregas tu marca y tus agentes, no un año de ingeniería.",
+      "La plataforma ya viene construida: Console, interfaz, recuperación, Memory, gobernanza. Le agregás tu marca y tus agentes, no un año de ingeniería.",
     strong: "no un año de ingeniería",
   },
 ];
 
 export const whiteLabelBanner: Widen<typeof En.whiteLabelBanner> =
-  "Úsala internamente, véndela hacia afuera o lanza un vertical — el poder de una plataforma agéntica, sin tener que construirla.";
+  "Usala internamente, vendela hacia afuera o lanzá un vertical — el poder de una plataforma agéntica, sin tener que construirla.";
 
 export const presetDemo: typeof En.presetDemo = {
   eyebrow: "Elegí un preset. Mirá cómo cambia esta página.",
@@ -80,7 +80,7 @@ export const presetDemo: typeof En.presetDemo = {
 };
 
 export const whiteLabelClosing: Widen<typeof En.whiteLabelClosing> =
-  "Usás tu propio despliegue para llevar tus agentes — construidos sobre tus datos, tus procesos y tu marca — a los clientes que ya atiendes.";
+  "Usás tu propio despliegue para llevar tus agentes — construidos sobre tus datos, tus procesos y tu marca — a los clientes que ya atendés.";
 
 export const interfaceMockup: typeof En.interfaceMockup = {
   newChat: "Nuevo chat",

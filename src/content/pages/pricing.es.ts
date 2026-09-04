@@ -16,7 +16,7 @@ export const pricingHeader: typeof En.pricingHeader = {
 
 export const trial: typeof En.trial = {
   title: "Prueba gratis de 30 días · en tu nube",
-  description: "Despliega el stack completo de agentes en tu propia nube y evalúalo gratis",
+  description: "Desplegá el stack completo de agentes en tu propia nube y evalualo gratis",
   includes: [
     "Console (observabilidad y control)",
     "Canvas (la interfaz)",
@@ -114,7 +114,7 @@ export const priceLevers: typeof En.priceLevers = {
       description: "Individual → Equipo y empresa → Ciclo de automejora (muy pronto).",
     },
     {
-      title: "Pregúntale a tus datos, cuántas fuentes",
+      title: "Preguntale a tus datos, cuántas fuentes",
       description:
         "Archivos → + Bases de datos → + Cruces entre fuentes. El salto de valor está en cruzar datos entre fuentes.",
     },
@@ -126,7 +126,7 @@ export const priceLevers: typeof En.priceLevers = {
   extras: [
     {
       title: "À la carte",
-      description: "Suma solo Memory, o solo Pregúntale a tus datos, sobre Studio — sin tener que subir de plan entero.",
+      description: "Sumá solo Memory, o solo Preguntale a tus datos, sobre Studio — sin tener que subir de plan entero.",
     },
     {
       title: "Precio por uso",

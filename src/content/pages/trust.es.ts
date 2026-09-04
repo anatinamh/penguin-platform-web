@@ -31,7 +31,7 @@ export const control: typeof En.control = {
     {
       question: "“¿Quién controla el acceso?”",
       answer:
-        "Tú. Tu propio inicio de sesión — SSO, SAML, OIDC (Okta, Entra, Auth0 y otros) — permisos por rol, límites sobre lo que puede hacer cada agente y un registro completo de cada acción. Los datos de cada cliente quedan aislados, exportables o eliminables cuando lo pidas.",
+        "Vos. Tu propio inicio de sesión — SSO, SAML, OIDC (Okta, Entra, Auth0 y otros) — permisos por rol, límites sobre lo que puede hacer cada agente y un registro completo de cada acción. Los datos de cada cliente quedan aislados, exportables o eliminables cuando lo pidas.",
     },
   ],
   note: "Sobre las certificaciones, sin vueltas. Las que gobiernan tus datos son las que ya tenés. La plataforma corre en tu entorno y tu información nunca llega a nosotros — así que el perímetro de cumplimiento, y la auditoría, siguen siendo tuyos.",

@@ -13,7 +13,7 @@ export const hero: typeof En.hero = {
 
 export const shift: typeof En.shift = {
   eyebrow: "El cambio",
-  title: "Convierte tu empresa en una empresa agéntica.",
+  title: "Convertí tu empresa en una empresa agéntica.",
   note: "Una capa agéntica hace trabajo real — a un costo escalable.",
   chatbot: {
     prompt: "¿Te podés encargar de esto?",
@@ -50,7 +50,7 @@ export const solution: typeof En.solution = {
   title: "Pengui es la capa operativa agéntica para empresas.",
   titleHighlight: "capa operativa agéntica",
   subtitle:
-    "Se ubica entre quienes preguntan y los sistemas que tienen las respuestas, para que tus agentes no solo respondan: actúen. Adopta una pieza, o todas.",
+    "Se ubica entre quienes preguntan y los sistemas que tienen las respuestas, para que tus agentes no solo respondan: actúen. Adoptá una pieza, o todas.",
   layer: {
     eyebrow: "La capa operativa",
     title: "Pengui está en el medio.",
@@ -93,7 +93,7 @@ export const solution: typeof En.solution = {
           description: "Actúa solo donde tiene permiso.",
         },
         {
-          label: "Pregunta a tus datos · NLQ",
+          label: "Preguntá a tus datos · NLQ",
           icon: "message-square-text",
           description: "Preguntas en lenguaje natural sobre tus números.",
         },
@@ -103,7 +103,7 @@ export const solution: typeof En.solution = {
           description: "A través del estándar abierto MCP.",
         },
         {
-          label: "Trae tu propio LLM",
+          label: "Traé tu propio LLM",
           icon: "cpu",
           description: "Funciona con los modelos que elijas.",
           wide: true,
@@ -154,8 +154,8 @@ export const productOffering: typeof En.productOffering = {
       eyebrow: "La base",
       name: "Pengui Platform — White Label",
       badge: "Personalización total de marca",
-      description: "Vestida con tu marca — lanza agentes como producto propio, con tus propios modelos.",
-      strong: "lanza agentes como producto propio",
+      description: "Vestida con tu marca — lanzá agentes como producto propio, con tus propios modelos.",
+      strong: "lanzá agentes como producto propio",
       modules: [
         {
           label: "Console",
