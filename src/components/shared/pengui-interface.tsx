@@ -30,6 +30,58 @@ const BRAND_MARKS: Record<string, LucideIcon> = {
 };
 
 /**
+ * The one avatar mark for a preset — same rendering wherever an avatar
+ * appears (sidebar logo, collapsed rail, chat-home greeting), so switching
+ * presets can't leave one spot showing the old brand.
+ *
+ * Gets a glossy, slightly domed look (a radial highlight plus an inset
+ * shine and a soft drop shadow) rather than a flat color fill — a cheap,
+ * CSS-only way to read as a rendered icon instead of a plain swatch, no
+ * image asset needed for Ember/Indigo/Moss.
+ */
+function BrandAvatar({
+  brand,
+  accent,
+  size = "sm",
+}: {
+  brand: string;
+  accent: string;
+  size?: "sm" | "lg";
+}) {
+  if (brand === "Pengui") {
+    return (
+      <Image
+        src="/mascot/pengui-avatar.png"
+        alt=""
+        aria-hidden
+        width={32}
+        height={32}
+        className={cn(
+          size === "lg" ? "size-8" : "size-4",
+          "shrink-0 rounded-full shadow-[0_1px_3px_rgba(0,0,0,0.25),inset_0_1px_1.5px_rgba(255,255,255,0.55)] ring-1 ring-white/40",
+        )}
+      />
+    );
+  }
+  const Mark = BRAND_MARKS[brand];
+  return (
+    <span
+      className={cn(
+        size === "lg" ? "size-8" : "size-4",
+        "flex shrink-0 items-center justify-center rounded-full text-white transition-colors duration-300",
+      )}
+      style={{
+        background: `radial-gradient(circle at 30% 25%, color-mix(in oklch, white 45%, ${accent}), ${accent} 55%, color-mix(in oklch, black 25%, ${accent}) 100%)`,
+        boxShadow:
+          "inset 0 1px 1.5px color-mix(in oklch, white 50%, transparent), 0 1px 2px rgba(0,0,0,0.22)",
+      }}
+    >
+      {Mark ? <Mark className={size === "lg" ? "size-4" : "size-2.5"} /> : brand.charAt(0)}
+    </span>
+  );
+}
+
+/**
  * A scaled-down rendering of the real Pengui app — sidebar plus chat home —
  * driven entirely by one accent colour and one brand name.
  *
@@ -111,10 +163,7 @@ export function PenguiInterface({
           className="hidden w-11 shrink-0 flex-col items-center gap-2 border-r py-2.5 transition-colors duration-300 sm:flex"
           style={sidebarTint}
         >
-          <span
-            className="size-4 shrink-0 rounded-[5px] transition-colors duration-300"
-            style={onAccent}
-          />
+          <BrandAvatar brand={brand} accent={accent} />
           <span
             className="mt-1.5 flex size-6 items-center justify-center rounded-md transition-colors duration-300"
             style={tintAccent}
@@ -143,10 +192,7 @@ export function PenguiInterface({
         style={sidebarTint}
       >
         <div className="flex items-center gap-1.5 px-1 py-1">
-          <span
-            className="size-4 shrink-0 rounded-[5px] transition-colors duration-300"
-            style={onAccent}
-          />
+          <BrandAvatar brand={brand} accent={accent} />
           <span className="truncate font-heading text-[11px] font-semibold tracking-tight">
             {brand}
           </span>
@@ -193,26 +239,9 @@ export function PenguiInterface({
 
       {/* ── Chat home ───────────────────────────────────────────────────── */}
       <div className="flex min-w-0 flex-1 flex-col items-center px-4 py-7">
-        {brand === "Pengui" ? (
-          <Image
-            src="/mascot/pengui-avatar.png"
-            alt=""
-            aria-hidden
-            width={32}
-            height={32}
-            className="mb-2.5 size-8 rounded-full shadow-sm"
-          />
-        ) : (
-          <span
-            className="mb-2.5 flex size-8 items-center justify-center rounded-full text-white shadow-sm transition-colors duration-300"
-            style={onAccent}
-          >
-            {(() => {
-              const Mark = BRAND_MARKS[brand];
-              return Mark ? <Mark className="size-4" /> : brand.charAt(0);
-            })()}
-          </span>
-        )}
+        <div className="mb-2.5">
+          <BrandAvatar brand={brand} accent={accent} size="lg" />
+        </div>
         <span
           className="text-[8.5px] font-semibold tracking-[0.14em] uppercase transition-colors duration-300"
           style={inAccent}
