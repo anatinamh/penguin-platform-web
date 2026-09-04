@@ -2,7 +2,8 @@
 
 import { ArrowRight } from "lucide-react";
 import { Container } from "@/components/layout/container";
-import { HoverLift, RevealGroup } from "@/components/shared/reveal";
+import { RevealGroup } from "@/components/shared/reveal";
+import { GlowCard } from "@/components/sections/pricing/glow-card";
 import { getPricing } from "@/content";
 import type { Locale } from "@/lib/i18n";
 
@@ -41,58 +42,58 @@ export function PriceLevers({ locale }: { locale: Locale }) {
           <p className="mt-4 text-pretty text-muted-foreground">{priceLevers.subtitle}</p>
         </div>
 
+        {/* Both rows share one GlowCard treatment — the "extras" used to be
+            dashed-border and duller, reading as a lower tier of information.
+            They're just as relevant as the first three, so now they carry
+            the same weight, not a lesser one. */}
         <RevealGroup className="mt-12 grid gap-6 sm:grid-cols-3">
           {priceLevers.items.map((item) => {
             const ladder = splitLadder(item.description);
             return (
-              <HoverLift key={item.title} className="group h-full">
-                <div className="h-full rounded-2xl border border-border/60 bg-card p-6">
-                  <p className="font-medium">{item.title}</p>
+              <GlowCard key={item.title} className="h-full" cardClassName="p-6">
+                <p className="font-medium">{item.title}</p>
 
-                  {ladder ? (
-                    <>
-                      <ol className="mt-3 flex flex-col gap-1.5">
-                        {ladder.steps.map((step, s) => (
-                          <li key={step} className="flex items-center gap-1.5">
-                            {s > 0 ? (
-                              <ArrowRight
-                                aria-hidden
-                                className="size-3 shrink-0 text-muted-foreground/50 transition-colors duration-300 group-hover:text-primary/60"
-                                style={{ transitionDelay: `${s * 90}ms` }}
-                              />
-                            ) : (
-                              <span aria-hidden className="size-3 shrink-0" />
-                            )}
-                            <span
-                              className="rounded-md border border-border/60 px-2 py-1 text-xs font-medium transition-colors duration-300 group-hover:border-primary/30 group-hover:bg-primary/8 group-hover:text-primary"
+                {ladder ? (
+                  <>
+                    <ol className="mt-3 flex flex-col gap-1.5">
+                      {ladder.steps.map((step, s) => (
+                        <li key={step} className="flex items-center gap-1.5">
+                          {s > 0 ? (
+                            <ArrowRight
+                              aria-hidden
+                              className="size-3 shrink-0 text-muted-foreground/50 transition-colors duration-300 group-hover:text-primary/60"
                               style={{ transitionDelay: `${s * 90}ms` }}
-                            >
-                              {step}
-                            </span>
-                          </li>
-                        ))}
-                      </ol>
-                      {ladder.note ? (
-                        <p className="mt-3 text-sm text-muted-foreground">{ladder.note}</p>
-                      ) : null}
-                    </>
-                  ) : (
-                    <p className="mt-2 text-sm text-muted-foreground">{item.description}</p>
-                  )}
-                </div>
-              </HoverLift>
+                            />
+                          ) : (
+                            <span aria-hidden className="size-3 shrink-0" />
+                          )}
+                          <span
+                            className="rounded-md border border-border/60 px-2 py-1 text-xs font-medium transition-colors duration-300 group-hover:border-primary/30 group-hover:bg-primary/8 group-hover:text-primary"
+                            style={{ transitionDelay: `${s * 90}ms` }}
+                          >
+                            {step}
+                          </span>
+                        </li>
+                      ))}
+                    </ol>
+                    {ladder.note ? (
+                      <p className="mt-3 text-sm text-muted-foreground">{ladder.note}</p>
+                    ) : null}
+                  </>
+                ) : (
+                  <p className="mt-2 text-sm text-muted-foreground">{item.description}</p>
+                )}
+              </GlowCard>
             );
           })}
         </RevealGroup>
 
         <RevealGroup className="mt-6 grid gap-6 sm:grid-cols-3">
           {priceLevers.extras.map((item) => (
-            <HoverLift key={item.title} className="h-full">
-              <div className="h-full rounded-2xl border border-dashed border-border p-6 transition-colors duration-300 hover:border-primary/40 hover:bg-primary/5">
-                <p className="font-medium">{item.title}</p>
-                <p className="mt-2 text-sm text-muted-foreground">{item.description}</p>
-              </div>
-            </HoverLift>
+            <GlowCard key={item.title} className="h-full" cardClassName="p-6">
+              <p className="font-medium">{item.title}</p>
+              <p className="mt-2 text-sm text-muted-foreground">{item.description}</p>
+            </GlowCard>
           ))}
         </RevealGroup>
       </Container>
