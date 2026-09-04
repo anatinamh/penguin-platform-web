@@ -127,9 +127,10 @@ export const solution = {
 };
 
 export const productOffering = {
-  eyebrow: "04 — Product offering",
+  eyebrow: "Capabilities",
   titleLead: "One stack.",
   titleEmphasis: "Built to fit you.",
+  subtitle: "One platform, nothing runs in isolation. Every piece feeds the others.",
   whereItRuns: {
     label: "Where it runs",
     options: [
@@ -160,17 +161,44 @@ export const productOffering = {
       description: "Dressed in your brand — ship agents as your own product, with your own models.",
       strong: "ship agents as your own product",
       modules: [
-        { label: "Console", tag: "observability", icon: "gauge" },
-        { label: "Orchestration", icon: "share" },
-        { label: "RAG System", icon: "file-search" },
-        { label: "Front End Interface", icon: "layout" },
-        { label: "Memory", icon: "brain-circuit" },
-        { label: "Explorer", icon: "compass" },
+        {
+          label: "Console",
+          tag: "observability",
+          icon: "gauge",
+          description: "Traces, logs, cost, performance, permissions: who did what with which data.",
+        },
+        {
+          label: "Orchestration",
+          icon: "share",
+          description: "Runs multi-step tasks end to end.",
+        },
+        {
+          label: "RAG System",
+          icon: "file-search",
+          description: "Answers grounded in your documents, policies and knowledge bases.",
+        },
+        {
+          label: "Front End Interface",
+          icon: "layout",
+          description: "The interface your people actually use.",
+        },
+        {
+          label: "Memory",
+          icon: "brain-circuit",
+          description:
+            "Governed, inspectable memory: agents learn what your organization means, and you can see what they remember and why.",
+        },
+        {
+          label: "Explorer",
+          icon: "compass",
+          description: "Browse and query your connected data directly, outside of any single agent.",
+        },
       ],
       connectivity: {
         label: "Platform Connectivity Layer",
         tag: "plug in your own agents & MCPs",
         icon: "plug",
+        description: "Agents act in your tools; permissions decide what each one may touch.",
       },
     },
   },

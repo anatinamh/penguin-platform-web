@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { PlatformHero } from "@/components/sections/platform/hero";
-import { Interconnections } from "@/components/sections/platform/interconnections";
 import { ServicePaths } from "@/components/sections/platform/service-paths";
 import { ProductOffering } from "@/components/sections/home/product-offering";
 import { Difference } from "@/components/sections/platform/difference";
@@ -31,7 +30,6 @@ export default async function PlatformPage({ params }: LangParams) {
   return (
     <>
       <PlatformHero locale={locale} />
-      <Interconnections locale={locale} />
       <ServicePaths locale={locale} />
       <ProductOffering locale={locale} />
       <Difference locale={locale} />

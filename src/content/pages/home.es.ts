@@ -128,9 +128,10 @@ export const solution: typeof En.solution = {
 };
 
 export const productOffering: typeof En.productOffering = {
-  eyebrow: "04 — Oferta de producto",
+  eyebrow: "Capacidades",
   titleLead: "Un solo stack.",
   titleEmphasis: "Hecho a tu medida.",
+  subtitle: "Una sola plataforma: nada corre aislado. Cada pieza alimenta a las demás.",
   whereItRuns: {
     label: "Dónde se ejecuta",
     options: [
@@ -161,17 +162,44 @@ export const productOffering: typeof En.productOffering = {
       description: "Vestida con tu marca — lanza agentes como producto propio, con tus propios modelos.",
       strong: "lanza agentes como producto propio",
       modules: [
-        { label: "Console", tag: "observabilidad", icon: "gauge" },
-        { label: "Orchestration", icon: "share" },
-        { label: "RAG System", icon: "file-search" },
-        { label: "Front End Interface", icon: "layout" },
-        { label: "Memory", icon: "brain-circuit" },
-        { label: "Explorer", icon: "compass" },
+        {
+          label: "Console",
+          tag: "observabilidad",
+          icon: "gauge",
+          description: "Trazas, logs, costo, rendimiento, permisos: quién hizo qué y con qué datos.",
+        },
+        {
+          label: "Orchestration",
+          icon: "share",
+          description: "Ejecuta tareas de varios pasos de punta a punta.",
+        },
+        {
+          label: "RAG System",
+          icon: "file-search",
+          description: "Respuestas ancladas en tus documentos, políticas y bases de conocimiento.",
+        },
+        {
+          label: "Front End Interface",
+          icon: "layout",
+          description: "La interfaz que tu gente realmente usa.",
+        },
+        {
+          label: "Memory",
+          icon: "brain-circuit",
+          description:
+            "Memoria gobernada e inspeccionable: los agentes aprenden qué significan las cosas en tu organización, y podés ver qué recuerdan y por qué.",
+        },
+        {
+          label: "Explorer",
+          icon: "compass",
+          description: "Explorá y consultá tus datos conectados directamente, fuera de cualquier agente puntual.",
+        },
       ],
       connectivity: {
         label: "Platform Connectivity Layer",
         tag: "conectá tus propios agentes y MCPs",
         icon: "plug",
+        description: "Los agentes actúan dentro de tus herramientas; los permisos deciden qué puede tocar cada uno.",
       },
     },
   },

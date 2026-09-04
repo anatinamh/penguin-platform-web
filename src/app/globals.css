@@ -381,45 +381,8 @@
 
 @media (prefers-reduced-motion: reduce) {
   .shift-hub,
-  .pengui.is-playing,
-  .flow-connector-v {
+  .pengui.is-playing {
     animation: none !important;
-  }
-}
-
-/* diagram connector lines: dashed, flow offset driven by Framer Motion
-   (useAnimationFrame updates --flow-offset on the wrapping <svg> each tick) */
-.flow-path {
-  fill: none;
-  stroke: var(--line-connector);
-  stroke-width: 2;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-dasharray: 5 7;
-  stroke-dashoffset: var(--flow-offset, 0);
-  vector-effect: non-scaling-stroke;
-}
-
-/* Interconnections' mobile flow: the same "everything runs through one
-   engine" line, drawn as a short vertical dashed segment between stacked
-   groups instead of the desktop radial layout. A CSS-only marching dash —
-   there's no per-frame JS here, the segment is 2px wide so animating its
-   background position never costs enough to matter. */
-.flow-connector-v {
-  width: 2px;
-  background-image: repeating-linear-gradient(
-    to bottom,
-    var(--line-connector) 0 5px,
-    transparent 5px 12px
-  );
-  animation: flow-connector-v 0.7s linear infinite;
-}
-@keyframes flow-connector-v {
-  from {
-    background-position-y: 0;
-  }
-  to {
-    background-position-y: 12px;
   }
 }
 

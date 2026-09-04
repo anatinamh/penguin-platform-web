@@ -15,6 +15,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { Container } from "@/components/layout/container";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { getHome } from "@/content";
 import type { Locale } from "@/lib/i18n";
 
@@ -58,12 +59,16 @@ export function ProductOffering({ locale }: { locale: Locale }) {
   const { whereItRuns, stack, marketplace } = productOffering;
 
   return (
-    <section id="offering" className="bg-secondary py-24 sm:py-32">
+    <section id="capabilities" className="bg-secondary py-24 sm:py-32">
       <Container>
-        <h2 className="max-w-2xl text-balance font-heading text-3xl font-medium tracking-tight sm:text-4xl">
-          {productOffering.titleLead}{" "}
-          <em className="italic">{productOffering.titleEmphasis}</em>
-        </h2>
+        <div className="mx-auto max-w-2xl text-center">
+          <span className="text-sm font-medium text-primary">{productOffering.eyebrow}</span>
+          <h2 className="mt-3 text-balance font-heading text-3xl font-medium tracking-tight sm:text-4xl">
+            {productOffering.titleLead}{" "}
+            <em className="italic">{productOffering.titleEmphasis}</em>
+          </h2>
+          <p className="mt-4 text-pretty text-muted-foreground">{productOffering.subtitle}</p>
+        </div>
 
         <div className="mt-14 grid gap-6 lg:grid-cols-[1fr_auto_1.3fr_auto_1fr] lg:items-center">
           {/* Where it runs */}
@@ -140,38 +145,55 @@ export function ProductOffering({ locale }: { locale: Locale }) {
                 {stack.base.modules.map((module) => {
                   const Icon = icons[module.icon];
                   return (
-                    <div
-                      key={module.label}
-                      className="flex items-center gap-2 rounded-xl border border-primary/25 bg-primary/10 px-3 py-2.5 text-sm font-medium"
-                    >
-                      {Icon ? <Icon className="size-3.5 shrink-0 text-primary" /> : null}
-                      <span>
-                        {module.label}
-                        {"tag" in module && module.tag ? (
-                          <span className="ml-1 font-normal text-muted-foreground">
-                            · {module.tag}
+                    <Tooltip key={module.label}>
+                      <TooltipTrigger asChild>
+                        <div
+                          tabIndex={0}
+                          className="flex cursor-help items-center gap-2 rounded-xl border border-primary/25 bg-primary/10 px-3 py-2.5 text-sm font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                        >
+                          {Icon ? <Icon className="size-3.5 shrink-0 text-primary" /> : null}
+                          <span>
+                            {module.label}
+                            {"tag" in module && module.tag ? (
+                              <span className="ml-1 font-normal text-muted-foreground">
+                                · {module.tag}
+                              </span>
+                            ) : null}
                           </span>
-                        ) : null}
-                      </span>
-                    </div>
+                        </div>
+                      </TooltipTrigger>
+                      <TooltipContent className="max-w-[210px] text-left whitespace-normal">
+                        {module.description}
+                      </TooltipContent>
+                    </Tooltip>
                   );
                 })}
               </div>
 
-              <div className="mt-2 flex items-center gap-2 rounded-xl border border-primary/25 bg-primary/10 px-3 py-2.5 text-sm font-medium">
-                {(() => {
-                  const ConnIcon = icons[stack.base.connectivity.icon];
-                  return ConnIcon ? (
-                    <ConnIcon className="size-3.5 shrink-0 text-primary" />
-                  ) : null;
-                })()}
-                <span>
-                  {stack.base.connectivity.label}
-                  <span className="ml-1 font-normal text-muted-foreground">
-                    · {stack.base.connectivity.tag}
-                  </span>
-                </span>
-              </div>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <div
+                    tabIndex={0}
+                    className="mt-2 flex cursor-help items-center gap-2 rounded-xl border border-primary/25 bg-primary/10 px-3 py-2.5 text-sm font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                  >
+                    {(() => {
+                      const ConnIcon = icons[stack.base.connectivity.icon];
+                      return ConnIcon ? (
+                        <ConnIcon className="size-3.5 shrink-0 text-primary" />
+                      ) : null;
+                    })()}
+                    <span>
+                      {stack.base.connectivity.label}
+                      <span className="ml-1 font-normal text-muted-foreground">
+                        · {stack.base.connectivity.tag}
+                      </span>
+                    </span>
+                  </div>
+                </TooltipTrigger>
+                <TooltipContent className="max-w-[210px] text-left whitespace-normal">
+                  {stack.base.connectivity.description}
+                </TooltipContent>
+              </Tooltip>
 
               <div className="mt-5 flex items-start gap-2.5 rounded-xl border border-border/60 bg-background/70 p-3.5">
                 {(() => {
