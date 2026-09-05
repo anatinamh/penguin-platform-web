@@ -24,7 +24,7 @@ export function PricingHeader({ locale }: { locale: Locale }) {
       <Container className="relative flex flex-col items-center gap-12 lg:flex-row lg:items-center lg:gap-12">
         <div className="w-full text-center lg:flex-1 lg:text-left">
           <span className="text-sm font-medium text-primary">{pricingHeader.eyebrow}</span>
-          <h1 className="mt-3 max-w-xl text-balance font-heading text-4xl font-medium tracking-tight sm:text-5xl">
+          <h1 className="mx-auto mt-3 max-w-xl text-balance font-heading text-4xl font-medium tracking-tight sm:text-5xl lg:mx-0">
             {pricingHeader.titleLead} <em className="italic">{pricingHeader.titleEmphasis}</em>
           </h1>
           <span className="mt-6 inline-flex items-center gap-2 rounded-full border border-border/60 bg-card px-4 py-2 text-sm font-medium shadow-sm">

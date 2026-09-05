@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import Image from "next/image";
 import {
   BarChart3,
@@ -15,6 +16,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { Container } from "@/components/layout/container";
+import { HoverLift, RevealGroup } from "@/components/shared/reveal";
 import { cn } from "@/lib/utils";
 import type { servicePaths as ServicePathsEn } from "@/content/pages/platform";
 import { getPlatform } from "@/content";
@@ -36,6 +38,10 @@ const buildIcons: Record<string, LucideIcon> = {
   "life-buoy": LifeBuoy,
   cable: Cable,
 };
+
+// Cycled across the build items so the row reads as varied but stays within
+// the site's existing brand palette — never an arbitrary per-item hue.
+const buildColors = ["var(--primary)", "var(--mascot-blue)", "var(--mascot-orange)", "var(--mascot-lime)"];
 
 function EmphasizedTitle({ title, titleEmphasis }: Pick<typeof ServicePathsEn, "title" | "titleEmphasis">) {
   const parts: { text: string; color?: string }[] = [];
@@ -171,23 +177,36 @@ export function ServicePaths({ locale }: { locale: Locale }) {
           })}
         </div>
 
-        <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
+        <RevealGroup className="mt-10 flex flex-wrap items-center justify-center gap-3">
           <span className="text-xs font-medium tracking-wide text-muted-foreground uppercase">
             {servicePaths.commonBuilds.label}
           </span>
-          {servicePaths.commonBuilds.items.map((item) => {
+          {servicePaths.commonBuilds.items.map((item, i) => {
             const Icon = buildIcons[item.icon];
+            const color = buildColors[i % buildColors.length];
             return (
-              <span
-                key={item.label}
-                className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary/40 px-4 py-1.5 text-sm font-medium"
-              >
-                {Icon ? <Icon className="size-3.5 text-muted-foreground" /> : null}
-                {item.label}
-              </span>
+              <HoverLift key={item.label} className="inline-flex">
+                <span
+                  style={{ "--pill-c": color } as CSSProperties}
+                  className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary/40 px-4 py-1.5 text-sm font-medium transition-colors duration-300 hover:border-[color-mix(in_oklch,var(--pill-c)_55%,transparent)] hover:bg-[color-mix(in_oklch,var(--pill-c)_10%,var(--secondary))]"
+                >
+                  {Icon ? (
+                    <span
+                      className="flex size-6 shrink-0 items-center justify-center rounded-full"
+                      style={{
+                        backgroundColor: `color-mix(in oklch, ${color} 18%, transparent)`,
+                        color,
+                      }}
+                    >
+                      <Icon className="size-3.5" />
+                    </span>
+                  ) : null}
+                  {item.label}
+                </span>
+              </HoverLift>
             );
           })}
-        </div>
+        </RevealGroup>
       </Container>
     </section>
   );

@@ -51,10 +51,10 @@ export function PlatformHero({ locale }: { locale: Locale }) {
       <Container className="relative flex flex-col items-center gap-12 lg:flex-row lg:items-center lg:gap-12">
         <div className="w-full text-center lg:flex-1 lg:text-left">
           <span className="text-sm font-medium text-primary">{platformHeader.eyebrow}</span>
-          <h1 className="mt-3 max-w-xl text-balance font-heading text-4xl font-medium tracking-tight sm:text-5xl">
+          <h1 className="mx-auto mt-3 max-w-xl text-balance font-heading text-4xl font-medium tracking-tight sm:text-5xl lg:mx-0">
             {platformHeader.title}
           </h1>
-          <p className="mt-4 max-w-md text-pretty text-lg text-muted-foreground lg:mx-0">
+          <p className="mx-auto mt-4 max-w-md text-pretty text-lg text-muted-foreground lg:mx-0">
             {platformHeader.subtitle}
           </p>
         </div>

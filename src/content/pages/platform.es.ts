@@ -114,7 +114,7 @@ export const howItWorks: typeof En.howItWorks = {
 
 export const difference: typeof En.difference = {
   eyebrow: "La diferencia",
-  title: "La IA añadida te alquila una ventana de chat. Pengui te entrega el motor.",
+  title: "La IA bolt-on es una ventana de chat acoplada por fuera. Pengui es el motor que corre por dentro.",
   columns: ["Dimensión", "IA añadida — carcasa de entrega", "Pengui — motor de valor"],
   rows: [
     {

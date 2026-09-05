@@ -8,11 +8,15 @@ import {
   Compass,
   FileSearch,
   Gauge,
+  Landmark,
   LayoutTemplate,
+  LifeBuoy,
+  Megaphone,
   Plug,
   Plus,
   Server,
   Share2,
+  TrendingUp,
   Users,
   type LucideIcon,
 } from "lucide-react";
@@ -42,7 +46,23 @@ const icons: Record<string, LucideIcon> = {
   "brain-circuit": BrainCircuit,
   compass: Compass,
   plug: Plug,
+  "trending-up": TrendingUp,
+  megaphone: Megaphone,
+  landmark: Landmark,
+  "life-buoy": LifeBuoy,
 };
+
+function GhostIcon({ icon }: { icon: string }) {
+  const Icon = icons[icon];
+  if (!Icon) return null;
+  return (
+    <Icon
+      aria-hidden
+      className="pointer-events-none absolute -top-6 -right-6 size-32 text-primary opacity-[0.08]"
+      strokeWidth={1.25}
+    />
+  );
+}
 
 function Connector() {
   return (
@@ -66,7 +86,7 @@ function Connector() {
 // different markup on the very first paint. Reduced motion instead just
 // stops the auto-advance timer and collapses the transition duration to 0 —
 // manual clicks still work, instantly, so nothing is unreachable.
-function AgentCarousel({ agents }: { agents: string[] }) {
+function AgentCarousel({ agents }: { agents: { name: string; icon: string }[] }) {
   const reduceMotion = useReducedMotion();
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
@@ -95,7 +115,7 @@ function AgentCarousel({ agents }: { agents: string[] }) {
           <motion.button
             key={index}
             type="button"
-            aria-label={`Next: ${agents[(index + 1) % agents.length]}`}
+            aria-label={`Next: ${agents[(index + 1) % agents.length].name}`}
             onClick={() => setIndex((i) => (i + 1) % agents.length)}
             initial={{ opacity: 0, y: 28, scale: 0.86 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -103,15 +123,16 @@ function AgentCarousel({ agents }: { agents: string[] }) {
             transition={{ duration: reduceMotion ? 0 : 0.55, ease: EASE }}
             className="absolute inset-0 flex cursor-pointer flex-col items-center justify-center gap-3 p-5 text-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
+            <GhostIcon icon={agents[index].icon} />
             <Image
               src="/mascot/pengui-avatar.png"
               alt=""
               aria-hidden
               width={44}
               height={44}
-              className="size-11 rounded-full shadow-sm"
+              className="relative size-11 rounded-full shadow-sm"
             />
-            <span className="font-medium">{agents[index]}</span>
+            <span className="relative font-medium">{agents[index].name}</span>
           </motion.button>
         </AnimatePresence>
       </div>
@@ -119,7 +140,7 @@ function AgentCarousel({ agents }: { agents: string[] }) {
       <div className="mt-2.5 flex justify-center gap-1.5" aria-hidden>
         {agents.map((agent, i) => (
           <span
-            key={agent}
+            key={agent.name}
             className={cn(
               "size-1.5 rounded-full transition-colors duration-300",
               i === index ? "bg-primary" : "bg-border",

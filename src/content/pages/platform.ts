@@ -109,7 +109,7 @@ export const howItWorks = {
 
 export const difference = {
   eyebrow: "The difference",
-  title: "Bolt-on AI rents you a chat window. Pengui hands you the engine.",
+  title: "Bolt-on AI is a chat window bolted on. Pengui is the engine underneath.",
   columns: ["Dimension", "Bolt-on AI — delivery shell", "Pengui — value engine"],
   rows: [
     {

@@ -39,8 +39,11 @@ export function PresetDemo({ locale }: { locale: Locale }) {
               style={active.name === preset.name ? { backgroundColor: preset.accent } : undefined}
             >
               <span
-                className="size-2.5 rounded-full"
-                style={{ backgroundColor: preset.accent }}
+                className={cn(
+                  "size-2.5 rounded-full",
+                  active.name === preset.name && "bg-primary-foreground",
+                )}
+                style={active.name === preset.name ? undefined : { backgroundColor: preset.accent }}
               />
               {preset.name}
             </button>

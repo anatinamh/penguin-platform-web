@@ -199,7 +199,13 @@ export const productOffering = {
   },
   marketplace: {
     label: "Agent Marketplace",
-    agents: ["HR Agent", "Sales Agent", "Marketing Agent", "Finance Agent", "Support IT Agent"],
+    agents: [
+      { name: "HR Agent", icon: "users" },
+      { name: "Sales Agent", icon: "trending-up" },
+      { name: "Marketing Agent", icon: "megaphone" },
+      { name: "Finance Agent", icon: "landmark" },
+      { name: "Support IT Agent", icon: "life-buoy" },
+    ],
     more: "And more — build your own",
   },
 };

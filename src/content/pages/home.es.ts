@@ -201,11 +201,11 @@ export const productOffering: typeof En.productOffering = {
   marketplace: {
     label: "Agent Marketplace",
     agents: [
-      "Agente de RR. HH.",
-      "Agente de Ventas",
-      "Agente de Marketing",
-      "Agente de Finanzas",
-      "Agente de Soporte IT",
+      { name: "Agente de RR. HH.", icon: "users" },
+      { name: "Agente de Ventas", icon: "trending-up" },
+      { name: "Agente de Marketing", icon: "megaphone" },
+      { name: "Agente de Finanzas", icon: "landmark" },
+      { name: "Agente de Soporte IT", icon: "life-buoy" },
     ],
     more: "Y más — construí el tuyo",
   },
